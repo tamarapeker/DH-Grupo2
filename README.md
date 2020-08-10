@@ -1,8 +1,7 @@
 # grupo_2_cloverbazar
 
-Nuestro E-Commerce se llama Clover Bazar, ofrece productos plásticos de bazar y home. Tenemos vasos térmicos, vasos de acrílico, bowls y set de mate.
-Nuestro púlbico principal son las mujeres de entre 25 y 55 años que suelen comprar más de este tipo de cosas para la casa, además de que los colores 
-pasteles que tenemos suelen ser de mayor preferencia de las mismas.
+Nuestro E-Commerce se llama Clover Bazar, ofrecemos productos plásticos de bazar y home. Tenemos vasos térmicos, vasos de acrílico, bowls y set de mate.
+Nuestro púlbico principal son las mujeres de entre 25 y 55 años que suelen comprar este tipo de productos para la casa y para hacer algun tipo de presente, además de que los colores pasteles que ofrecemos suelen ser de mayor preferencia de las mismas.
 
 Sitios de inspiración:
 - https://www.apalapapa.com/
@@ -29,5 +28,10 @@ Sitios de inspiración:
   Luego de dos años de carrera, la dejé y comencé a trabajar en Administración de redes e Infraestructura y busque como unificar lo que hacia laboralmente y mi gusto por diseñar.
   Asi encontre el Desarrollo. Empece a tomar cursos cortos para poder ir viendo si me sentía cómodo con ello. Finalmente, luego de un año de probar, me anote en DH para
   poder concretar la formacion y mejorar más aspectos de mis habilidades ya adquiridas, como HTML y CSS.
+  
+  
+Martin Levy, actualmente alumno en Digital House en el curso de Programación full stack, recientemente recibido como licenciado en comercio internacional de la UADE.
+Lleva a cabo un emprendimiento textil (compra y venta de tela para confeccion de indumentaria femenina) y es el community manager de @rutadelflatwhite , una cuenta de instagram que sube reseñas de las mejores cafeterías de especialidad (café de alta calidad) de la ciudad de Buenos Aires.
+  
   
   
