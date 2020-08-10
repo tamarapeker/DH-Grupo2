@@ -19,8 +19,12 @@ Sitios de inspiración:
  - https://www.modernobazar.com/
   De esta nos gusta que en el home tenga productos destacados o más vendidos. Y que en el footer tenga las redes sociales.
   
+ - https://shop.blancadecocafe.com/
+ Tiene un diseno minimalista que nos gusta y nos gustaria tener en nuestro sitio de colores pastel que reflejen los colores de nuestros productos.
   
-  Hola, mi nombre es Joaquin. Tengo 23 años. Me gusta mucho la musica, tocar la guitarra y descubrir nuevos generos, bandas y artistas que no haya escuchado antes (me fascina armar playlists de Spotify). Paseo por la ciudad de Buenos Aires probando cafeterias diferentes para encontrar la que mas me gusta y acompaño el café (Flat White de preferencia) con bocados de coco y ddl.
+  +++ Integrantes del Grupo +++
+  
+  Hola, mi nombre es Joaquin. Tengo 23 años. Me gusta mucho la música, tocar la guitarra y descubrir nuevos géneros, bandas y artistas que no haya escuchado antes (me fascina armar playlists de Spotify). Paseo por la ciudad de Buenos Aires probando cafeterias diferentes para encontrar la que mas me gusta y acompaño el café (Flat White de preferencia) con bocados de coco y ddl.
   Como experiencias, pase por muchos ambientes diferentes: comencé estudiando Comercio Internacional en la UADE, que dejé para estudiar Arquitectura en la UBA. Allí descubri una pasion por el diseño, pero no me sentía a gusto con la facultad ni con lo que estaba viendo.
   Luego de dos años de carrera, la dejé y comencé a trabajar en Administración de redes e Infraestructura y busque como unificar lo que hacia laboralmente y mi gusto por diseñar.
   Asi encontre el Desarrollo. Empece a tomar cursos cortos para poder ir viendo si me sentía cómodo con ello. Finalmente, luego de un año de probar, me anote en DH para
