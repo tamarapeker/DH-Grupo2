@@ -33,5 +33,5 @@ Sitios de inspiración:
 Martin Levy, actualmente alumno en Digital House en el curso de Programación full stack, recientemente recibido como licenciado en comercio internacional de la UADE.
 Lleva a cabo un emprendimiento textil (compra y venta de tela para confeccion de indumentaria femenina) y es el community manager de @rutadelflatwhite , una cuenta de instagram que sube reseñas de las mejores cafeterías de especialidad (café de alta calidad) de la ciudad de Buenos Aires.
   
-  
+Hola! Soy Tamara Peker, tengo 30 años y soy ingeniera química, recibida hace casi 4 años. Trabajé en distintos sectores y desde el año pasado doy clases particulares de matemática y química para todos los niveles. Hace un tiempo empezamos junto con mi novio el emprendiemiento CLOVER, vendiendo productos de bazar.Por lo visto en la facultad tengo algo de experiencia programando, más que nada la lógica. Hice cursos de HTML y CSS y de bases de datos. Además, hice cursos de Premier, Photoshop e Illustrator, me gusta mucho editar videos. Quiero cambiar el rumbo de mi carrera profesional, y es por eso que me anoté en este curso, me interesa la programación mezclada con un poco de diseño que conlleva el hacer páginas web, además, me interesan los tipos de trabajo que se pueden llegar a encontrar en este rubro.
   
