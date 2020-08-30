@@ -21,7 +21,7 @@ Sitios de inspiración:
  - https://shop.blancadecocafe.com/
  Tiene un diseno minimalista que nos gusta y nos gustaria tener en nuestro sitio de colores pastel que reflejen los colores de nuestros productos.
   
-  +++ Integrantes del Grupo +++
+  ### Integrantes del Grupo
   
   Hola, mi nombre es Joaquin. Tengo 23 años. Me gusta mucho la música, tocar la guitarra y descubrir nuevos géneros, bandas y artistas que no haya escuchado antes (me fascina armar playlists de Spotify). Paseo por la ciudad de Buenos Aires probando cafeterias diferentes para encontrar la que mas me gusta y acompaño el café (Flat White de preferencia) con bocados de coco y ddl.
   Como experiencias, pase por muchos ambientes diferentes: comencé estudiando Comercio Internacional en la UADE, que dejé para estudiar Arquitectura en la UBA. Allí descubri una pasion por el diseño, pero no me sentía a gusto con la facultad ni con lo que estaba viendo.
