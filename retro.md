@@ -5,4 +5,6 @@
 - Respetamos las opiniones de todos y las tuvimos siempre en cuenta en el proceso de diseño.
 - Estamos comprometidos tanto con el proyecto como con nuestros compañeros.
 
-### Cosas para mejorar en el siguiente Sprint:
+### Cosas para implementar en el siguiente Sprint:
+- Seguir teniendo una conversacion fluida con el grupo para organizarnos.
+
