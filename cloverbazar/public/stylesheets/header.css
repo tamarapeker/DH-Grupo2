@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box ;
+}
+
+header div.barra1{
+    background-color: #fbdcc4;
+}
+header div.barra1 {
+    display: flex;
+    flex: wrap;
+    align-items: center;
+    justify-content: flex-end;
+}
+header div.barra1 div{
+    padding: 10px;
+}
+
+header div.barra2{
+    background-color: #faeded;
+    display: flex;
+    flex: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+} 
+header div.logo {
+    display: inline-block;
+    width: 30%;
+}
+header div.logo img{ 
+    width: 100%;
+}
+header div.search{
+    display: inline-block;
+}
+header nav {
+    display: inline-block;
+}
+header nav ul{
+display: none;
+}
+header i{
+    color: rgb(46, 46, 46);
+}
+header button{
+    border: 0;
+    background-color:  rgb(46, 46, 46);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
