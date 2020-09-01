@@ -5,36 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 <body>
+    <header>
+        <div class="barra1">
+            <div class="cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="loginButton">
+                <button>Log In</button>
+            </div>
+        </div>
+        <div class="barra2">
+            <div class="logo"><img src="/images/logo-clover.png" alt="logo clover"></div>
+            <div class="search"><i class="fas fa-search"></i></div>
+            <nav class="menu">
+                <i class="fas fa-bars"></i>
+                <ul>
+                    <a href="/productRubro">
+                        <li>Productos</li>
+                    </a>
+                    <a href="/contacto">
+                        <li>Contacto</li>
+                    </a>
+                    <a href="/mayorista">
+                        <li>Mayorista</li>
+                    </a>
+                    <a href="/faqs">
+                        <li>FAQs</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main>
         <h2>Mi Compra</h2>
         <form action="" method="post">
-            <div>
+            <article>
                 <i class="fas fa-image"></i>
                 <p>Nombre producto</p>
                 <p>Cantidad</p>
                 <p>Precio</p>
-            </div>
-            <div>
+            </article>
+            <article>
                 <i class="fas fa-image"></i>
                 <p>Nombre producto</p>
                 <p>Cantidad</p>
                 <p>Precio</p>
-            </div>
-            <div>
+            </article>
+            <article>
                 <i class="fas fa-image"></i>
                 <p>Nombre producto</p>
                 <p>Cantidad</p>
                 <p>Precio</p>
-            </div>
-            <div>
+            </article>
+            <article class="totalcompra">
                 <p>Total</p>
-                <p>Precio</p>
-            </div>
+                <p>$$$$</p>
+            </article>
             <button type="submit">Confirmar compra</button>
             <a href="/product">Seguir comprando</a>
         </form>
     </main>
+    <footer>
+        <div class="info">
+            <a href=""> <p>FAQs</p> </a>
+            <a href=""> <p>Tel</p> </a>
+            <a href="mailto:ventascloverbazar@gmail.com"> <p>Email</p> </a>
+            <a href=""> <p>Ubicacion</p> </a>
+        </div>
+        <div class="iconos">
+            <a href="https://www.instagram.com/cloverbazaryhome">Instagram</a>
+            <a href="https://www.facebook.com/cloverbazaryhome">Facebook</a>
+            <a href="https://wa.me/5491128056500">Whatsapp</a>
+        </div>
+    </footer>
 </body>
 </html>
