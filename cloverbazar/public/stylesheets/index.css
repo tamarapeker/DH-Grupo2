@@ -1,0 +1,111 @@
+body{
+
+    font-family: 'Libre Franklin', sans-serif;
+}
+main section.carrusel{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+main section.carrusel img{
+justify-content: stretch;
+width: 100%;
+height: 100px;
+/*le pongo altura para que no quede feo*/
+}
+main section.carrusel h1{ 
+text-align: center;
+color: rgb(46, 46, 46);
+position: relative;
+bottom: 90px;
+font-weight: lighter;
+}
+main section.carrusel a{
+    text-decoration: none;
+    
+}
+main section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+main h2{
+    color: rgb(46, 46, 46);
+    font-weight: lighter;
+    display: block;
+    text-align: center;
+}
+
+main section img{
+width: 100%;
+}
+main section.secciones h3{
+    position: relative;
+    bottom: 170px;
+    font-weight: 400;
+    color: rgb(46, 46, 46);
+    text-align: center;
+
+}
+main section a{
+    text-decoration: none;
+    
+}
+
+main section.productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+main section.productos h3{
+    position: relative;
+    bottom: 100px;
+
+    font-weight: 400;
+    color: rgb(46, 46, 46);
+    text-align: center;
+
+}
+main section.productos article{
+    width: 40%;
+}
+main section form{
+    background-color: #faeded;
+    margin: 20px;
+    padding: 10px;
+}
+main section form label{
+    text-align: center;
+    display: block;
+
+}
+main section form input{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 5px;
+    font-family: 'Libre Franklin', sans-serif;
+
+
+}
+main section form textarea{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 5px;
+}
+main section form button{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 5px;
+    background-color: #fbdcc4;
+}
