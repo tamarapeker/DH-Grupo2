@@ -30,10 +30,11 @@ form{
 /* Los article remiten al carro de compras 
 Use colores para distinguir, no son definitivos */
 article{
-    background-color: #ffffff;
+    background-color: #faeded;
     margin: 20px;
     padding: 10px;
     border-radius: 20px;
+    width: 100%;
 }
 
 article:nth-child(odd){
@@ -68,4 +69,8 @@ form a{
     margin-bottom: 20px;
     color: rgb(46, 46, 46);
     font-size: 14px;
+}
+
+.formulario-carrito{
+    background-color: white;
 }
