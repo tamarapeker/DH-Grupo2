@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+body{
+
+    font-family: 'Libre Franklin', sans-serif;
+}
+main section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+main  h2{
+    color: rgb(46, 46, 46);
+    font-weight: lighter;
+    display: block;
+    text-align: center;
+}
+
+main section img{
+    width: 100%;
+    }
+main section h3{
+        position: relative;
+        bottom: 170px;
+        font-weight: 400;
+        color: rgb(46, 46, 46);
+        text-align: center;
+    
+    }
+main section a{
+    text-decoration: none;
+}

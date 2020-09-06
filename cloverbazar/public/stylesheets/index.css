@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body{
 
     font-family: 'Libre Franklin', sans-serif;
@@ -53,25 +56,22 @@ main section a{
     
 }
 
-main section.productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+/*main section.productos article {
+position: relative;
+}*/
+
+main section.productos article{
+    width: 128px;
 }
-
-
-main section.productos h3{
+main section.productos  h3{
     position: relative;
     bottom: 100px;
-
     font-weight: 400;
     color: rgb(46, 46, 46);
     text-align: center;
 
 }
-main section.productos article{
-    width: 40%;
-}
+
 main section form{
     background-color: #faeded;
     margin: 20px;
