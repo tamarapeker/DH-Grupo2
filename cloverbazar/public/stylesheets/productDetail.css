@@ -1,0 +1,52 @@
+main {
+    padding-top: 25px;
+}
+
+main section article.image {
+    text-align: center;
+}
+
+main section article.image img {
+    width: 80%;
+}
+
+main section article.image h1 {
+    font-size: 30px;
+}
+
+main section.detalleprod div {
+    text-align: center;
+}
+
+main section.detalleprod div button {
+    width: 160px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #fbdcc4;
+    color: rgb(46, 46, 46);
+}
+
+main section article.detail {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+main section article.detail ul {
+    padding: 0;
+}
+
+main section article.detail li {
+    list-style: none;
+    font-size: 14px;
+}
+
+main section.relacionados {
+    text-align: center;
+}
+
+main section.relacionados img {
+    width: 60%;
+}

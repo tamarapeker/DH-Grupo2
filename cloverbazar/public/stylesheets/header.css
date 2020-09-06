@@ -1,15 +1,16 @@
 body{
     margin: 0;
     padding: 0;
-    box-sizing:border-box ;
+    box-sizing:border-box;
+    font-family: 'Libre Franklin', sans-serif;
 }
 
-header div.barra1{
-    background-color: #fbdcc4;
-}
+/*HEADER*/
+    /*Barra superior HEADER*/
 header div.barra1 {
+    background-color: #fbdcc4;
     display: flex;
-    flex: wrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
 }
@@ -17,33 +18,37 @@ header div.barra1 div{
     padding: 10px;
 }
 
+    /*Barra inferior HEADER*/
 header div.barra2{
     background-color: #faeded;
     display: flex;
-    flex: wrap;
-    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
-    
 } 
-header div.logo {
-    display: inline-block;
-    width: 30%;
+header div.barra2 div.logo {
+    width: 20%;
+    margin-left: 15px;
 }
-header div.logo img{ 
+header div.barra2 div.logo img{ 
     width: 100%;
 }
-header div.search{
-    display: inline-block;
+
+header div.barra2 div.search {
+    margin-left: 220px;
 }
-header nav {
-    display: inline-block;
+
+header div.barra2 div.menu {
+    margin-left: 20px;
 }
-header nav ul{
+
+header div.barra2 nav ul{
 display: none;
 }
+
 header i{
     color: rgb(46, 46, 46);
 }
+
 header button{
     border: 0;
     background-color:  rgb(46, 46, 46);
@@ -51,3 +56,37 @@ header button{
     border-radius: 5px;
     padding: 5px;
 }
+
+/*FOOTER*/
+
+footer {
+    background-color: #fbdcc4;
+}
+
+footer div.foot {
+    display: flex;
+    align-items: center;
+}
+
+footer div.info a {
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+    font-size: 14px;
+}
+
+footer div.info {
+    margin-left: 20px;
+}
+
+footer div.iconos i {
+    color: rgb(46, 46, 46);
+    height: 30px;
+    padding: 0;
+}
+
+footer div.iconos {
+    display: flex;
+    flex-direction: column;
+    margin-left: 90px;
+}
+

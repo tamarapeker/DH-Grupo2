@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mate1</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/productDetail.css">
 </head>
 <body>
     <header>
@@ -17,10 +20,10 @@
             </div>
         </div>
         <div class="barra2">
-            <div class="logo"><img src="/images/logo-clover.png" alt="logo clover"></div>
+            <div class="logo"><img src="/images/logo.png" alt="logo clover"></div>
             <div class="search"><i class="fas fa-search"></i></div>
-            <nav class="menu">
-                <i class="fas fa-bars"></i>
+            <div class="menu"><i class="fas fa-bars"></i></div>
+            <nav>
                 <ul>
                     <a href="/productRubro">
                         <li>Productos</li>
@@ -39,46 +42,49 @@
         </div>
     </header>
     <main>
-        <section class="detalle"> 
-            <article>
+        <section class="detalleprod"> 
+            <article class="image">
                 <img src="/images/imagentipo.png" alt="">
                 <h1>Nombre Producto  $$$$</h1>
             </article>
             <div>
                 <button>Agregar al carrito</button>
             </div>
-            <article>
-                <p>Detalles del producto
-                    -Tipo
-                    -Color
-                    -Medidas
-                    -Material
-                </p>
+            <article class="detail">
+                <p>Detalles del producto </p>
+                <ul>
+                    <li>Tipo</li>
+                    <li>Color</li>
+                    <li>Medidas</li>
+                    <li>Material</li>
+                </ul>
             </article>
         </section>
         <section class="relacionados">
                 <h2>Productos relacionados</h2>
             <article>
                 <img src="/images/imagentipo.png" alt="">
-                <h3>PRoducto    $$$$</h3>
+                <h4>Producto    $$$$</h4>
             </article>
             <article>
                 <img src="/images/imagentipo.png" alt="">
-                <h3>PRoducto    $$$$</h3>
+                <h4>Producto    $$$$</h4>
             </article>
         </section>
     </main>
     <footer>
-        <div class="info">
-            <a href=""> <p>FAQs</p> </a>
-            <a href=""> <p>Tel</p> </a>
-            <a href="mailto:ventascloverbazar@gmail.com"> <p>Email</p> </a>
-            <a href=""> <p>Ubicacion</p> </a>
-        </div>
-        <div class="iconos">
-            <a href="https://www.instagram.com/cloverbazaryhome">Instagram</a>
-            <a href="https://www.facebook.com/cloverbazaryhome">Facebook</a>
-            <a href="https://wa.me/5491128056500">Whatsapp</a>
+        <div class="foot">
+            <div class="info">
+                <a href="https://drive.google.com/file/d/1Goq5qZMuURyv0nDcaTWMlG4Z36-_CeNn/view?usp=sharing" target="_blank"> <p>FAQs</p> </a>
+                <a href="https://wa.me/5491128056500" target="_blank"> <p>+54 9 1128056500</p> </a>
+                <a href="mailto:ventascloverbazar@gmail.com" target="_blank"> <p>ventascloverbazar@gmail.com</p> </a>
+                <a href="https://goo.gl/maps/rX8ZoY3BKo2Xgcgp6" target="_blank"> <p>Villa Crespo, CABA</p> </a>
+            </div>
+            <div class="iconos">
+                <a href="https://wa.me/5491128056500" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/cloverbazaryhome" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/pg/Clover-Bazar-Home-112693650469227" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
         </div>
     </footer>
 </body>
