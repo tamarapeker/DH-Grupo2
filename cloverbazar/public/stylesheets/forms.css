@@ -1,0 +1,71 @@
+/* Uso body de nuevo para no tocar el archivo header.css, habria que agregar la font-family en ese archivo asi lo toma en todos */
+body{
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+main{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+h2{
+    font-weight: 400;
+    color: rgb(46, 46, 46);
+}
+
+
+/* CSS del formulario*/
+form{
+    margin: auto;
+    padding: 10px;
+    width: 300px;
+    background-color: #eeb9b9;
+    color: rgb(46, 46, 46);
+    text-align: center;
+    border-radius: 20px;
+}
+
+
+/* Los article remiten al carro de compras 
+Use colores para distinguir, no son definitivos */
+article{
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+article:nth-child(odd){
+    background-color: #fbdcc4;
+}
+
+/* Los article remiten al carro de compras */
+
+input {
+    margin: 20px 20px 10px 20px;
+    padding: 10px;
+    border: none;
+    width: 60%;
+    border-radius: 5px;
+}
+
+form input:first-child{
+    margin-top: 30px;
+}
+
+form button{
+    margin: 10px 20px 20px 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    background-color: #ffb781;
+}
+
+form a{
+    display: inline-block;
+    margin-bottom: 20px;
+    color: rgb(46, 46, 46);
+    font-size: 14px;
+}
