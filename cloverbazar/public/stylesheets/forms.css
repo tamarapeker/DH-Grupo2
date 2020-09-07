@@ -1,5 +1,6 @@
 /* Uso body de nuevo para no tocar el archivo header.css, habria que agregar la font-family en ese archivo asi lo toma en todos */
-body{
+*{
+    box-sizing: border-box;
     font-family: 'Libre Franklin', sans-serif;
 }
 
@@ -20,7 +21,7 @@ form{
     margin: auto;
     padding: 10px;
     width: 300px;
-    background-color: #eeb9b9;
+    background-color: #fbdcc4;
     color: rgb(46, 46, 46);
     text-align: center;
     border-radius: 20px;
@@ -31,10 +32,13 @@ form{
 Use colores para distinguir, no son definitivos */
 article{
     background-color: #faeded;
-    margin: 20px;
     padding: 10px;
-    border-radius: 20px;
     width: 100%;
+}
+
+article:first-child{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 article:nth-child(odd){
@@ -47,7 +51,7 @@ input {
     margin: 20px 20px 10px 20px;
     padding: 10px;
     border: none;
-    width: 60%;
+    width: 80%;
     border-radius: 5px;
 }
 
@@ -61,11 +65,13 @@ form button{
     border: none;
     border-radius: 5px;
     width: 150px;
-    background-color: #ffb781;
+    background-color: rgb(46, 46, 46);
+    color: #fbdcc4;
 }
 
 form a{
     display: inline-block;
+    margin-top: 10px;
     margin-bottom: 20px;
     color: rgb(46, 46, 46);
     font-size: 14px;
@@ -73,4 +79,8 @@ form a{
 
 .formulario-carrito{
     background-color: white;
+}
+
+.confirmar-compra{
+    margin-top: 20px;
 }
