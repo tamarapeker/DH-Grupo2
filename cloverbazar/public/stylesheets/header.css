@@ -71,6 +71,8 @@ footer {
 footer div.foot {
     display: flex;
     flex-flow: column wrap;
+    justify-items: center;
+    align-items: center;
 }
 
 footer div.foot a i.fa-whatsapp {
@@ -93,17 +95,15 @@ footer div.iconos a i{
     color: rgb(46, 46, 46);
     padding: 0;
     font-size: 25px;
+    margin: 0;
 }
 
 footer div.iconos {
     display: flex;
-    width: 280px;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    margin-left: 20px;
+    width: 100px;
+    justify-content: space-around;
+    align-items: flex-start;
  }
-
 
 footer div.info a {
     text-decoration: none;
