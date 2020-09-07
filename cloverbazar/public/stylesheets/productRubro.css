@@ -22,11 +22,9 @@ main section img{
     }
 main section.rubros h3{
         position: relative;
-        bottom: 170px;
         font-weight: 400;
         color: rgb(46, 46, 46);
-        text-align: center;
-    
+        padding-left: 10px;    
     }
 main section a{
     text-decoration: none;
