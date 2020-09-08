@@ -32,7 +32,7 @@ header div.barra2 div.logo {
     margin-left: 15px;
 }
 header div.barra2 div.logo img{ 
-    width: 100%;
+    width: 70px;
 }
 
 header div.barra2 div.menuysearch {
@@ -85,10 +85,14 @@ footer div.foot a i.fa-whatsapp {
 
 footer div.foot a.whatsapp {
     align-self: flex-end;
-    margin-right: 15px;
+    margin-right: 5px;
     padding-top: 10px;
     position: fixed;
     bottom: 10px;
+}
+
+footer div.foot a.whatsapp img {
+    width: 40px;
 }
 
 footer div.iconos a i{
