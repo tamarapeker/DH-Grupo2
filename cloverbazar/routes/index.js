@@ -34,4 +34,16 @@ router.get('/productAdd',function(req,res){
   res.render('productAdd');
 });
 
+router.get('/contacto', function(req,res){
+  res.render('contacto')
+});
+
+router.get('/mayorista', function(req,res){
+  res.render('mayorista')
+});
+
+router.get('/faqs', function(req,res){
+  res.render('faqs')
+});
+
 module.exports = router;
