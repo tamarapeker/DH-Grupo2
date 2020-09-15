@@ -28,8 +28,7 @@ form{
 }
 
 
-/* Los article remiten al carro de compras 
-Use colores para distinguir, no son definitivos */
+/* Los article remiten al carro de compras */
 article{
     background-color: #faeded;
     padding: 10px;
@@ -41,11 +40,21 @@ article:first-child{
     border-top-right-radius: 20px;
 }
 
+.total-compra{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 article:nth-child(odd){
     background-color: #fbdcc4;
 }
 
 /* Los article remiten al carro de compras */
+
+img{
+    width: 80px;
+
+}
 
 input {
     margin: 20px 20px 10px 20px;
@@ -83,4 +92,17 @@ form a{
 
 .confirmar-compra{
     margin-top: 20px;
+}
+
+@media(min-width: 768px){
+    .formulario-carrito{
+        width: 60%;
+    }
+
+    article{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 150px;
+    }
 }
