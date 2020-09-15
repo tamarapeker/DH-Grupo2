@@ -35,7 +35,7 @@ main section{
 }
 main h2{
     color: rgb(46, 46, 46);
-    font-weight: lighter;
+    font-weight: 400;
     display: block;
     text-align: center;
 }
@@ -77,6 +77,7 @@ main section form{
     margin: 20px;
     padding: 10px;
     text-align: center;
+    border-radius: 15px;
 }
 main section form label{
     text-align: center;
@@ -110,4 +111,18 @@ main section form button{
     padding: 5px;
     color: #fbdcc4;
     background-color: rgb(46, 46, 46);
+}
+@media (min-width: 768px){
+    main section.productos article{
+        width: 150px;
+    }
+    main  h2{
+        text-align: left;
+        margin-left: 30px;
+    }
+}
+@media (min-width: 1024px){
+    main section.productos article{
+        width: 230px;
+    }
 }

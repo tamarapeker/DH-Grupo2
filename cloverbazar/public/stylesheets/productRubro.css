@@ -12,9 +12,10 @@ main section.rubros{
 }
 main  h2{
     color: rgb(46, 46, 46);
-    font-weight: lighter;
+    font-weight: 400;
     display: block;
-    text-align: center;
+    text-align: left;
+    margin-left: 30px
 }
 
 main section img{

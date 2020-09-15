@@ -10,37 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="barra1">
-            <div class="cart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-            <div class="loginButton">
-                <button>Log In</button>
-            </div>
-        </div>
-        <div class="barra2">
-            <div class="logo"><img src="/images/logo.png" alt="logo clover"></div>
-            <div class="search"><i class="fas fa-search"></i></div>
-            <div class="menu"><i class="fas fa-bars"></i></div>
-            <nav>
-                <ul>
-                    <a href="/productRubro">
-                        <li>Productos</li>
-                    </a>
-                    <a href="/contacto">
-                        <li>Contacto</li>
-                    </a>
-                    <a href="/mayorista">
-                        <li>Mayorista</li>
-                    </a>
-                    <a href="/faqs">
-                        <li>FAQs</li>
-                    </a>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <%-include('partials/header')%>
     <main>
         <h2>Productos</h2>
         <section>
@@ -70,20 +40,6 @@
             </article>
     </section>
     </main>
-    <footer>
-        <div class="foot">
-            <div class="info">
-                <a href="https://drive.google.com/file/d/1Goq5qZMuURyv0nDcaTWMlG4Z36-_CeNn/view?usp=sharing" target="_blank"> <p>FAQs</p> </a>
-                <a href="https://wa.me/5491128056500" target="_blank"> <p>+54 9 1128056500</p> </a>
-                <a href="mailto:ventascloverbazar@gmail.com" target="_blank"> <p>ventascloverbazar@gmail.com</p> </a>
-                <a href="https://goo.gl/maps/rX8ZoY3BKo2Xgcgp6" target="_blank"> <p>Villa Crespo, CABA</p> </a>
-            </div>
-            <div class="iconos">
-                <a href="https://wa.me/5491128056500" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/cloverbazaryhome" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/pg/Clover-Bazar-Home-112693650469227" target="_blank"><i class="fab fa-facebook"></i></a>
-            </div>
-        </div>
-    </footer>
+    <%-include('partials/footer')%>
 </body>
 </html>

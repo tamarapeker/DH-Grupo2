@@ -12,9 +12,10 @@ main section{
 }
 main  h2{
     color: rgb(46, 46, 46);
-    font-weight: lighter;
+    font-weight: 400;
     display: block;
-    text-align: center;
+    text-align: left;
+    margin-left: 30px
 }
 
 main section img{
@@ -29,4 +30,9 @@ main section h3{
     }
 main section a{
     text-decoration: none;
+}
+@media (min-width: 768px){
+    main section article{
+        width: 270px;
+    }
 }
