@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mate1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/mayorista.css">
+</head>
+<body>
+    <%-include('./partials/header')%>
+    <main>
+        <h1>Venta Mayorista</h1>
+        <h4>Si te interesa comprar nuestros productos por mayor completa el formulario y nos comunicaremos lo antes posible</h4>
+        <form action="/" method="GET">
+            <input type="text" id="nombre" placeholder="Nombre y Apellido"> 
+            <input type="email" placeholder="Email">
+            <input type="number" placeholder="Celular"> 
+            <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Consulta"></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+    </main>
+    <%-include('./partials/footer')%>
+</body>
+</html>

@@ -1,0 +1,55 @@
+main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+main h4 {
+    max-width: 500px;
+    margin: 0px 20px;
+    padding: 0 10px;
+
+}
+
+main form{
+    background-color: #fbdcc4;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    max-width: 500px;
+    border-radius: 15px;
+}
+main form label{
+    text-align: center;
+    display: block;
+
+}
+main form input{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 5px;
+    font-family: 'Libre Franklin', sans-serif;
+
+
+}
+main form textarea{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 5px;
+}
+main form button{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 5px;
+    color: #fbdcc4;
+    background-color: rgb(46, 46, 46);
+}

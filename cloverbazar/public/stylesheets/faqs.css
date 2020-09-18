@@ -1,0 +1,39 @@
+main {
+    margin: 15px;
+    border: 1px solid black;
+    padding: 15px 20px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+main section article {
+    max-width: 220px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p.aclaracion {
+    font-size: 14px;
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: auto 20px;
+}
+
+@media(min-width: 768px){
+    main section article {
+        max-width: 410px;
+    }
+}
+
+@media(min-width: 1024px){
+    main section article {
+        max-width: 600px;
+    }
+}

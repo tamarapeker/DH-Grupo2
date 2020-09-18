@@ -1,5 +1,9 @@
 main {
     padding-top: 25px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 main section.detalleprod {
@@ -50,6 +54,10 @@ main section.detalleprod article.image div {
 main section article.detail {
     font-size: 18px;
     width: 80%;
+    border: 1px solid rgba(46, 46, 46,0.5);
+    padding-left: 10px;
+    margin-top: 10px;
+    border-radius: 3px;
 }
 
 main section article.detail ul {
@@ -65,6 +73,8 @@ main section.relacionados {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+    margin: auto 20px;
+    max-width: 600px;
 }
 
 main h2.titulorel {
@@ -73,7 +83,7 @@ main h2.titulorel {
 }
 
 main section.relacionados img {
-    width: 220px;
+    width: 210px;
 }
 
 main section.relacionados h4 {
@@ -94,6 +104,12 @@ main section.relacionados h4 {
     }
 
     main section.detalleprod article.detail {
-        width: 600px;
+        width: 588px;
+    }
+}
+
+@media(min-width: 1024px) {
+     main section.relacionados {
+        max-width: 1024px;
     }
 }

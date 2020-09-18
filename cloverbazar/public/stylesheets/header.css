@@ -40,7 +40,7 @@ header div.barra2 div.menuysearch {
     flex-flow: row wrap;
     justify-content: flex-end;
     width: 70%;
-    margin-right: 15px;
+    margin-right: 11px;
 }
 
 header div.barra2 div.menuysearch div.search {
