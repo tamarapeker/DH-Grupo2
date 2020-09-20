@@ -1,0 +1,110 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+main{
+    margin: 30px 0 30px 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formulario-contacto{
+    width: 60%;
+    background-color: #fbdcc4;
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.formulario-contacto label{
+    text-align: center;
+    display: block;
+
+}
+
+.formulario-contacto input{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 5px;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.formulario-contacto textarea{
+    width: 90%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 5px;
+}
+
+.formulario-contacto button{
+    width: 30%;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-family: 'Libre Franklin', sans-serif;
+    padding: 10px;
+    color: #fbdcc4;
+    background-color: rgb(46, 46, 46);
+}
+
+.datos-contacto{
+    width: 80%;
+    padding: 10px;
+    text-align: left;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.datos-contacto a{
+    color: rgb(46, 46, 46);
+    text-decoration: none;
+}
+
+.iconos{
+    color: rgb(46, 46, 46);
+    font-size: 25px;
+}
+
+.iconos a:first-child{
+    padding-right: 20px;
+}
+
+div{
+    display: inline-block;
+}
+
+iframe{
+    width: 100%;
+}
+
+@media(min-width:768px){
+    main{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .formulario-contacto{
+        width: 600px;
+        text-align: center;
+    }
+
+    .datos-contacto{
+        display: flex;
+        justify-content: space-around;
+        width: 700px;
+    }
+}
