@@ -15,6 +15,13 @@ main section article {
 h1 {
     text-align: center;
 }
+h3{
+    font-weight: bolder;
+  
+}
+p{
+    color: rgb(46, 46, 46);
+}
 
 p.aclaracion {
     font-size: 14px;

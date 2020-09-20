@@ -74,7 +74,7 @@ main section.relacionados {
     flex-flow: row wrap;
     justify-content: space-around;
     margin: auto 20px;
-    max-width: 600px;
+    width: 90%;
 }
 
 main h2.titulorel {
@@ -106,10 +106,14 @@ main section.relacionados h4 {
     main section.detalleprod article.detail {
         width: 588px;
     }
+    main section.relacionados {
+        width: 600px;
+    }
 }
 
 @media(min-width: 1024px) {
      main section.relacionados {
-        max-width: 1024px;
+        width: 90%;
+        margin: 0px;
     }
 }

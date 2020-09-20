@@ -49,6 +49,7 @@ main section.secciones h3{
     color: rgb(46, 46, 46);
     text-align: left;
     padding-left: 10px;
+    position: relative;
 
 }
 main section a{
@@ -103,7 +104,7 @@ main section form textarea{
     padding: 5px;
 }
 main section form button{
-    width: 90%;
+    width: 95px;
     border: 0;
     border-radius: 5px;
     margin: 5px 0;
@@ -119,6 +120,7 @@ main section form button{
     main  h2{
         text-align: left;
         margin-left: 30px;
+        position: relative;
     }
 }
 @media (min-width: 1024px){
