@@ -7,7 +7,7 @@ router.get('/', productsController.index);
 
 router.get('/rubro', productsController.rubro);
 
-router.get('/producto', productsController.producto);
+router.get('/rubro/:category', productsController.productCategory);
   
 router.get('/detail/:id', productsController.detail);
   

@@ -12,8 +12,9 @@ const productsController = {
         res.render('productRubro', {products});
     },
 
-    producto: function(req,res,next){
-        res.render('product', {products});
+    productCategory: function(req,res,next){
+        let category = req.params.category;
+        res.render('product', {products, category});
     },
 
     detail: function(req,res,next){
