@@ -5,7 +5,6 @@ body{
     margin: 0;
     padding: 0;
     box-sizing:border-box;
-    font-family: 'Libre Franklin', sans-serif;
 }
 
 /*HEADER*/
@@ -119,6 +118,17 @@ footer div.info a {
     font-size: 14px;
 }
 
+footer nav ul a {
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+    font-size: 14px;
+    line-height: 30px;
+}
+
+footer nav ul li {
+    list-style: none;
+}
+
 
 
 @media(min-width:768px) {
@@ -142,7 +152,7 @@ footer div.info a {
 
     header div.barra2 nav ul a {
         text-decoration: none;
-        color: rgb(46, 46, 46);;
+        color: rgb(46, 46, 46);
     }
 
     header div.barra2 div.menuysearch div.menu {
@@ -173,7 +183,7 @@ footer div.info a {
         display: flex;
         flex-flow: row-reverse wrap;
         justify-content: space-around;
-        width: 500px;
+        width: 600px;
     }
 
     footer div.foot div.infofooter div.rrss {
