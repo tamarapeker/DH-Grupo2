@@ -34,7 +34,10 @@
             </ul>
         </nav>
         <div class="menuysearch">
-            <div class="search"><i class="fas fa-search"></i></div>
+            <form action="/search" method="GET" class="search-form">
+                <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
+                <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
+            </form>
             <div class="menu"><i class="fas fa-bars"></i></div>
         </div>
 

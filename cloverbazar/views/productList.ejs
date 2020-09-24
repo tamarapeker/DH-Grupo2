@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/productList.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%-include('partials/header')%>
+    <main>
+        <h2>Listado de productos</h2>
+        <section>
+            <%for(let i=0 ; i < products.length ; i++) {%>
+            <article>
+                <img src="/images/products/<%=products[i].imagen%>" alt="Imagen de producto">
+                <p class="nombre-producto"><%=products[i].nombre%></p>
+                <p>$<%=products[i].precio%></p>
+                <p><%=products[i].descuento%>%</p>
+                <form action="/products/edit/<%=products[i].id%>" method="GET">
+                    <button type="submit" class="botones">EDITAR</button>
+                </form>
+                <form action="/products/destroy/<%=products[i].id%>" method="POST">
+                    <button type="submit" class="botones">ELIMINAR</button>
+                </form>
+            </article>
+            <% } %>     
+            <form action="/products/create">
+            <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
+            </form>
+        </section>
+    </main>
+    <%-include('partials/footer')%>
+</body>
+</html>

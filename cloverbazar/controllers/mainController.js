@@ -10,7 +10,14 @@ const mainController = {
     },
 
     search: function(req,res,next){
-        res.render('/search', {products});
+        let loQueBuscoElUsuario = req.query.keywords;
+		let productsResult = [];
+		for( let i=0 ; i < products.length ; i++){
+			if(products[i].nombre.includes(loQueBuscoElUsuario)){
+				productsResult.push(products[i]);
+			}
+		}
+        res.render('results', {productsResult, loQueBuscoElUsuario});
     },
 
     contacto: function(req,res,next){
