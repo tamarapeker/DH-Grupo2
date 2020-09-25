@@ -5,29 +5,29 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const productsController = {
     index: function(req,res,next){
-        res.render('productList', {products});
+        res.render('products/productList', {products});
     },
 
     rubro: function(req,res,next){
-        res.render('productRubro', {products});
+        res.render('products/productRubro', {products});
     },
 
     productCategory: function(req,res,next){
         let category = req.params.category;
-        res.render('product', {products, category});
+        res.render('productos/product', {products, category});
     },
 
     detail: function(req,res,next){
         let id = req.params.id;
-        res.render('productDetail', {products, id});
+        res.render('products/productDetail', {products, id});
     },
 
     cart: function(req,res,next){
-        res.render('productCart', {products});
+        res.render('products/productCart', {products});
     },
 
     create: function(req,res,next){
-        res.render('productAdd', {products});
+        res.render('products/productAdd', {products});
     },
 
     store: function(req,res,next){
@@ -37,7 +37,7 @@ const productsController = {
 
     edit: function(req,res,next){
         let id = req.params.id
-        res.render('productEdit', {products, id})
+        res.render('products/productEdit', {products, id})
     },
 
     upload: function(req,res,next){

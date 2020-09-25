@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/stylesheets/productList.css">
+
+<%-include('../partials/header')%>
+<main>
+    <h2>Listado de productos</h2>
+    <section>
+        <%for(let i=0 ; i < products.length ; i++) {%>
+        <article>
+            <img src="/images/products/<%=products[i].imagen%>" alt="Imagen de producto">
+            <p class="nombre-producto"><%=products[i].nombre%></p>
+            <p>$<%=products[i].precio%></p>
+            <p><%=products[i].descuento%>%</p>
+            <form action="/products/edit/<%=products[i].id%>" method="GET">
+                <button type="submit" class="botones">EDITAR</button>
+            </form>
+            <form action="/products/destroy/<%=products[i].id%>" method="POST">
+                <button type="submit" class="botones">ELIMINAR</button>
+            </form>
+        </article>
+        <% } %>
+        <form action="/products/create">
+            <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
+        </form>
+    </section>
+</main>
+<%-include('../partials/footer')%>

@@ -21,15 +21,15 @@ const mainController = {
     },
 
     contacto: function(req,res,next){
-        res.render('/contacto');
+        res.render('contacto');
     },
 
     faqs: function(req,res,next){
-        res.render('/faqs');
+        res.render('faqs');
     },
 
     mayorista: function(req,res,next){
-        res.render('/mayorista');
+        res.render('mayorista');
     }
 }
 

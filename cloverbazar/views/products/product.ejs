@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/stylesheets/product.css">
+
+<%-include('../partials/header')%>
+<main>
+    <h2>Productos</h2>
+    <section>
+        <%for(let i = 0 ; i < products.length ; i++) {
+                if(products[i].rubro == category) { %>
+        <article>
+            <a href="/products/detail/<%=products[i].id%>">
+                <img src="/images/products/<%=products[i].imagen%>" alt="">
+                <h3><%=products[i].nombre%> </h3>
+                <h3> $<%=products[i].precio%> </h3>
+            </a>
+        </article>
+        <% } } %>
+    </section>
+</main>
+<%-include('../partials/footer')%>

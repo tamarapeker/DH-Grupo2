@@ -1,45 +1,61 @@
-<header>
-    <div class="barra1">
-        <a href="/productCart">
-            <div class="cart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-        </a>
-        <a href="/login">
-            <div class="loginButton">
-                <button>Log In</button>
-            </div>
-        </a>
-    </div>
-    <div class="barra2">
-        <a href="/">
-            <div class="logo">
-                <img src="/images/logo.png" alt="logo clover">
-            </div>
-        </a>
-        <nav>
-            <ul>
-                <a href="/productRubro">
-                    <li>Productos</li>
-                </a>
-                <a href="/contacto">
-                    <li>Contacto</li>
-                </a>
-                <a href="/mayorista">
-                    <li>Mayorista</li>
-                </a>
-                <a href="/faqs">
-                    <li>FAQs</li>
-                </a>
-            </ul>
-        </nav>
-        <div class="menuysearch">
-            <form action="/search" method="GET" class="search-form">
-                <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
-                <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
-            </form>
-            <div class="menu"><i class="fas fa-bars"></i></div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
-    </div>
-</header>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="barra1">
+            <a href="/productCart">
+                <div class="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </a>
+            <a href="/users/login">
+                <div class="loginButton">
+                    <button>Log In</button>
+                </div>
+            </a>
+        </div>
+        <div class="barra2">
+            <a href="/">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="logo clover">
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <a href="/products/rubro">
+                        <li>Productos</li>
+                    </a>
+                    <a href="/contacto">
+                        <li>Contacto</li>
+                    </a>
+                    <a href="/mayorista">
+                        <li>Mayorista</li>
+                    </a>
+                    <a href="/faqs">
+                        <li>FAQs</li>
+                    </a>
+                </ul>
+            </nav>
+            <div class="menuysearch">
+                <form action="/search" method="GET" class="search-form">
+                    <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
+                    <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="menu"><i class="fas fa-bars"></i></div>
+            </div>
+
+        </div>
+    </header>

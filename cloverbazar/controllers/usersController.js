@@ -1,10 +1,10 @@
 const usersController = {
     register: function(req,res,next){
-        res.render('register');
+        res.render('/users/register');
     },
 
     login: function(req,res,next){
-        res.render('login');
+        res.render('users/login');
     }
 }
 

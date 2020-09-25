@@ -1,40 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/contacto.css">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <%-include('./partials/header')%>
-    <main>
-        <section class="formulario-contacto">
-            <form action="">
-                <label for="Asunto">
-                  Escribinos!
-                </label>
-                <input type="text" id="Asunto" placeholder="Asunto"> 
-                <input type="email" placeholder="Email"> 
-                <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
-                <button type="submit">Enviar</button>
-              </form>
-        </section>
-        <section class="datos-contacto">
-            <div>
+<link rel="stylesheet" href="/stylesheets/contacto.css">
+
+<%-include('./partials/header')%>
+<main>
+    <section class="formulario-contacto">
+        <form action="">
+            <label for="Asunto">
+                Escribinos!
+            </label>
+            <input type="text" id="Asunto" placeholder="Asunto">
+            <input type="email" placeholder="Email">
+            <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <section class="datos-contacto">
+        <div>
             <h5>Contactanos:</h5>
-                <a href="https://wa.me/5491128056500" target="_blank"> <p>Tel: +54 9 1128056500</p> </a>
-                <a href="mailto:ventascloverbazar@gmail.com" target="_blank"> <p>ventascloverbazar@gmail.com</p> </a>
-                <a href="https://goo.gl/maps/rX8ZoY3BKo2Xgcgp6" target="_blank"> <p>Villa Crespo, CABA</p> </a>
-            </div>
-            <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.168225682907!2d-58.44098618477055!3d-34.599907380460536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca73421d30b1%3A0xc39e5a472811c6de!2sAv.%20Corrientes%20%26%20Ra%C3%BAl%20Scalabrini%20Ort%C3%ADz%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1600295933092!5m2!1ses!2sar" width="500" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>
-        </section>
-    </main>
-    <%-include('partials/footer')%>
-</body>
-</html>
+            <a href="https://wa.me/5491128056500" target="_blank">
+                <p>Tel: +54 9 1128056500</p>
+            </a>
+            <a href="mailto:ventascloverbazar@gmail.com" target="_blank">
+                <p>ventascloverbazar@gmail.com</p>
+            </a>
+            <a href="https://goo.gl/maps/rX8ZoY3BKo2Xgcgp6" target="_blank">
+                <p>Villa Crespo, CABA</p>
+            </a>
+        </div>
+        <div>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.168225682907!2d-58.44098618477055!3d-34.599907380460536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca73421d30b1%3A0xc39e5a472811c6de!2sAv.%20Corrientes%20%26%20Ra%C3%BAl%20Scalabrini%20Ort%C3%ADz%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1600295933092!5m2!1ses!2sar"
+                width="500" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+        </div>
+    </section>
+</main>
+<%-include('partials/footer')%>

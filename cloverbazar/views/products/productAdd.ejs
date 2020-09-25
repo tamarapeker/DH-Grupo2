@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/stylesheets/productAdd.css">
+
+<%-include('../partials/header')%>
+<main>
+    <section>
+        <h2>Agregar productos</h2>
+        <form action="">
+            <div class="contenedor-datos">
+                <label for="nombreProducto">Nombre de Producto:</label>
+                <input type="text" id="nombreProducto" placeholder="Nombre de producto">
+                <label for="rubroProducto">Rubro:</label>
+                <input type="text" id="rubroProducto" placeholder="Rubro">
+                <label for="colorProducto">Color:</label>
+                <input type="text" id="colorProducto" placeholder="Color">
+                <label for="medidasProducto">Medidas:</label>
+                <input type="text" id="medidasProducto" placeholder="Medidas">
+                <label for="descripcionProducto">Descripcion:</label>
+                <input type="text" id="descripcionProducto" placeholder="Descripcion">
+            </div>
+            <div class="contenedor-img">
+                <label for="imgProducto">Imagen de Producto:</label>
+                <input type="file" id="imgProducto">
+            </div>
+            <div class="contenedor-botones">
+                <button type="submit">Agregar</button>
+                <button type="reset">Resetear</button>
+            </div>
+        </form>
+    </section>
+</main>
+<%-include('../partials/footer')%>
