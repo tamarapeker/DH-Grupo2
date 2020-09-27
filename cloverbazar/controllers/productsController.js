@@ -74,13 +74,46 @@ const productsController = {
     },
 
     edit: function(req,res,next){
+        let productFind;
+        products.forEach(product => {
+            if (product.id == req.params.id) {
+                productFind = product;
+                //muestra el fomrulario
+                res.render("products/productEdit", { product: productFind })
+            }
+        });
+        res.send("no existe el producto");
+        /*
         let id = req.params.id
-        res.render('products/productEdit', {products, id})
+        res.render('products/productEdit', {products, id})*/
     },
 
     upload: function(req,res,next){
-        let id = req.params.id
-        res.redirect('/');
+        products.forEach(product => {
+            if (product.id == req.params.id) {
+                //si corresponde el id piso los valores q edito
+
+                product.nombre = req.body.nombreProducto
+                product.precio = req.body.precioProducto
+                product.precio = Number(req.body.precioProducto)
+                product.descuento = req.body.descuentoProducto
+                producto.descuento = Number(req.body.descuentoProducto)
+                /*producto.stock = req.body.stockProdocto
+                producto.stock = Number(req.body.stockProducto)*/
+                producto.rubro = req.body.rubroProducto
+                producto.color = req.body.colorProducto
+                producto.medidas = req.body.medidasProducto
+                producto.descripcion = req.body.descripcionProducto
+                //producto.imagen = req.body.imgProducto
+            }
+            fs.writeFileSync(__dirname, '../data/productsDataBase.json', JSON.stringify(products))
+           
+
+        });
+        res.redirect("products/productList")
+
+        /*let id = req.params.id
+        res.redirect('/');*/
     },
 
     destroy: function(req,res,next){
