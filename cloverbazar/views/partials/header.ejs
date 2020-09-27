@@ -9,14 +9,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
-
-    <title>Document</title>
+    <title><%= title %> - Clover bazar & home</title>
 </head>
 
 <body>
     <header>
         <div class="barra1">
-            <a href="/productCart">
+            <a href="/products/cart">
                 <div class="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
@@ -54,8 +53,25 @@
                     <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
                     <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
                 </form>
-                <div class="menu"><i class="fas fa-bars"></i></div>
+                <div class="menu">
+                    <i class="fas fa-bars"></i>
+                    <nav class="menu-hamburguesa">
+                        <ul>
+                            <a href="/products/rubro">
+                                <li>Productos</li>
+                            </a>
+                            <a href="/contacto">
+                                <li>Contacto</li>
+                            </a>
+                            <a href="/mayorista">
+                                <li>Mayorista</li>
+                            </a>
+                            <a href="/faqs">
+                                <li>FAQs</li>
+                            </a>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-
         </div>
     </header>

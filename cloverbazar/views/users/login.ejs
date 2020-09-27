@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="/stylesheets/forms.css">
 
-<%-include('../partials/header')%>
+<%-include('../partials/header', {title: 'Iniciar sesión'})%>
 <main>
     <h2>Iniciar sesión</h2>
-    <form action="" method="POST" class="form-login">
+    <form action="" method="POST" class="forms form-login">
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Contraseña">
-        <a href="/register">No tenes cuenta? Registrate</a>
+        <a href="/users/register">No tenes cuenta? Registrate</a>
         <button type="submit">Iniciar sesión</button>
     </form>
 </main>

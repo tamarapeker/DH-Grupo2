@@ -1,7 +1,7 @@
 
   <link rel="stylesheet" href="/stylesheets/index.css">
 
-  <%-include('partials/header')%>
+  <%-include('./partials/header', {title: ''})%>
   <main>
     <section class="carrusel">
       <a href="">
@@ -12,25 +12,25 @@
     </section>
     <section class="secciones">
       <article>
-        <a href="">
+        <a href="/products/destacados">
           <img src="/images/imagentipo.png" alt="destacados">
           <h3>Destacados</h3>
         </a>
       </article>
       <article>
-        <a href="">
+        <a href="/products/ofertas">
           <img src="/images/imagentipo.png" alt="ofertas">
           <h3>Ofertas</h3>
         </a>
       </article>
       <article>
-        <a href="">
+        <a href="/products/rubro">
           <img src="/images/imagentipo.png" alt="lineaproductos">
           <h3>Linea de productos</h3>
         </a>
       </article>
       <article>
-        <a href="">
+        <a href="/products/combos">
           <img src="/images/imagentipo.png" alt="Combos">
           <h3>Combos</h3>
         </a>
@@ -40,7 +40,7 @@
     <section class="productos">
       <article class="producto">
         <a href="">
-          <img src="/images/imagentipo.png" alt="Producto1">
+          <img src="/images/imagentipo.png" alt="Producto">
           <h3>Producto1</h3>
         </a>
       </article>
@@ -75,4 +75,4 @@
       </form>
     </section>
   </main>
-  <%-include('partials/footer')%>
+  <%-include('./partials/footer')%>

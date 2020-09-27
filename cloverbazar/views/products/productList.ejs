@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/productList.css">
 
-<%-include('../partials/header')%>
+<%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
     <h2>Listado de productos</h2>
     <section>
@@ -10,15 +10,15 @@
             <p class="nombre-producto"><%=products[i].nombre%></p>
             <p>$<%=products[i].precio%></p>
             <p><%=products[i].descuento%>%</p>
-            <form action="/products/edit/<%=products[i].id%>" method="GET">
+            <form action="/products/edit/<%=products[i].id%>" method="GET" class="forms">
                 <button type="submit" class="botones">EDITAR</button>
             </form>
-            <form action="/products/destroy/<%=products[i].id%>" method="POST">
+            <form action="/products/destroy/<%=products[i].id%>" method="POST" class="forms">
                 <button type="submit" class="botones">ELIMINAR</button>
             </form>
         </article>
         <% } %>
-        <form action="/products/create">
+        <form action="/products/create" class="forms">
             <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
         </form>
     </section>

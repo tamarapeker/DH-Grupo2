@@ -42,7 +42,7 @@ img{
 
 }
 
-form button{
+form.forms button{
     margin: 10px 20px 20px 20px;
     padding: 10px;
     border: none;
@@ -52,7 +52,7 @@ form button{
     color: #fbdcc4;
 }
 
-button.botones{
+form.forms button.botones{
     margin: 5px 10px 10px 10px;
     padding: 10px;
     border: none;
@@ -62,15 +62,15 @@ button.botones{
     color: #fbdcc4;
 }
 
-button.botones:hover {
+form.form button.botones:hover {
     cursor: pointer;
 }
 
-button.nuevo-producto{
+form.forms button.nuevo-producto{
     margin-top: 20px;
 }
 
-button.nuevo-producto:hover {
+form.forms button.nuevo-producto:hover {
     cursor: pointer;
 }
 

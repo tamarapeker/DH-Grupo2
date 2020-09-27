@@ -43,6 +43,7 @@ header div.barra2 div.menuysearch {
     justify-content: flex-end;
     width: 70%;
     margin-right: 11px;
+    height: 20px;
 }
 
 header div.barra2 div.menuysearch form.search-form {
@@ -71,7 +72,7 @@ form.search-form {
     justify-content: center;
 }
 
-form input.search-form-input {
+form.search-form input.search-form-input {
     width: 40px;
     border: 0;
     border-top-left-radius: 5px;
@@ -79,12 +80,38 @@ form input.search-form-input {
     height: 20px;
 }
 
-.search-form-button {
+form.search-form button.search-form-button {
     background-color: white;
     border: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     height: 20px;
+}
+
+header div.menu nav.menu-hamburguesa ul {
+    display: none;
+}
+
+header div.menu nav.menu-hamburguesa ul li {
+    list-style: none;
+    border: 1px solid rgb(46, 46, 46);
+    background-color: #faeded;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+    padding: 5px;
+}
+
+header div.menu nav.menu-hamburguesa ul a {
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+}
+
+header div.menu:hover nav.menu-hamburguesa ul {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 100px;
 }
 
 /*FOOTER*/
@@ -193,7 +220,7 @@ footer nav ul li {
         width: 100px;
     }
 
-    form input.search-form-input {
+    form.search-form input.search-form-input {
         width: 70px;
     }
 
@@ -234,7 +261,7 @@ footer nav ul li {
         width: 150px;
     }
 
-    form.search-form input {
+    form.search-form input.search-form-input {
         width: 115px;
     }
 

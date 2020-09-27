@@ -10,6 +10,7 @@ main section.detalleprod {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    width: 95%;
 }
 
 main section article.image {
@@ -24,16 +25,20 @@ main section article.image img {
     width: 80%;
 }
 
-main section article.image h1 {
+main section article.image h1.nombreprod {
     font-size: 24px;
     max-width: 80%;
-}
-
-main section.detalleprod button {
+    margin: 10px 0;
     text-align: center;
 }
 
-main section.detalleprod button {
+main section article.image h1.precioprod {
+    font-size: 24px;
+    max-width: 80%;
+    margin: 5px 0 15px;
+}
+
+main section.detalleprod form.agregar-al-carrito button {
     width: 170px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -41,6 +46,8 @@ main section.detalleprod button {
     border-radius: 5px;
     background-color:rgb(46, 46, 46);
     color: #faeded;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 main section.detalleprod article.image div {
@@ -89,6 +96,11 @@ main section.relacionados img {
 main section.relacionados h4 {
     font-size: 14px;
     text-align: center;
+}
+
+main section.relacionados a {
+    text-decoration: none;
+    color: rgb(46, 46, 46);
 }
 
 @media(min-width: 768px) {

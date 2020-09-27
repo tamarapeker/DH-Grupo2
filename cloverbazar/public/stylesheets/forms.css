@@ -17,7 +17,7 @@ h2{
 
 
 /* CSS del formulario*/
-form{
+form.forms{
     margin: auto;
     padding: 10px;
     width: 300px;
@@ -47,6 +47,11 @@ article:first-child{
 
 article:nth-child(odd){
     background-color: #fbdcc4;
+    width: 100%;
+}
+
+form.forms input.cantidad {
+    width: 50px;
 }
 
 /* Los article remiten al carro de compras */
@@ -56,7 +61,7 @@ img{
 
 }
 
-input {
+form.forms input {
     margin: 20px 20px 10px 20px;
     padding: 10px;
     border: none;
@@ -64,11 +69,11 @@ input {
     border-radius: 5px;
 }
 
-form input:first-child{
+form.forms input:first-child{
     margin-top: 30px;
 }
 
-form button{
+form.forms button{
     margin: 10px 20px 20px 20px;
     padding: 10px;
     border: none;
@@ -78,7 +83,7 @@ form button{
     color: #fbdcc4;
 }
 
-form a{
+form.forms a{
     display: inline-block;
     margin-top: 10px;
     margin-bottom: 20px;

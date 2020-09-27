@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/stylesheets/mayorista.css">
 
-<%-include('./partials/header')%>
+<%-include('./partials/header', {title: 'Info mayorista'})%>
 <main>
     <h1>Venta Mayorista</h1>
     <h4>Si te interesa comprar nuestros productos por mayor completa el formulario y nos comunicaremos lo antes posible
     </h4>
-    <form action="/" method="GET">
+    <form action="/" method="POST">
         <input type="text" id="nombre" placeholder="Nombre y Apellido">
         <input type="email" placeholder="Email">
         <input type="number" placeholder="Celular">
