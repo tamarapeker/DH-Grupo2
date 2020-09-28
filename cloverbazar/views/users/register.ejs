@@ -3,11 +3,11 @@
 <%-include('../partials/header', {title: 'Registrate'})%>
 <main>
     <h2>Registro</h2>
-    <form action="" method="POST" class="forms">
+    <form action="/users/register" method="POST" class="forms">
         <input type="text" name="nombre" placeholder="Nombre">
         <input type="email" name="email" placeholder="E-mail">
-        <input type="password" name="contraseña" placeholder="Contraseña">
-        <input type="password" name="confirmContraseña" placeholder="Confirmar contraseña">
+        <input type="password" name="password" placeholder="Contraseña">
+        <input type="password" name="confirmPassword" placeholder="Confirmar contraseña">
         <button type="submit">Registrate</button>
     </form>
 </main>
