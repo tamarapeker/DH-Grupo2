@@ -72,13 +72,38 @@ const productsController = {
         }
     },
 
-    create: function (req, res, next) {
-        res.render('products/productAdd', { products });
+    create: function(req,res,next){
+        res.render('products/productAdd');
     },
 
-    store: function (req, res, next) {
+    store: function(req,res,next){
+        /* Toma los valores ingresados del formulario  */
+        let producto = {
+            nombreProducto: req.body.nombreProducto,
+            rubroProducto: req.body.rubroProducto,
+            colorProducto: req.body.colorProducto,
+            medidasProducto: req.body.medidasProducto,
+            descripcionProducto: req.body.descripcionProducto,
+            imgProducto: req.files[0].filename
+        };
 
-        res.redirect('/');
+        /*  */
+        let baseProductos = fs.readFileSync('productsDataBase', {encoding: 'utf-8'});
+        let productosRegistrados;
+        if(baseProductos == ""){
+            productosRegistrados = [];
+        } else {
+            productosRegistrados = JSON.parse(baseProductos);
+        }
+
+        productosRegistrados.push(producto);
+
+        //usuariosRegistradosJSON = JSON.stringify(usuariosRegistrados);
+
+        //fs.writeFileSync('usuarios.json', usuariosRegistradosJSON);
+
+        /* Redirecciona al login luego de registrarte */
+        res.redirect('/products/create');
     },
 
     edit: function (req, res, next) {
@@ -102,23 +127,22 @@ const productsController = {
                 //si corresponde el id piso los valores q edito
 
                 product.nombre = req.body.nombreProducto
-                product.precio = req.body.precioProducto
-                product.precio = Number(req.body.precioProducto)
-                product.descuento = req.body.descuentoProducto
-                producto.descuento = Number(req.body.descuentoProducto)
+               /* product.precio = Number(req.body.precioProducto)
+                product.descuento = Number(req.body.descuentoProducto)*/
                 /*producto.stock = req.body.stockProdocto
                 producto.stock = Number(req.body.stockProducto)*/
-                producto.rubro = req.body.rubroProducto
-                producto.color = req.body.colorProducto
-                producto.medidas = req.body.medidasProducto
-                producto.descripcion = req.body.descripcionProducto
+                product.rubro = req.body.rubroProducto
+                product.color = req.body.colorProducto
+                product.medidas = req.body.medidasProducto
+                product.descripcion = req.body.descripcionProducto
                 //producto.imagen = req.body.imgProducto
             }
-            fs.writeFileSync(__dirname, '../data/productsDataBase.json', JSON.stringify(products))
+            fs.writeFileSync(productsFilePath, JSON.stringify(products))
 
 
         });
-        res.redirect("products/productList")
+        
+        res.redirect("/products/edit/8");
 
         /*let id = req.params.id
         res.redirect('/');*/
@@ -132,7 +156,7 @@ const productsController = {
 
         let productsJSON = JSON.stringify(newProducts);
         fs.writeFileSync(productsFilePath, productsJSON);
-        res.redirect('/');
+        res.redirect('/products');
     }
 }
 

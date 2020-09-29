@@ -7,6 +7,7 @@ const usersController = {
     },
 
     create: function(req,res,next){
+        /* Toma los valores ingresados del formulario  */
         let usuario = {
             nombre: req.body.nombre,
             email: req.body.email,
@@ -14,6 +15,7 @@ const usersController = {
             confirmPassword: bcrypt.hashSync(req.body.confirmPassword, 10)
         };
 
+        /*  */
         let baseUsuarios = fs.readFileSync('usuarios.json', {encoding: 'utf-8'});
         let usuariosRegistrados;
         if(baseUsuarios == ""){
@@ -28,6 +30,7 @@ const usersController = {
 
         fs.writeFileSync('usuarios.json', usuariosRegistradosJSON);
 
+        /* Redirecciona al login luego de registrarte */
         res.redirect('/users/login');
     },
 
