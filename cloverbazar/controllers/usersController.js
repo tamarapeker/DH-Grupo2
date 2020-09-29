@@ -47,13 +47,14 @@ const usersController = {
             usuariosRegistrados = JSON.parse(baseUsuarios);
         }
 
-        for (i=0; usuariosRegistrados.length; i++){
-            if(usuariosRegistrados[i] == req.body.email && bcrypt.compareSync(req.body.password, usuariosRegistrados[i].password)){
-                res.send('/');
-            }
+        for (i=0; i < usuariosRegistrados.length; i++){
+            if(req.body.email == usuariosRegistrados[i].email){
+                if (bcrypt.compareSync(req.body.password, usuariosRegistrados[i].password)){
+                    res.redirect('/');
+                }
+            } 
         }
-        res.send('users/login');
-        
+        res.redirect('/users/login')
     }
 }
 
