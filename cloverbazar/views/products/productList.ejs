@@ -10,12 +10,8 @@
             <p class="nombre-producto"><%=products[i].nombre%></p>
             <p>$<%=products[i].precio%></p>
             <p><%=products[i].descuento%>%</p>
-            <form action="/products/edit/<%=products[i].id%>" method="GET" class="forms">
-                <button type="submit" class="botones">EDITAR</button>
-            </form>
-            <form action="/products/destroy/<%=products[i].id%>" method="POST" class="forms">
-                <button type="submit" class="botones">ELIMINAR</button>
-            </form>
+            <a href="/products/edit/<%=products[i].id%>" class="links">EDITAR</a>
+            <a href="/products/destroy/<%=products[i].id%>" class="links">ELIMINAR</a>
         </article>
         <% } %>
         <form action="/products/create" class="forms">

@@ -3,26 +3,24 @@
 <%-include('../partials/header', {title: 'Carrito'})%>
 <main>
     <h2>Tu Compra</h2>
-    <form action="" method="POST" class="forms formulario-carrito">
-        <%for(let i=0 ; i < productsCart.length ; i++) { %>
+    <%if(productsCart == []){ %>
+        <h2>El carrito esta vacio</h2>
+    <% } else { 
+        var total = 0; 
+        for(let i=0 ; i < productsCart.length ; i++) { %>
+    <form action="/products/cart/<%=productCart[i].id%>" method="POST" class="forms formulario-carrito">
         <article>
             <img src="/images/products/<%=productsCart[i].imagen%>" alt="Imagen de producto seleccionado">
             <p><%=productsCart[i].nombre%></p>
             <p><input type="number" name="cantidad" value="1" class="cantidad"></p>
             <p>$<%=productsCart[i].precio%></p>
         </article>
-        <% } %>
         <article class="total-compra">
             <p>Total</p>
-            <% var total = 0;
-            if(productsCart == []){ %>
-               <h2>El carrito esta vacio</h2> 
-            <% } else {
-            for(let i=0 ; i < productsCart.length ; i++) {
-                total = total + productsCart[i].precio;
-            } %>
+            <%total = total + productsCart[i].precio;
+            } %> <!--Cierro el for-->
             <p>$<%=total%></p>
-            <% } %>
+            <% } %> <!--Cierro el else-->
             
         </article>
         <button type="submit" class="confirmar-compra">Confirmar compra</button>

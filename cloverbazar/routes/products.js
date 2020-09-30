@@ -35,6 +35,6 @@ router.post('/create', upload.any(), productsController.store);
 router.get('/edit/:id', productsController.edit);
 router.post('/edit/:id', upload.any(), productsController.upload);
 
-router.post('/destroy', productsController.destroy);
+router.get('/destroy/:id', productsController.destroy);
 
 module.exports = router;

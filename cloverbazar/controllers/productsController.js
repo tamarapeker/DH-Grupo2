@@ -62,13 +62,13 @@ const productsController = {
                 productoAAgregar = products[i];
             }
         }
-
+        var productsCart = [];
         if (productoAAgregar.stock > 0) {
             productsCart.push(productoAAgregar);
             let productsCartJSON = JSON.stringify(productsCart);
             fs.writeFileSync(productsCartFilePath, productsCartJSON);
-            productoAAgregar.stock--;
-            res.render('products/productCart', { productsCart })
+            productoAAgregar.stock = productoAAgregar.stock - 1;
+            res.render('products/productCart', { product : productoAAgregar })
         }
     },
 
@@ -116,9 +116,6 @@ const productsController = {
             }
         });
         res.send("no existe el producto");
-        /*
-        let id = req.params.id
-        res.render('products/productEdit', {products, id})*/
     },
 
     upload: function (req, res, next) {
@@ -143,9 +140,6 @@ const productsController = {
         });
         
         res.redirect("/products/edit/8");
-
-        /*let id = req.params.id
-        res.redirect('/');*/
     },
 
     destroy: function (req, res, next) {
