@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require("fs")
+const {check, validationResult, body} = require("express-validator")
 
 const usersController = require('../controllers/usersController');
 
@@ -11,7 +13,19 @@ router.get('/', function(req, res, next) {
 router.get('/login', usersController.login);
 router.post('/login', usersController.processLogin);
 
-router.get('/register', usersController.register);
-router.post('/register', usersController.create);
+router.get('/register',  usersController.register);
+router.post('/register',[
+  check("nombre").isLength( {min:5, max:30} ).withMessage("Nombre inválido "),
+  check("email").isEmail().withMessage("Email inválido"),
+  check("password").not().isEmpty().withMessage("Contraseña inválida"),
+  body("confirmPassword","password").custom(function (value, {req}){
+    if (req.body.password == value){
+      return true;
+    }else{ return false}
+  }).withMessage("Las contraseñas no coinciden")
+
+
+
+], usersController.create);
 
 module.exports = router;

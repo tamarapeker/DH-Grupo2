@@ -3,6 +3,13 @@
 <%-include('../partials/header', {title: 'Registrate'})%>
 <main>
     <h2>Registro</h2>
+    <% if (typeof errors != "undefined"){ %>
+        <ul style="padding: 0;">
+            <% for (var i= 0; i< errors.length ; i++) { %>
+                <li style="list-style: none"> <%= errors[i].msg %> </li>
+            <%}%>
+        </ul>
+    <%}%>
     <form action="/users/register" method="POST" class="forms">
         <input type="text" name="nombre" placeholder="Nombre">
         <input type="email" name="email" placeholder="E-mail">

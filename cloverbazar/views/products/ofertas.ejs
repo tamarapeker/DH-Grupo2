@@ -2,7 +2,10 @@
 
 <%-include('../partials/header', {title: 'Ofertas'})%>
 <main>
-    <h2>Combos</h2>
+    <h2>Ofertas</h2>
+    <% if (ofertas.length == 0 ){ %>
+        <h3>No hay ofertas nuevas disponibles</h3>
+        <% } else {  %>
     <section>
         <%for(let i = 0 ; i < ofertas.length ; i++) { %>
         <article>
@@ -12,6 +15,7 @@
                 <h3> $<%=ofertas[i].precio%> </h3>
             </a>
         </article>
+        <% } %>
         <% } %>
     </section>
 </main>

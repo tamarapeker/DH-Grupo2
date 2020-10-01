@@ -3,11 +3,21 @@
 <%-include('../partials/header', {title: 'Iniciar sesión'})%>
 <main>
     <h2>Iniciar sesión</h2>
+    <% if (typeof errors != "undefined"){ %>
+        <ul>
+            <% for (var i= 0; i< errors.length ; i++) { %>
+                <li> <%= errors[i].msg %> </li>
+            <%}%>
+        </ul>
+    <%}%>
     <form action="/users/login" method="POST" class="forms form-login">
         <input type="email" name="email" placeholder="E-mail">
         <input type="password" name="password" placeholder="Contraseña">
         <a href="/users/register">No tenes cuenta? Registrate</a>
         <button type="submit">Iniciar sesión</button>
     </form>
+    <% if(typeof errorAlLoguear != "undefined"){ %>
+        <p><%= errorAlLoguear %></p>
+    <% } %>
 </main>
 <%-include('../partials/footer')%>

@@ -4,6 +4,9 @@
 <main>
     <h2>Combos</h2>
     <section>
+        <% if (productsCombos.length == 0){ %>
+            <h3>No hay combos nuevos disponibles</h3>
+            <% } else {  %>
         <%for(let i = 0 ; i < productsCombos.length ; i++) { %>
         <article>
             <a href="/products/detail/<%=productsCombos[i].id%>">
@@ -12,6 +15,7 @@
                 <h3> $<%=productsCombos[i].precio%> </h3>
             </a>
         </article>
+        <% } %>
         <% } %>
     </section>
 </main>
