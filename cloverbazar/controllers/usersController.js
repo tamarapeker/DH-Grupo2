@@ -39,7 +39,7 @@ const usersController = {
         if (!errors.isEmpty()) {
             res.render("users/login", { errors: errors.errors })
         }
-
+//esta parte de arriba no se si sirve para algo
 
         for (i = 0; i < users.length; i++) {
             if (req.body.email == users[i].email) {
