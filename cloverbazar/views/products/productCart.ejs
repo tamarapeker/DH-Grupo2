@@ -8,7 +8,7 @@
     <% } else { 
         var total = 0; 
         for(let i=0 ; i < productsCart.length ; i++) { %>
-    <form action="/products/cart/<%=productCart[i].id%>" method="POST" class="forms formulario-carrito">
+    <form action="/products/cart" method="POST" class="forms formulario-carrito">
         <article>
             <img src="/images/products/<%=productsCart[i].imagen%>" alt="Imagen de producto seleccionado">
             <p><%=productsCart[i].nombre%></p>

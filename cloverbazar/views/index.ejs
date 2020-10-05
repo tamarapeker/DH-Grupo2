@@ -13,55 +13,39 @@
     <section class="secciones">
       <article>
         <a href="/products/destacados">
-          <img src="/images/imagentipo.png" alt="destacados">
+          <img src="/images/products/index-destacados.png" alt="destacados">
           <h3>Destacados</h3>
         </a>
       </article>
       <article>
         <a href="/products/ofertas">
-          <img src="/images/imagentipo.png" alt="ofertas">
+          <img src="/images/products/index-ofertas.png" alt="ofertas">
           <h3>Ofertas</h3>
         </a>
       </article>
       <article>
         <a href="/products/rubro">
-          <img src="/images/imagentipo.png" alt="lineaproductos">
+          <img src="/images/products/index-productos.png" alt="lineaproductos">
           <h3>Linea de productos</h3>
         </a>
       </article>
       <article>
         <a href="/products/combos">
-          <img src="/images/imagentipo.png" alt="Combos">
+          <img src="/images/products/index-combos.png" alt="Combos">
           <h3>Combos</h3>
         </a>
       </article>
     </section>
     <h2>Productos</h2>
     <section class="productos">
+      <%for(let i=0 ; i < productos.length ; i++) {%>
       <article class="producto">
-        <a href="">
-          <img src="/images/imagentipo.png" alt="Producto">
-          <h3>Producto1</h3>
+        <a href="/products/detail/<%=productos[i].id%>">
+          <img src="/images/products/<%=productos[i].imagen%>" alt="Producto">
+          <h3><%=productos[i].nombre%></h3>
         </a>
       </article>
-      <article class="producto">
-          <a href="">
-            <img src="/images/imagentipo.png" alt="producto">
-            <h3>Producto2</h3>
-          </a>
-        </article>
-        <article class="producto">
-          <a href="">
-            <img src="/images/imagentipo.png" alt="producto">
-            <h3>Producto3</h3>
-          </a>
-        </article>
-        <article class="producto">
-          <a href="">
-            <img src="/images/imagentipo.png" alt="Producto4">
-            <h3>Producto4</h3>
-          </a>
-        </article>
+      <% } %>
     </section>
     <section class="formulario">
       <form action="">

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const multer = require('multer');
 const productsCartFilePath = path.join(__dirname, '../data/productsCart.json');
 const productsCart = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
@@ -36,6 +37,16 @@ const productsController = {
 
     },
 
+    destacados: function (req,res,next){
+        var productosDestacados = [];
+        for (let i=0 ; i < products.length ; i++){
+            if((products[i].precio <= 500) && (products[i].stock >= 10)){
+                productosDestacados.push(products[i]);
+            }
+        }
+        res.render('products/destacados', {productos: productosDestacados})
+    },
+
     productCategory: function (req, res, next) {
         let category = req.params.category;
         res.render('products/product', { products, category });
@@ -53,22 +64,24 @@ const productsController = {
     },
 
     cart: function (req, res, next) {
-        res.render('products/productCart', { products });
+        res.redirect('/products/productCart');
     },
 
     agregarProducto: function (req, res, next) {
         for (let i = 0; i < products.length; i++) {
             if (products[i].id == req.params.id) {
-                productoAAgregar = products[i];
+               return productoAAgregar = products[i];
             }
-        }
+        };
         var productsCart = [];
         if (productoAAgregar.stock > 0) {
+            productoAAgregar.stock = productoAAgregar.stock - 1;
             productsCart.push(productoAAgregar);
             let productsCartJSON = JSON.stringify(productsCart);
             fs.writeFileSync(productsCartFilePath, productsCartJSON);
-            productoAAgregar.stock = productoAAgregar.stock - 1;
-            res.render('products/productCart', { product : productoAAgregar })
+            res.redirect('/products/productCart', { product : productsCart })
+        } else{
+            res.send('sin stock')
         }
     },
 
@@ -78,32 +91,27 @@ const productsController = {
 
     store: function(req,res,next){
         /* Toma los valores ingresados del formulario  */
-        let producto = {
-            nombreProducto: req.body.nombreProducto,
-            rubroProducto: req.body.rubroProducto,
-            colorProducto: req.body.colorProducto,
-            medidasProducto: req.body.medidasProducto,
-            descripcionProducto: req.body.descripcionProducto,
-            imgProducto: req.files[0].filename
+        let producto = req.body;
+        producto = {
+            id: products[products.length-1].id + 1,
+            nombre: req.body.nombreProducto,
+            precio: req.body.precioProducto,
+            stock: req.body.stockProducto,
+            descuento: req.body.descuentoProducto,
+            rubro: req.body.rubroProducto,
+            color: req.body.colorProducto,
+            medidas: req.body.medidasProducto,
+            descripcion: req.body.descripcionProducto,
+            imagen: req.files[0].filename
         };
 
-        /*  */
-        let baseProductos = fs.readFileSync('productsDataBase', {encoding: 'utf-8'});
-        let productosRegistrados;
-        if(baseProductos == ""){
-            productosRegistrados = [];
-        } else {
-            productosRegistrados = JSON.parse(baseProductos);
-        }
+        /* Agrega el producto creado al array de productos y sobreescribe el JSON  */
+        products.push(producto);
+        fs.writeFileSync(productsFilePath, JSON.stringify(products))
 
-        productosRegistrados.push(producto);
 
-        //usuariosRegistradosJSON = JSON.stringify(usuariosRegistrados);
-
-        //fs.writeFileSync('usuarios.json', usuariosRegistradosJSON);
-
-        /* Redirecciona al login luego de registrarte */
-        res.redirect('/products/create');
+        /* Redirecciona */
+        res.redirect('/products');
     },
 
     edit: function (req, res, next) {
@@ -124,32 +132,27 @@ const productsController = {
                 //si corresponde el id piso los valores q edito
 
                 product.nombre = req.body.nombreProducto
-               /* product.precio = Number(req.body.precioProducto)
-                product.descuento = Number(req.body.descuentoProducto)*/
-                /*producto.stock = req.body.stockProdocto
-                producto.stock = Number(req.body.stockProducto)*/
+                product.precio = Number(req.body.precioProducto)
+                product.descuento = Number(req.body.descuentoProducto)
+                product.stock = Number(req.body.stockProducto)
                 product.rubro = req.body.rubroProducto
                 product.color = req.body.colorProducto
                 product.medidas = req.body.medidasProducto
                 product.descripcion = req.body.descripcionProducto
-                //producto.imagen = req.body.imgProducto
+                //product.imagen = req.files[0].filename
             }
             fs.writeFileSync(productsFilePath, JSON.stringify(products))
-
-
         });
         
-        res.redirect("/products/edit/8");
+        res.redirect("/products");
     },
 
     destroy: function (req, res, next) {
-        let id = req.params.id;
         let newProducts = products.filter(function (product) {
-            return product.id != id;
+            return product.id != req.params.id;
         });
 
-        let productsJSON = JSON.stringify(newProducts);
-        fs.writeFileSync(productsFilePath, productsJSON);
+        fs.writeFileSync(productsFilePath, JSON.stringify(newProducts));
         res.redirect('/products');
     }
 }

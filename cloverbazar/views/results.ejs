@@ -3,6 +3,9 @@
 <%-include('partials/header', {title: 'Resultados de la búsqueda'})%>
 <main>
     <h2>Resultados de la búsqueda: <%=loQueBuscoElUsuario%></h2>
+    <%if (productsResult.length < 1) {%>
+        <h2 style="font-weight: bold; text-align: center;">No hay resultados para: <%=loQueBuscoElUsuario%></h2>
+        <% }else{ %>
     <section>
         <%for(let i = 0 ; i < productsResult.length ; i++) { %>
         <article>
@@ -14,5 +17,6 @@
         </article>
         <% } %>
     </section>
+    <% } %>
 </main>
 <%-include('partials/footer')%>

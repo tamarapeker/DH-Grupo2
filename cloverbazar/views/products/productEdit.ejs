@@ -4,10 +4,16 @@
 <main>
     <section>
         <h2>Editar producto: <%= product.nombre%></h2>
-        <form action="/products/edit/<%= product.id%>" method="POST">
+        <form action="/products/edit/<%= product.id%>" method="POST" class="forms">
             <div class="contenedor-datos">
                 <label for="nombreProducto">Nombre de Producto:</label>
                 <input type="text" name="nombreProducto" id="nombreProducto" value= '<%=product.nombre %>' >
+                <label for="precioProducto">Precio de Producto:</label>
+                <input type="text" name="precioProducto" id="precioProducto" value= '<%=product.precio %>' >
+                <label for="stockProducto">Stock de Producto:</label>
+                <input type="text" name="stockProducto" id="stockProducto" value= '<%=product.stock %>' >
+                <label for="descuentoProducto">Descuento de Producto:</label>
+                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=product.descuento %>' >
                 <label for="rubroProducto">Rubro:</label>
                 <input type="text" name="rubroProducto" id="rubroProducto" value= '<%=product.rubro %>' >
                 <label for="colorProducto">Color:</label>
@@ -15,11 +21,11 @@
                 <label for="medidasProducto">Medidas:</label>
                 <input type="text" name="medidasProducto" id="medidasProducto" value='<%=product.medidas %>' >
                 <label for="descripcionProducto">Descripcion:</label>
-                <input type="text" name="descripcionProducto" id="descripcionProducto" value='<%=product.descripcion %>'>
+                <textarea name="descripcionProducto" id="descripcionProducto" cols="45" rows="10"><%=product.descripcion%></textarea>
             </div>
             <div class="contenedor-img">
-                <label for="imgProducto">Imagen de Producto:</label>
-                <input type="file" name="imgProducto" id="imgProducto">
+                <label for="imagen">Imagen de Producto:</label>
+                <input type="file" name="imagen" id="imagen" value="<%=product.imagen%>">
             </div>
             <div class="contenedor-botones">
                 <button type="submit">Editar</button>

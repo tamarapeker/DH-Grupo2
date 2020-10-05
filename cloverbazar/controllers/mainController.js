@@ -6,7 +6,13 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     index: function(req,res,next){
-        res.render('index', {products});
+        var productosDestacados = [];
+        for (let i=0 ; i < products.length ; i++){
+            if((products[i].precio < 500) && (products[i].stock >= 10)){
+                productosDestacados.push(products[i]);
+            }
+        }
+        res.render('index', {productos: productosDestacados});
     },
 
     search: function(req,res,next){
