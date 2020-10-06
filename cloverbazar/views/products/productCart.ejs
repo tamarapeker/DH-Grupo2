@@ -3,25 +3,34 @@
 <%-include('../partials/header', {title: 'Carrito'})%>
 <main>
     <h2>Tu Compra</h2>
-    <%if(productsCart == []){ %>
-        <h2>El carrito esta vacio</h2>
-    <% } else { 
-        var total = 0; 
-        for(let i=0 ; i < productsCart.length ; i++) { %>
-    <form action="/products/cart" method="POST" class="forms formulario-carrito">
+    <form action="/products/cart>" method="POST" class="forms formulario-carrito">
         <article>
-            <img src="/images/products/<%=productsCart[i].imagen%>" alt="Imagen de producto seleccionado">
-            <p><%=productsCart[i].nombre%></p>
-            <p><input type="number" name="cantidad" value="1" class="cantidad"></p>
-            <p>$<%=productsCart[i].precio%></p>
+            <img src="/images/imagentipo.png" alt="Imagen de producto seleccionado">
+            <p>Nombre</p>
+            <p>Cant</p>
+            <p>$$$</p>
+        </article>
+        <article>
+            <img src="/images/imagentipo.png" alt="Imagen de producto seleccionado">
+            <p>Nombre</p>
+            <p>Cant</p>
+            <p>$$$</p>
+        </article>
+        <article>
+            <img src="/images/imagentipo.png" alt="Imagen de producto seleccionado">
+            <p>Nombre</p>
+            <p>Cant</p>
+            <p>$$$</p>
+        </article>
+        <article>
+            <img src="/images/imagentipo.png" alt="Imagen de producto seleccionado">
+            <p>Nombre</p>
+            <p>Cant</p>
+            <p>$$$</p>
         </article>
         <article class="total-compra">
             <p>Total</p>
-            <%total = total + productsCart[i].precio;
-            } %> <!--Cierro el for-->
-            <p>$<%=total%></p>
-            <% } %> <!--Cierro el else-->
-            
+            <p>$$$</p>
         </article>
         <button type="submit" class="confirmar-compra">Confirmar compra</button>
         <a href="/product">Seguir comprando</a>

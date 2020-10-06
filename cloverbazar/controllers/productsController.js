@@ -64,25 +64,7 @@ const productsController = {
     },
 
     cart: function (req, res, next) {
-        res.redirect('/products/productCart');
-    },
-
-    agregarProducto: function (req, res, next) {
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].id == req.params.id) {
-               return productoAAgregar = products[i];
-            }
-        };
-        var productsCart = [];
-        if (productoAAgregar.stock > 0) {
-            productoAAgregar.stock = productoAAgregar.stock - 1;
-            productsCart.push(productoAAgregar);
-            let productsCartJSON = JSON.stringify(productsCart);
-            fs.writeFileSync(productsCartFilePath, productsCartJSON);
-            res.redirect('/products/productCart', { product : productsCart })
-        } else{
-            res.send('sin stock')
-        }
+        res.render('products/productCart');
     },
 
     create: function(req,res,next){

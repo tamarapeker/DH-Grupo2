@@ -29,7 +29,6 @@ router.get('/rubro/:category', productsController.productCategory);
 router.get('/detail/:id', productsController.detail);
   
 router.get('/cart', productsController.cart);
-router.get('/cart/:id', productsController.agregarProducto);
   
 router.get('/create', productsController.create);
 router.post('/create', upload.any(), productsController.store);
