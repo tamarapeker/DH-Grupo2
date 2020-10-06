@@ -9,4 +9,4 @@ realizar cada uno, teniendo en cuenta con lo que estuvo trabajando previamente y
 Eso queda registrado en el Trello del grupo.
 Luego, nos reunimos una vez por semana por lo menos para ver que se hizo y si necesitamos ayudarnos entre 
 los 3 para solucionar algo en particular. Si vemos que hay que agregar algo, lo sumamos al Trello y lo hacemos
-para la proxima reunión
+para la proxima reunión.
