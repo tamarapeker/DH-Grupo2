@@ -24,7 +24,7 @@ router.get('/destacados', productsController.destacados);
 
 router.get('/rubro', productsController.rubro);
 
-router.get('/rubro/:category', productsController.productCategory);
+router.get('/rubro/:category_id', productsController.productCategory);
   
 router.get('/detail/:id', productsController.detail);
   

@@ -5,62 +5,70 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const multer = require('multer');
 const productsCartFilePath = path.join(__dirname, '../data/productsCart.json');
 const productsCart = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const db = require('../database/models');
 
 const productsController = {
     index: function (req, res, next) {
-        res.render('products/productList', { products });
+        db.Productos.findAll()
+        .then(function(productos){
+            res.render('products/productList', { products: productos });
+        })
     },
 
     rubro: function (req, res, next) {
-        res.render('products/productRubro', { products });
+        db.Categorias.findAll()
+        .then(function(categorias){
+            res.render('products/productRubro', { categorias });
+        })
     },
-
     combos: function (req, res, next) {
-        let productsCombos = [];
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].nombre.includes('Combo') || products[i].nombre.includes('Set')) {
-                productsCombos.push(products[i])
+        db.Productos.findAll({
+            where: {
+                nombre: {[db.sequelize.Op.like]: '%combo%', [db.sequelize.Op.like]: '%set%'}       
             }
-        }
-        res.render('products/combos', { productsCombos });
+        })
+        .then(function(productos){
+            res.render('products/combos', { productsCombos: productos });
+        })
     },
 
     ofertas: function (req, res, next) {
-        let ofertas = []
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].descuento > 0) {
-                ofertas.push(products[i])
-
-            }
-        }
-        res.render("products/ofertas", {ofertas: ofertas})
-
+       db.Productos.findAll({
+           where: {
+               descuento: {[db.sequelize.Op.gt]: 0}
+           }
+        })
+       .then(function(productos){
+        res.render("products/ofertas", {ofertas: productos})
+       })
     },
 
     destacados: function (req,res,next){
-        var productosDestacados = [];
-        for (let i=0 ; i < products.length ; i++){
-            if((products[i].precio <= 500) && (products[i].stock >= 10)){
-                productosDestacados.push(products[i]);
+        db.Productos.findAll({
+            where:{
+                stock: {[db.sequelize.Op.gte]: 20}
             }
-        }
-        res.render('products/destacados', {productos: productosDestacados})
+        })
+        .then(function(productos){
+            res.render('products/destacados', {productos})
+        })
     },
 
     productCategory: function (req, res, next) {
-        let category = req.params.category;
-        res.render('products/product', { products, category });
+        db.Categorias.findByPk(req.params.category_id, {
+            include: [{association: "productos"}]
+        })
+        .then(function(categoria){
+            res.render('products/product', { categoria});
+        })
     },
 
     detail: function (req, res, next) {
-        let id = req.params.id;
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].id == id) {
-                product = products[i];
-                res.render('products/productDetail', { product, products });
-            }
-        }
-        res.send("No existe producto con ese ID");
+        db.Productos.findByPk(req.params.id)
+        .then(function(producto){
+            res.render('products/productDetail', { product: producto});            
+        })
+        /*COMO AGREGAMOS PRODUCTOS RELACIONADOS???*/ 
     },
 
     cart: function (req, res, next) {
