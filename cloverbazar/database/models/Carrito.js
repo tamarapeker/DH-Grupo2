@@ -12,7 +12,7 @@ module.exports = (sequelize, dataTypes) =>{
         estado: dataTypes.INTEGER
     }
     let config = {
-        tableName : 'carrito',
+        tableName : 'carritos',
         timestamps : false
     }
 

@@ -4,7 +4,7 @@
 <main>
     <section class="detalleprod">
         <article class="image">
-            <img src="/images/products/<%=product.imagen%>" alt="Imagen del producto <%=product.nombre%>">
+            <img src="/images/products/<%=product.imagenes.ruta%>" alt="Imagen del producto <%=product.nombre%>">
             <div>
                 <h1 class="nombreprod"> <%=product.nombre%></h1>
                 <h1 class="precioprod"> $ <%=product.precio%></h1>
@@ -23,7 +23,7 @@
         </article>
     </section>
     <h2 class="titulorel">Productos relacionados</h2>
-    <section class="relacionados">
+   <!-- <section class="relacionados">
         <%for(let i=0 ; i < products.length ; i++) {
             if(product.rubro == products[i].rubro && product.id != products[i].id && product.nombre != products[i].nombre) { %>
         <a href="/products/detail/<%=products[i].id%>">
@@ -33,6 +33,6 @@
             </article>
         </a>
         <% } } %>
-    </section>
+    </section> -->
 </main>
 <%-include('../partials/footer')%>

@@ -11,6 +11,7 @@ module.exports = (sequelize, dataTypes) =>{
         descuento: dataTypes.FLOAT,
         stock: dataTypes.INTEGER,
         color: dataTypes.STRING,
+        medidas: dataTypes.STRING,
         descripcion: dataTypes.STRING,
         categoria_id: dataTypes.INTEGER
     }

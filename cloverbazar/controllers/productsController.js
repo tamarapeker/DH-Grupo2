@@ -36,10 +36,11 @@ const productsController = {
        db.Productos.findAll({
            where: {
                descuento: {[db.sequelize.Op.gt]: 0}
-           }
+           },
+           include: [{association: "imagenes"}]
         })
        .then(function(productos){
-        res.render("products/ofertas", {ofertas: productos})
+        res.render("products/ofertas", {productos})
        })
     },
 
@@ -47,7 +48,8 @@ const productsController = {
         db.Productos.findAll({
             where:{
                 stock: {[db.sequelize.Op.gte]: 20}
-            }
+            },
+            include: [{association: "imagenes"}]
         })
         .then(function(productos){
             res.render('products/destacados', {productos})
@@ -64,7 +66,9 @@ const productsController = {
     },
 
     detail: function (req, res, next) {
-        db.Productos.findByPk(req.params.id)
+        db.Productos.findByPk(req.params.id, {
+            include: [{association: "imagenes"}]
+        })
         .then(function(producto){
             res.render('products/productDetail', { product: producto});            
         })
