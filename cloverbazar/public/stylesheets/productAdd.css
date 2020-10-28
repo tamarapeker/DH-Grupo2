@@ -32,6 +32,14 @@ form.forms input {
     border-radius: 5px;
 }
 
+form.forms select {
+    margin: auto;
+    padding: 10px;
+    border: none;
+    width: 91%;
+    border-radius: 5px;
+}
+
 form.forms .contenedor-botones{
     text-align: center;
 }

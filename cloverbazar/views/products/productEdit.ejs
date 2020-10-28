@@ -15,7 +15,18 @@
                 <label for="descuentoProducto">Descuento de Producto:</label>
                 <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=product.descuento %>' >
                 <label for="rubroProducto">Rubro:</label>
-                <input type="text" name="rubroProducto" id="rubroProducto" value= '<%=product.rubro %>' >
+                <select name="rubroProducto">
+                    <%for(let i=0 ; i < categorias.length ; i++) { %>
+                        <%if(categorias[i].id == product.categoria_id) {%>
+                        <option value="<%=categorias[i].id%>" selected>
+                            <%=categorias[i].nombre%>
+                        </option>
+                        <% } else { %>
+                            <option value="<%=categorias[i].id%>">
+                                <%=categorias[i].nombre%>
+                            </option>
+                    <% } } %>
+                </select>
                 <label for="colorProducto">Color:</label>
                 <input type="text" name="colorProducto" id="colorProducto" value='<%=product.color %>' >
                 <label for="medidasProducto">Medidas:</label>

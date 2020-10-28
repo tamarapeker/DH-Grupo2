@@ -15,7 +15,14 @@
                 <label for="descuentoProducto">Descuento de Producto:</label>
                 <input type="text" name="descuentoProducto" id="descuentoProducto" placeholder="Descuento de producto">
                 <label for="rubroProducto">Rubro:</label>
-                <input type="text" name="rubroProducto" id="rubroProducto" placeholder="Rubro">
+                <select name="rubroProducto">
+                    <option value="">Elegí la categoría</option>
+                    <%for(let i=0 ; i < categorias.length ; i++) { %>
+                        <option value="<%=categorias[i].id%>">
+                            <%=categorias[i].nombre%>
+                        </option>
+                    <% } %>
+                </select>
                 <label for="colorProducto">Color:</label>
                 <input type="text" name="colorProducto" id="colorProducto" placeholder="Color">
                 <label for="medidasProducto">Medidas:</label>

@@ -9,7 +9,9 @@ const db = require('../database/models');
 
 const productsController = {
     index: function (req, res, next) {
-        db.Productos.findAll()
+        db.Productos.findAll( {
+            include: [{association: "imagenes"}]
+        })
         .then(function(productos){
             res.render('products/productList', { products: productos });
         })
@@ -24,8 +26,9 @@ const productsController = {
     combos: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                nombre: {[db.sequelize.Op.like]: '%combo%', [db.sequelize.Op.like]: '%set%'}       
-            }
+                nombre: {[db.Sequelize.Op.or]:[{[db.Sequelize.Op.like]: '%combo%'},{[db.Sequelize.Op.like]: '%set%'} ]}
+            },
+            include: [{association: "imagenes"}]
         })
         .then(function(productos){
             res.render('products/combos', { productsCombos: productos });
@@ -35,7 +38,7 @@ const productsController = {
     ofertas: function (req, res, next) {
        db.Productos.findAll({
            where: {
-               descuento: {[db.sequelize.Op.gt]: 0}
+               descuento: {[db.Sequelize.Op.gt]: 0}
            },
            include: [{association: "imagenes"}]
         })
@@ -47,7 +50,7 @@ const productsController = {
     destacados: function (req,res,next){
         db.Productos.findAll({
             where:{
-                stock: {[db.sequelize.Op.gte]: 20}
+                stock: {[db.Sequelize.Op.gte]: 10}
             },
             include: [{association: "imagenes"}]
         })
@@ -57,11 +60,17 @@ const productsController = {
     },
 
     productCategory: function (req, res, next) {
-        db.Categorias.findByPk(req.params.category_id, {
-            include: [{association: "productos"}]
+        db.Productos.findAll({
+            where: {
+                categoria_id:  req.params.category_id
+            },
+            include: [{association: "imagenes"}]
         })
-        .then(function(categoria){
-            res.render('products/product', { categoria});
+        .then(function(productos){
+            res.render('products/product', { productos});
+        })
+        .catch(function(error){
+            console.log(error)
         })
     },
 
@@ -69,8 +78,8 @@ const productsController = {
         db.Productos.findByPk(req.params.id, {
             include: [{association: "imagenes"}]
         })
-        .then(function(producto){
-            res.render('products/productDetail', { product: producto});            
+        .then(function(product){
+            res.render('products/productDetail', {product});            
         })
         /*COMO AGREGAMOS PRODUCTOS RELACIONADOS???*/ 
     },
@@ -80,73 +89,63 @@ const productsController = {
     },
 
     create: function(req,res,next){
-        res.render('products/productAdd');
+        db.Categorias.findAll()
+        .then(function(categorias){
+            res.render('products/productAdd', {categorias});
+        })
     },
 
     store: function(req,res,next){
         /* Toma los valores ingresados del formulario  */
-        let producto = req.body;
-        producto = {
-            id: products[products.length-1].id + 1,
+        db.Productos.create({
             nombre: req.body.nombreProducto,
             precio: req.body.precioProducto,
             stock: req.body.stockProducto,
             descuento: req.body.descuentoProducto,
-            rubro: req.body.rubroProducto,
+            categoria_id: req.body.rubroProducto,
             color: req.body.colorProducto,
             medidas: req.body.medidasProducto,
-            descripcion: req.body.descripcionProducto,
-            imagen: req.files[0].filename
-        };
-
-        /* Agrega el producto creado al array de productos y sobreescribe el JSON  */
-        products.push(producto);
-        fs.writeFileSync(productsFilePath, JSON.stringify(products))
-
-
+            descripcion: req.body.descripcionProducto
+        });
+        /*COMO AGREGAMOS LA IMAGEN EN LA TABLA??*/ 
         /* Redirecciona */
         res.redirect('/products');
     },
 
     edit: function (req, res, next) {
-        let productFind;
-        products.forEach(product => {
-            if (product.id == req.params.id) {
-                productFind = product;
-                //muestra el fomrulario
-                res.render("products/productEdit", { product: productFind })
-            }
-        });
-        res.send("no existe el producto");
+            let pedidoProducto = db.Productos.findByPk(req.params.id)
+            let pedidoCategorias = db.Categorias.findAll()
+
+            Promise.all([pedidoProducto, pedidoCategorias])
+            .then(function([product, categorias]){
+                res.render("products/productEdit", {product, categorias})
+            })
     },
 
     upload: function (req, res, next) {
-        products.forEach(product => {
-            if (product.id == req.params.id) {
-                //si corresponde el id piso los valores q edito
-
-                product.nombre = req.body.nombreProducto
-                product.precio = Number(req.body.precioProducto)
-                product.descuento = Number(req.body.descuentoProducto)
-                product.stock = Number(req.body.stockProducto)
-                product.rubro = req.body.rubroProducto
-                product.color = req.body.colorProducto
-                product.medidas = req.body.medidasProducto
-                product.descripcion = req.body.descripcionProducto
-                //product.imagen = req.files[0].filename
-            }
-            fs.writeFileSync(productsFilePath, JSON.stringify(products))
-        });
+        db.Productos.update({
+            nombre: req.body.nombreProducto,
+            precio: req.body.precioProducto,
+            stock: req.body.stockProducto,
+            descuento: req.body.descuentoProducto,
+            categoria_id: req.body.rubroProducto,
+            color: req.body.colorProducto,
+            medidas: req.body.medidasProducto,
+            descripcion: req.body.descripcionProducto
+        })
+        
+                // COMO PONEMOS IMAGEN??? product.imagen = req.files[0].filename
         
         res.redirect("/products");
     },
 
     destroy: function (req, res, next) {
-        let newProducts = products.filter(function (product) {
-            return product.id != req.params.id;
-        });
+            db.Productos.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(newProducts));
         res.redirect('/products');
     }
 }

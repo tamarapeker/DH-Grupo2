@@ -8,15 +8,16 @@
             <h3>No hay combos nuevos disponibles</h3>
             <% } else {  %>
         <%for(let i = 0 ; i < productsCombos.length ; i++) { %>
+            <%for(let j=0 ; j < productsCombos[i].imagenes.length ; j++) {%>
         <article>
             <a href="/products/detail/<%=productsCombos[i].id%>">
-                <img src="/images/products/<%=productsCombos[i].imagen%>" alt="">
+                <img src="/images/products/<%=productsCombos[i].imagenes[0].ruta%>" alt="">
                 <h3><%=productsCombos[i].nombre%> </h3>
                 <h3> $<%=productsCombos[i].precio%> </h3>
             </a>
         </article>
         <% } %>
-        <% } %>
+        <% } } %>
     </section>
 </main>
 <%-include('../partials/footer')%>

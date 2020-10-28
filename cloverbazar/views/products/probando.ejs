@@ -2,7 +2,7 @@
 
 <%-include('../partials/header', {title: product.nombre})%>
 <main>
- <section class="detalleprod">
+    <section class="detalleprod">
         <%for(let i = 0 ; i < product.imagenes.length ; i++) {%>
         <article class="image">
             <img src="/images/products/<%=product.imagenes[i].ruta%>" alt="Imagen del producto <%=product.nombre%>">
@@ -25,6 +25,16 @@
         </article>
     </section> 
     <h2 class="titulorel">Productos relacionados</h2>
-    
+   <!-- <section class="relacionados">
+        <%for(let i=0 ; i < products.length ; i++) {
+            if(product.rubro == products[i].rubro && product.id != products[i].id && product.nombre != products[i].nombre) { %>
+        <a href="/products/detail/<%=products[i].id%>">
+            <article>
+                <img src="/images/products/<%=products[i].imagen%>" alt="">
+                <h4><span class="producto"> <%=products[i].nombre%></span><span class="precio"> $<%=products[i].precio%> </span></h4>
+            </article>
+        </a>
+        <% } } %>
+    </section> -->
 </main>
 <%-include('../partials/footer')%>
