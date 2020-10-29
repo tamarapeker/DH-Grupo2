@@ -62,7 +62,7 @@ const productsController = {
     productCategory: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                categoria_id:  req.params.category_id
+                categoria_id: req.params.category_id
             },
             include: [{association: "imagenes"}]
         })
@@ -75,13 +75,20 @@ const productsController = {
     },
 
     detail: function (req, res, next) {
-        db.Productos.findByPk(req.params.id, {
+        let pedidoProducto = db.Productos.findByPk(req.params.id, {
             include: [{association: "imagenes"}]
         })
-        .then(function(product){
-            res.render('products/productDetail', {product});            
+        let pedidoProductos = db.Productos.findAll({
+            where: {
+                id: {[db.Sequelize.Op.ne]: req.params.id}
+            },
+            include: [{association: "imagenes"}]
         })
-        /*COMO AGREGAMOS PRODUCTOS RELACIONADOS???*/ 
+
+        Promise.all([pedidoProducto, pedidoProductos])
+            .then(function([product, productos]){
+                res.render('products/productDetail', {product, productos});
+            })
     },
 
     cart: function (req, res, next) {

@@ -39,13 +39,14 @@
     <h2>Productos</h2>
     <section class="productos">
       <%for(let i=0 ; i < productos.length ; i++) {%>
+        <%for(let j=0 ; j < productos[i].imagenes.length ; j++) {%>
       <article class="producto">
         <a href="/products/detail/<%=productos[i].id%>">
-          <img src="/images/products/<%=productos[i].imagen%>" alt="Producto">
+          <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Producto">
           <h3><%=productos[i].nombre%></h3>
         </a>
       </article>
-      <% } %>
+      <% } } %>
     </section>
     <section class="formulario">
       <form action="">

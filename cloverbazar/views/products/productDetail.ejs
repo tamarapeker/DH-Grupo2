@@ -25,6 +25,18 @@
         </article>
     </section> 
     <h2 class="titulorel">Productos relacionados</h2>
-    
+     <section class="relacionados">
+        <%for(let i=0 ; i < productos.length ; i++) {
+            if(product.categoria_id == productos[i].categoria_id && product.nombre != productos[i].nombre) { %>
+        <a href="/products/detail/<%=productos[i].id%>">
+            <article>
+                <%for(let j=0 ; j < productos[i].imagenes.length ; j++) {%>
+                <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="">
+                <h4><span class="producto"> <%=productos[i].nombre%></span><span class="precio"> $<%=productos[i].precio%> </span></h4>
+                <% } %>
+            </article>
+        </a>
+        <% } } %>
+    </section>
 </main>
 <%-include('../partials/footer')%>

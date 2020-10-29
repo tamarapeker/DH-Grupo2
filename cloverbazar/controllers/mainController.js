@@ -1,29 +1,35 @@
 const fs = require('fs');
 const path = require('path');
+const db = require('../database/models');
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     index: function(req,res,next){
-        var productosDestacados = [];
-        for (let i=0 ; i < products.length ; i++){
-            if((products[i].precio < 500) && (products[i].stock >= 10)){
-                productosDestacados.push(products[i]);
-            }
-        }
-        res.render('index', {productos: productosDestacados});
+        db.Productos.findAll({
+            where: {
+                precio: {[db.Sequelize.Op.lt]: 500},
+                stock: {[db.Sequelize.Op.gte]: 10}
+            },
+            include: [{association: "imagenes"}]
+        })
+        .then(function(productos){
+            res.render('index', {productos});     
+        })
     },
 
     search: function(req,res,next){
-        let loQueBuscoElUsuario = req.query.keywords;
-		let productsResult = [];
-		for( let i=0 ; i < products.length ; i++){
-			if(products[i].nombre.includes(loQueBuscoElUsuario)){
-				productsResult.push(products[i]);
-			}
-		}
-        res.render('results', {productsResult, loQueBuscoElUsuario});
+       db.Productos.findAll({
+           where: {
+               nombre: {[db.Sequelize.Op.like]: '%' + req.query.keywords + '%'}
+           },
+           include: [{association: "imagenes"}]
+       })
+        .then(function(productsResult){
+            let loQueBuscoElUsuario = req.query.keywords
+            res.render('results', {productsResult, loQueBuscoElUsuario});    
+        })
     },
 
     contacto: function(req,res,next){

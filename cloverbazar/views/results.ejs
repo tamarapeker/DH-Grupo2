@@ -8,14 +8,15 @@
         <% }else{ %>
     <section>
         <%for(let i = 0 ; i < productsResult.length ; i++) { %>
+            <%for(let j=0 ; j < productsResult[i].imagenes.length ; j++) {%>
         <article>
             <a href="/products/detail/<%=productsResult[i].id%>">
-                <img src="/images/products/<%=productsResult[i].imagen%>" alt="">
+                <img src="/images/products/<%=productsResult[i].imagenes[0].ruta%>" alt="">
                 <h3><%=productsResult[i].nombre%> </h3>
                 <h3> $<%=productsResult[i].precio%> </h3>
             </a>
         </article>
-        <% } %>
+        <% } } %>
     </section>
     <% } %>
 </main>
