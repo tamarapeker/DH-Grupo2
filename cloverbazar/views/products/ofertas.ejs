@@ -8,15 +8,16 @@
         <% } else {  %>
     <section>
         <%for(let i = 0 ; i < productos.length ; i++) { %>
-            <%for(let j=0 ; j < productos[i].imagenes.length ; j++) {%>
         <article>
             <a href="/products/detail/<%=productos[i].id%>">
+                <%if( productos[i].imagenes.length > 0) {%>
                 <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="">
+                <% } %>
                 <h3><%=productos[i].nombre%> </h3>
                 <h3> $<%=productos[i].precio%> </h3>
             </a>
         </article>
-        <% } } } %>
+        <% } } %>
     </section>
 </main>
 <%-include('../partials/footer')%>

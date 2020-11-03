@@ -5,16 +5,18 @@
     <h2>Listado de productos</h2>
     <section>
         <%for(let i=0 ; i < products.length ; i++) {%>
-            <%for(let j=0 ; j < products[i].imagenes.length ; j++) {%>
+
         <article>
+            <%if( products[i].imagenes.length > 0) {%>
             <img src="/images/products/<%=products[i].imagenes[0].ruta%>" alt="Imagen de producto">
+            <% } %>
             <p class="nombre-producto"><%=products[i].nombre%></p>
             <p>$<%=products[i].precio%></p>
             <p><%=products[i].descuento%>%</p>
             <a href="/products/edit/<%=products[i].id%>" class="links">EDITAR</a>
             <a href="/products/destroy/<%=products[i].id%>" class="links">ELIMINAR</a>
         </article>
-        <% } } %>
+        <%  } %>
         <form action="/products/create" class="forms">
             <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
         </form>

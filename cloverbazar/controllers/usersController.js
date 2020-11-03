@@ -5,6 +5,7 @@ const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const baseUsuarios = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
+const db = require('../database/models');
 
 const usersController = {
     register: function (req, res, next) {
@@ -18,16 +19,17 @@ const usersController = {
             res.render("users/register", { errors: errors.errors })
         }
         /* Toma los valores ingresados del formulario  */
-        let usuario = {
+        db.Usuarios.create({
             nombre: req.body.nombre,
+            apellido: req.body.apellido,
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-        };
-
-        users.push(usuario);
-        fs.writeFileSync(usersFilePath, JSON.stringify(users))
-        /* Redirecciona al login luego de registrarte */
-        res.redirect('/');
+            contrasena: bcrypt.hashSync(req.body.password, 10),
+            direccion: req.body.direccion,
+            telefono: req.body.telefono 
+        })
+        .then(function(){
+            res.redirect('/');
+        })
     },
 
     login: function (req, res, next) {
@@ -40,15 +42,28 @@ const usersController = {
             res.render("users/login", { errors: errors.errors })
         }
 //esta parte de arriba no se si sirve para algo
-
-        for (i = 0; i < users.length; i++) {
+        db.Usuarios.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+        .then(function(usuario){
+            if(usuario != null) {
+                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
+                    res.redirect('/')
+                }
+            } else {
+                res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
+            }
+        })
+      /*  for (i = 0; i < users.length; i++) {
             if (req.body.email == users[i].email) {
                 if (bcrypt.compareSync(req.body.password, users[i].password)) {
                     res.redirect('/' );
                 }//agregar un break
             }
         }
-        res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
+        res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});*/
     }
 }
 

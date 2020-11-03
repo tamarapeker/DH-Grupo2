@@ -1,10 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const multer = require('multer');
-const productsCartFilePath = path.join(__dirname, '../data/productsCart.json');
-const productsCart = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 const db = require('../database/models');
 
 const productsController = {
@@ -104,6 +100,7 @@ const productsController = {
 
     store: function(req,res,next){
         /* Toma los valores ingresados del formulario  */
+        
         db.Productos.create({
             nombre: req.body.nombreProducto,
             precio: req.body.precioProducto,
@@ -113,10 +110,15 @@ const productsController = {
             color: req.body.colorProducto,
             medidas: req.body.medidasProducto,
             descripcion: req.body.descripcionProducto
-        });
-        /*COMO AGREGAMOS LA IMAGEN EN LA TABLA??*/ 
-        /* Redirecciona */
-        res.redirect('/products');
+        })
+        .then(function(producto){
+            db.Imagenes.create({
+                ruta: req.files[0].filename,
+                producto_id: producto.null
+            }).then(function(){
+                res.redirect('/products');
+            })
+        })
     },
 
     edit: function (req, res, next) {
@@ -139,11 +141,15 @@ const productsController = {
             color: req.body.colorProducto,
             medidas: req.body.medidasProducto,
             descripcion: req.body.descripcionProducto
+        }, {
+            where: {
+                id: req.params.id
+            }
         })
-        
-                // COMO PONEMOS IMAGEN??? product.imagen = req.files[0].filename
-        
-        res.redirect("/products");
+        .then(function(){
+            res.redirect("/products");  
+        })
+            //  req.files[0].filename
     },
 
     destroy: function (req, res, next) {
@@ -151,9 +157,17 @@ const productsController = {
                 where: {
                     id: req.params.id
                 }
+            }).then(function(){
+                db.Imagenes.destroy({
+                    where: {
+                        producto_id: req.params.id
+                    }
+                })
+                .then(function(){
+                    res.redirect('/products');
+                })
             })
 
-        res.redirect('/products');
     }
 }
 

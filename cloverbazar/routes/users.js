@@ -15,7 +15,7 @@ router.post('/login', usersController.processLogin);
 
 router.get('/register',  usersController.register);
 router.post('/register',[
-  check("nombre").isLength( {min:5, max:30} ).withMessage("Nombre inválido "),
+  check("nombre").isLength( {min:3, max:30} ).withMessage("Nombre inválido "),
   check("email").isEmail().withMessage("Email inválido"),
   check("password").not().isEmpty().withMessage("Contraseña inválida"),
   body("confirmPassword","password").custom(function (value, {req}){

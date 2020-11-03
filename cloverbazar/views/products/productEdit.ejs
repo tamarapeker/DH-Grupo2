@@ -36,7 +36,9 @@
             </div>
             <div class="contenedor-img">
                 <label for="imagen">Imagen de Producto:</label>
-                <input type="file" name="imagen" id="imagen" value="<%=product.imagen%>">
+                <%if( product.imagenes.length > 0) {%>
+                <input type="file" name="imagen" id="imagen" value="<%=product.imagenes[0].ruta%>">
+                <% } %>
             </div>
             <div class="contenedor-botones">
                 <button type="submit">Editar</button>
