@@ -122,7 +122,9 @@ const productsController = {
     },
 
     edit: function (req, res, next) {
-            let pedidoProducto = db.Productos.findByPk(req.params.id)
+            let pedidoProducto = db.Productos.findByPk(req.params.id, {
+                include: [{association: "imagenes"}]
+            })
             let pedidoCategorias = db.Categorias.findAll()
 
             Promise.all([pedidoProducto, pedidoCategorias])
@@ -147,9 +149,18 @@ const productsController = {
             }
         })
         .then(function(){
-            res.redirect("/products");  
+           
+            db.Imagenes.update({
+                ruta: req.files[0].filename
+            }, {
+                where: {
+                    producto_id: req.params.id
+                }
+            })
+            .then(function(){
+                res.redirect("/products");
+            })
         })
-            //  req.files[0].filename
     },
 
     destroy: function (req, res, next) {

@@ -1,10 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
-const baseUsuarios = fs.readFileSync('usuarios.json', { encoding: 'utf-8' });
 const db = require('../database/models');
 
 const usersController = {
@@ -18,17 +15,28 @@ const usersController = {
         if (!errors.isEmpty()) {
             res.render("users/register", { errors: errors.errors })
         }
-        /* Toma los valores ingresados del formulario  */
-        db.Usuarios.create({
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            email: req.body.email,
-            contrasena: bcrypt.hashSync(req.body.password, 10),
-            direccion: req.body.direccion,
-            telefono: req.body.telefono 
+        //busco si ya existe el email en la BD, si no existe entonces guardo el nuevo usuario
+        db.Usuarios.findOne({
+            where: {
+                email: req.body.email
+            }
         })
-        .then(function(){
-            res.redirect('/');
+        .then(function(usuario){
+            if(!usuario){
+                db.Usuarios.create({
+                    nombre: req.body.nombre,
+                    apellido: req.body.apellido,
+                    email: req.body.email,
+                    contrasena: bcrypt.hashSync(req.body.password, 10),
+                    direccion: req.body.direccion,
+                    telefono: req.body.telefono 
+                })
+                .then(function(){
+                    res.redirect('/');
+                })
+            } else {
+                res.render("users/register",{errorAlLoguear:"El email ingresado ya existe."});
+            }
         })
     },
 
@@ -41,29 +49,24 @@ const usersController = {
         if (!errors.isEmpty()) {
             res.render("users/login", { errors: errors.errors })
         }
-//esta parte de arriba no se si sirve para algo
+
         db.Usuarios.findOne({
             where: {
                 email: req.body.email
             }
         })
         .then(function(usuario){
-            if(usuario != null) {
-                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
-                    res.redirect('/')
-                }
+            if(!usuario){
+                res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});  
             } else {
-                res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
+                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
+                    //INICIAR SESION
+                    res.redirect('/')
+                } else {
+                    res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
+                }
             }
         })
-      /*  for (i = 0; i < users.length; i++) {
-            if (req.body.email == users[i].email) {
-                if (bcrypt.compareSync(req.body.password, users[i].password)) {
-                    res.redirect('/' );
-                }//agregar un break
-            }
-        }
-        res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});*/
     }
 }
 

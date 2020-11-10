@@ -11,11 +11,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', usersController.login);
-router.post('/login', usersController.processLogin);
+router.post('/login',[
+  check("email").isEmail().withMessage("Email inválido"),
+  check("password").not().isEmpty().withMessage("Contraseña inválida")
+] ,usersController.processLogin);
 
 router.get('/register',  usersController.register);
 router.post('/register',[
-  check("nombre").isLength( {min:3, max:30} ).withMessage("Nombre inválido "),
+  check("nombre").isLength( {min:1, max:30} ).withMessage("Nombre inválido "),
+  check("apellido").isLength( {min:1, max:30} ).withMessage("Apellido inválido "),
   check("email").isEmail().withMessage("Email inválido"),
   check("password").not().isEmpty().withMessage("Contraseña inválida"),
   body("confirmPassword","password").custom(function (value, {req}){
@@ -23,9 +27,6 @@ router.post('/register',[
       return true;
     }else{ return false}
   }).withMessage("Las contraseñas no coinciden")
-
-
-
 ], usersController.create);
 
 module.exports = router;
