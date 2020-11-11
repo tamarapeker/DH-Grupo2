@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fs = require("fs")
 const {check, validationResult, body} = require("express-validator")
-
 const usersController = require('../controllers/usersController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -14,7 +14,7 @@ router.get('/login', usersController.login);
 router.post('/login',[
   check("email").isEmail().withMessage("Email inválido"),
   check("password").not().isEmpty().withMessage("Contraseña inválida")
-] ,usersController.processLogin);
+],usersController.processLogin);
 
 router.get('/register',  usersController.register);
 router.post('/register',[

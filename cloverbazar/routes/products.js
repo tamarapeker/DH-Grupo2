@@ -3,6 +3,7 @@ const router = express.Router();
 const productsController = require('../controllers/productsController');
 const multer = require('multer');
 const path = require('path');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -16,9 +17,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-router.get('/' ,productsController.index);
-router.get('/cambios', productsController.cambios)
-router.post('/cambios', productsController.guardarCambios)
+router.get('/' , authMiddleware ,productsController.index);
+router.get('/cambios', authMiddleware, productsController.cambios)
+router.post('/cambios', authMiddleware, productsController.guardarCambios)
 
 router.get('/combos', productsController.combos);
 router.get('/ofertas', productsController.ofertas);
@@ -32,12 +33,12 @@ router.get('/detail/:id', productsController.detail);
 router.get('/add/:id', productsController.addCart);
 router.get('/cart', productsController.cart);
   
-router.get('/create', productsController.create);
-router.post('/create', upload.any(), productsController.store);
+router.get('/create', authMiddleware, productsController.create);
+router.post('/create', authMiddleware, upload.any(), productsController.store);
   
-router.get('/edit/:id', productsController.edit);
-router.post('/edit/:id', upload.any(), productsController.upload);
+router.get('/edit/:id', authMiddleware, productsController.edit);
+router.post('/edit/:id', authMiddleware, upload.any(), productsController.upload);
 
-router.get('/destroy/:id', productsController.destroy);
+router.get('/destroy/:id', authMiddleware, productsController.destroy);
 
 module.exports = router;

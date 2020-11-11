@@ -1,7 +1,10 @@
 let authMiddleware = function (req,res,next){
-      
-            next()
+      if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+          next();
+      } else {
+          res.render('error');
+      }
         
 }
 
-module.exports = authMiddleware
+module.exports = authMiddleware;

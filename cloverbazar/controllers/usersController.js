@@ -61,8 +61,7 @@ const usersController = {
             } else {
                 if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
                     req.session.usuarioLogueado = usuario
-                    res.render('/', {usuario: req.session.usuarioLogueado})
-
+                    res.redirect('/');
                 } else {
                     res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
                 }
