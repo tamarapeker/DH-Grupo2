@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage })
 
 
-router.get('/', productsController.index);
+router.get('/' ,productsController.index);
 router.get('/cambios', productsController.cambios)
 router.post('/cambios', productsController.guardarCambios)
 

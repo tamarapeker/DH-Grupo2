@@ -8,7 +8,9 @@
         <img src="/images/imagentipo.png" alt="">
         <h1>-Tu bazar online-</h1>
       </a>
-
+      <%if(typeof usuario != "undefined"){%>
+        <h1><%=usuario.nombre%></h1>
+        <% } %>
     </section>
     <section class="secciones">
       <article>
