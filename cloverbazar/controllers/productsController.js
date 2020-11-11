@@ -12,6 +12,19 @@ const productsController = {
             res.render('products/productList', { products: productos });
         })
     },
+    cambios: function(req,res,next){
+        db.Productos.findAll({
+            include: [{association: "imagenes"}]
+        })
+        .then(function(productos){
+            res.render('products/cambios', {productos})
+        })
+    },
+    guardarCambios: function(req,res,next){
+        
+        console.log(req.body.stockProducto)
+        console.log(req.body.descuentoProducto)
+    },
 
     rubro: function (req, res, next) {
         db.Categorias.findAll()
@@ -86,6 +99,17 @@ const productsController = {
                 res.render('products/productDetail', {product, productos});
             })
     },
+    addCart: function(req,res,next){
+        let cart = new Cart(req.session.cart ? req.session.cart : {});
+        db.Productos.findByPk(req.params.id, {
+            include: [{association: "imagenes"}]
+        }).then(function(producto){
+            cart.add(producto, req.params.id);
+            req.session.cart = cart;
+            res.redirect('/')
+        })
+    },
+
 
     cart: function (req, res, next) {
         res.render('products/productCart');
@@ -99,7 +123,6 @@ const productsController = {
     },
 
     store: function(req,res,next){
-        /* Toma los valores ingresados del formulario  */
         
         db.Productos.create({
             nombre: req.body.nombreProducto,

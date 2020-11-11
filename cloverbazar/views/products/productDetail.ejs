@@ -9,7 +9,7 @@
             <div>
                 <h1 class="nombreprod"> <%=product.nombre%></h1>
                 <h1 class="precioprod"> $ <%=product.precio%></h1>
-                <form action="/products/cart/<%=product.id%>" method="GET" class="agregar-al-carrito">
+                <form action="/products/add/<%=product.id%>" method="GET" class="agregar-al-carrito">
                     <button type="submit">Agregar al carrito</button>
                 </form>
             </div>

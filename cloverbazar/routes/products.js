@@ -17,6 +17,8 @@ var upload = multer({ storage: storage })
 
 
 router.get('/', productsController.index);
+router.get('/cambios', productsController.cambios)
+router.post('/cambios', productsController.guardarCambios)
 
 router.get('/combos', productsController.combos);
 router.get('/ofertas', productsController.ofertas);
@@ -27,7 +29,7 @@ router.get('/rubro', productsController.rubro);
 router.get('/rubro/:category_id', productsController.productCategory);
   
 router.get('/detail/:id', productsController.detail);
-  
+router.get('/add/:id', productsController.addCart);
 router.get('/cart', productsController.cart);
   
 router.get('/create', productsController.create);

@@ -1,0 +1,79 @@
+section{
+    margin: auto;
+    padding: 10px;
+    width: 300px;
+    background-color: #fbdcc4;
+    color: rgb(46, 46, 46);
+    text-align: center;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+article{
+    background-color: #faeded;
+    padding: 10px;
+    width: 100%;
+}
+
+article:first-child{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.total-compra{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+article:nth-child(odd){
+    background-color: #fbdcc4;
+}
+
+img{
+    width: 80px;
+
+}
+
+main form input {
+    width: 40px;
+    margin-right: 20px;
+}
+
+form.forms button.nuevo-producto{
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    background-color: rgb(46, 46, 46);
+    color: #fbdcc4;
+}
+
+form.forms button.nuevo-producto:hover {
+    cursor: pointer;
+}
+
+@media(min-width: 768px){
+    section{
+        width: 80%;
+    }
+
+    article{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 150px;
+    }
+
+    p.nombre-producto {
+        width: 130px;
+    }
+}

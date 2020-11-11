@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/stylesheets/cambios.css">
+
+<%-include('../partials/header', {title: 'Listado de productos'})%>
+<main>
+    <h2>Listado de productos</h2>
+    <section>
+        <%for(let i=0 ; i < productos.length ; i++) {%>
+
+        <article>
+            <%if( productos[i].imagenes.length > 0) {%>
+            <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
+            <% } %>
+            <p class="nombre-producto"><%=productos[i].nombre%></p>
+            <form action="/products/cambios" method="POST">
+                <label for="stockProducto">Stock:</label>
+                <input type="text" name="stockProducto" id="stockProducto" value= '<%=productos[i].stock %>'>
+                <label for="descuentoProducto">Descuento:</label>
+                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=productos[i].descuento %>'>
+            </form>
+        </article>
+        <%  } %>
+        <form action="/products/cambios" method="POST" class="forms">
+            <button type="submit" class="nuevo-producto">MODIFICAR</button>
+        </form>
+    </section>
+</main>
+<%-include('../partials/footer')%>
