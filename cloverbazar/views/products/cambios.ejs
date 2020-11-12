@@ -12,12 +12,16 @@
             <% } %>
             <p class="nombre-producto"><%=productos[i].nombre%></p>
             <div>
-            <label for="stockProducto">Stock:</label>
-            <input type="text" name="stockProducto" id="stockProducto" value= '<%=productos[i].stock %>'>
+                <label for="precioProducto">Precio:</label>
+                <input type="text" name="precioProducto" id="precioProducto" value= '<%=productos[i].precio %>' >
             </div>
             <div>
-            <label for="descuentoProducto">Descuento:</label>
-            <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=productos[i].descuento %>'>
+                <label for="stockProducto">Stock:</label>
+                <input type="text" name="stockProducto" id="stockProducto" value= '<%=productos[i].stock %>'>
+            </div>
+            <div>
+                <label for="descuentoProducto">Descuento:</label>
+                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=productos[i].descuento %>'>
             </div>
         </article>
         <%  } %>

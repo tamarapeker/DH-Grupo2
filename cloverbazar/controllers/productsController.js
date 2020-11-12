@@ -21,9 +21,22 @@ const productsController = {
         })
     },
     guardarCambios: function(req,res,next){
-        
-        console.log(req.body.stockProducto)
-        console.log(req.body.descuentoProducto)
+        db.Productos.findAll()
+        .then(function(productos){
+            for(let i=0 ; i < productos.length ; i++){
+                db.Productos.update({
+                    precio: req.body.precioProducto[i],
+                    descuento: req.body.descuento[i],
+                    stock: req.body.stockProducto[i]
+                }, {
+                    where: {
+                        id: productos[i].id
+                    }
+                })
+            }
+            res.redirect('/products/cambios')
+        })
+
     },
 
     rubro: function (req, res, next) {
@@ -99,17 +112,6 @@ const productsController = {
                 res.render('products/productDetail', {product, productos});
             })
     },
-    addCart: function(req,res,next){
-        let cart = new Cart(req.session.cart ? req.session.cart : {});
-        db.Productos.findByPk(req.params.id, {
-            include: [{association: "imagenes"}]
-        }).then(function(producto){
-            cart.add(producto, req.params.id);
-            req.session.cart = cart;
-            res.redirect('/')
-        })
-    },
-
 
     cart: function (req, res, next) {
         res.render('products/productCart');

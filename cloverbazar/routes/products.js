@@ -30,7 +30,7 @@ router.get('/rubro', productsController.rubro);
 router.get('/rubro/:category_id', productsController.productCategory);
   
 router.get('/detail/:id', productsController.detail);
-router.get('/add/:id', productsController.addCart);
+
 router.get('/cart', productsController.cart);
   
 router.get('/create', authMiddleware, productsController.create);
