@@ -13,3 +13,9 @@
 ### Cosas que hicimos bien:
 - Nos mantuvimos en contacto constante y de manera fluida.
 - Estuvimos reunidos para debatir temas de diseño y tomamos las decisiones que nos parecían las más adecuadas.
+
+## Retrospectiva del 6to Sprint
+- Mantenemos un buen ritmo de trabajo y de coordinación. Estamos todos al tanto de lo que sucede con el sitio
+y aportamos nuestro conocimiento.
+- Se nos complicó el tema de session y cookies porque sentimos que no se profundizó mucho sobre el tema y lo
+habíamos visto hace mucho tiempo. Tuvimos que repasarlo todos.
