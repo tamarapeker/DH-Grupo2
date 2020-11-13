@@ -31,7 +31,8 @@ const usersController = {
                     direccion: req.body.direccion,
                     telefono: req.body.telefono 
                 })
-                .then(function(){
+                .then(function(usuario){
+                    req.session.usuarioLogueado = usuario
                     res.redirect('/');
                 })
             } else {
@@ -68,6 +69,14 @@ const usersController = {
             }
             
         })
+    },
+    destroySession: function (req, res, next){
+        req.session.destroy(
+            function (){
+                res.redirect("/")
+            }
+        )
+        
     }
 }
 

@@ -6,41 +6,81 @@ const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
-    index: function(req,res,next){
+    index: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                precio: {[db.Sequelize.Op.lt]: 500},
-                stock: {[db.Sequelize.Op.gte]: 10}
+                precio: { [db.Sequelize.Op.lt]: 500 },
+                stock: { [db.Sequelize.Op.gte]: 10 }
             },
-            include: [{association: "imagenes"}]
+            include: [{ association: "imagenes" }]
         })
-        .then(function(productos){
-            res.render('index', {productos});     
-        })
+            .then(function (productos) {
+                // esto es para que el header sea dinamico por si estas o no loegueado
+                if (req.session.usuarioLogueado) {
+                    res.locals.isAuthenticated = true
+                    res.locals.usuarioLogueado = req.session.usuarioLogueado
+                } else {
+                    res.locals.isAuthenticated = false;
+
+                }
+                res.render('index', { productos });
+            })
     },
 
-    search: function(req,res,next){
-       db.Productos.findAll({
-           where: {
-               nombre: {[db.Sequelize.Op.like]: '%' + req.query.keywords + '%'}
-           },
-           include: [{association: "imagenes"}]
-       })
-        .then(function(productsResult){
-            let loQueBuscoElUsuario = req.query.keywords
-            res.render('results', {productsResult, loQueBuscoElUsuario});    
+    search: function (req, res, next) {
+        db.Productos.findAll({
+            where: {
+                nombre: { [db.Sequelize.Op.like]: '%' + req.query.keywords + '%' }
+            },
+            include: [{ association: "imagenes" }]
         })
+            .then(function (productsResult) {
+                // esto es para que el header sea dinamico por si estas o no loegueado
+                if (req.session.usuarioLogueado) {
+                    res.locals.isAuthenticated = true
+                    res.locals.usuarioLogueado = req.session.usuarioLogueado
+                } else {
+                    res.locals.isAuthenticated = false;
+
+                }
+                let loQueBuscoElUsuario = req.query.keywords
+                res.render('results', { productsResult, loQueBuscoElUsuario });
+            })
     },
 
-    contacto: function(req,res,next){
+    contacto: function (req, res, next) {
+        // esto es para que el header sea dinamico por si estas o no loegueado
+        if (req.session.usuarioLogueado) {
+            res.locals.isAuthenticated = true
+            res.locals.usuarioLogueado = req.session.usuarioLogueado
+        } else {
+            res.locals.isAuthenticated = false;
+
+        }
         res.render('contacto');
     },
 
-    faqs: function(req,res,next){
+    faqs: function (req, res, next) {
+        // esto es para que el header sea dinamico por si estas o no loegueado
+        if (req.session.usuarioLogueado) {
+            res.locals.isAuthenticated = true
+            res.locals.usuarioLogueado = req.session.usuarioLogueado
+        } else {
+            res.locals.isAuthenticated = false;
+
+        }
         res.render('faqs');
     },
 
-    mayorista: function(req,res,next){
+    mayorista: function (req, res, next) {
+        // esto es para que el header sea dinamico por si estas o no loegueado
+        if (req.session.usuarioLogueado) {
+            res.locals.isAuthenticated = true
+            res.locals.usuarioLogueado = req.session.usuarioLogueado
+        } else {
+            res.locals.isAuthenticated = false;
+
+        }
         res.render('mayorista');
     }
 }

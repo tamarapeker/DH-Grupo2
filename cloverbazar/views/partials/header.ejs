@@ -11,7 +11,6 @@
 
     <title><%= title %> - Clover bazar & home</title>
 </head>
-
 <body>
     <header>
         <div class="barra1">
@@ -20,18 +19,25 @@
                     <i class="fas fa-shopping-cart"></i>
                 </div>
             </a>
-            <%if(typeof usuario == "undefined"){%>
+            <%if(!locals.isAuthenticated){%>
             <a href="/users/login">
                 <div class="loginButton">
                     <button>Log In</button>
                 </div>
             </a>
             <%} else {%>
-                <a href="/users/login">
+                <a href="/users/perfil/id">
                     <div class="loginButton">
-                        <button><%=usuario.nombre%></button>
+                        <button>hola <%=locals.usuarioLogueado.nombre%></button>
                     </div>
                 </a>
+                <a href="/users/destroySession">
+                    <div class="loginButton">
+                        <button>Cerrar sesión</button>
+                    </div>
+                </a>
+                
+
             <% } %>
         </div>
         <div class="barra2">

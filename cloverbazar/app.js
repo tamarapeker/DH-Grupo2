@@ -8,6 +8,8 @@ var session = require('express-session')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
+//const authMiddleware = require('./middlewares/authMiddleware');
+
 
 var app = express();
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'Secreto', resave: false, saveUninitialized: false}));
+//app.use(authMiddleware)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
