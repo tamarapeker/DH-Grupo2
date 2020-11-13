@@ -62,6 +62,9 @@ const usersController = {
             } else {
                 if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
                     req.session.usuarioLogueado = usuario
+                    if(req.body.remember != undefined){
+                        res.cookie('remember', usuario.email, {maxAge:60000})
+                    }
                     res.redirect('/');
                 } else {
                     res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
