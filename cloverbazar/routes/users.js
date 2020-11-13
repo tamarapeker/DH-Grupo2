@@ -32,6 +32,8 @@ router.post('/register',[
   }).withMessage("Las contraseñas no coinciden")
 ], usersController.create);
 
+router.get('/perfil/:id',authMiddleware, usersController.perfil);
 router.get('/destroySession', usersController.destroySession);
+
 
 module.exports = router;

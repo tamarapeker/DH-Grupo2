@@ -73,10 +73,17 @@ const usersController = {
             
         })
     },
+    perfil: function(req,res,next){
+        db.Usuarios.findByPk(req.params.id)
+        .then(function(usuario){
+            res.render('users/perfil', {usuario})
+        })
+    },
+
     destroySession: function (req, res, next){
         req.session.destroy(
             function (){
-                res.redirect("/")
+                res.redirect("/users/login")
             }
         )
         
