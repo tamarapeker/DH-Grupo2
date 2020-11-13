@@ -42,8 +42,12 @@ const productsController = {
     rubro: function (req, res, next) {
         db.Categorias.findAll()
             .then(function (categorias) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -61,8 +65,12 @@ const productsController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -81,8 +89,12 @@ const productsController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -101,8 +113,12 @@ const productsController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -121,8 +137,12 @@ const productsController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -149,8 +169,12 @@ const productsController = {
 
         Promise.all([pedidoProducto, pedidoProductos])
             .then(function ([product, productos]) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {

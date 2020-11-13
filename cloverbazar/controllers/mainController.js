@@ -15,8 +15,12 @@ const mainController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -35,8 +39,12 @@ const mainController = {
             include: [{ association: "imagenes" }]
         })
             .then(function (productsResult) {
-                // esto es para que el header sea dinamico por si estas o no loegueado
+                // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
+                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                        res.locals.isAdmin = true;
+                        res.locals.adminLogueado = req.session.usuarioLogueado;
+                    }
                     res.locals.isAuthenticated = true
                     res.locals.usuarioLogueado = req.session.usuarioLogueado
                 } else {
@@ -49,8 +57,12 @@ const mainController = {
     },
 
     contacto: function (req, res, next) {
-        // esto es para que el header sea dinamico por si estas o no loegueado
+        // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
+            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                res.locals.isAdmin = true;
+                res.locals.adminLogueado = req.session.usuarioLogueado;
+            }
             res.locals.isAuthenticated = true
             res.locals.usuarioLogueado = req.session.usuarioLogueado
         } else {
@@ -61,8 +73,12 @@ const mainController = {
     },
 
     faqs: function (req, res, next) {
-        // esto es para que el header sea dinamico por si estas o no loegueado
+        // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
+            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                res.locals.isAdmin = true;
+                res.locals.adminLogueado = req.session.usuarioLogueado;
+            }
             res.locals.isAuthenticated = true
             res.locals.usuarioLogueado = req.session.usuarioLogueado
         } else {
@@ -73,8 +89,12 @@ const mainController = {
     },
 
     mayorista: function (req, res, next) {
-        // esto es para que el header sea dinamico por si estas o no loegueado
+        // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
+            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                res.locals.isAdmin = true;
+                res.locals.adminLogueado = req.session.usuarioLogueado;
+            }
             res.locals.isAuthenticated = true
             res.locals.usuarioLogueado = req.session.usuarioLogueado
         } else {

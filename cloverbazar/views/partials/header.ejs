@@ -31,13 +31,19 @@
                         <button>Hola <%=locals.usuarioLogueado.nombre%></button>
                     </div>
                 </a>
+
                 <a href="/users/destroySession">
                     <div class="loginButton">
                         <button>Cerrar sesión</button>
                     </div>
                 </a>
-                
-
+            <% } %>
+            <%if(locals.adminLogueado){%>
+                <a href="/products">
+                    <div class="loginButton">
+                        <button>Listado</button>
+                    </div>
+                </a>
             <% } %>
         </div>
         <div class="barra2">
