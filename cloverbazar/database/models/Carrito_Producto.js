@@ -17,20 +17,12 @@ module.exports = (sequelize, dataTypes) =>{
 
     const Carrito_Producto = sequelize.define(alias,cols,config);
 
-   /* Movie.associate = function(models){
-        Movie.belongsTo(models.Genres, {
-            as: "generos",
-            foreignKey: "genre_id"
+   Carrito_Producto.associate = function(models){
+        Carrito_Producto.belongsTo(models.Productos, {
+            as: "productos",
+            foreignKey: "producto_id"
         });
-
-        Movie.belongsToMany(models.Actors, {
-            as: "actores",
-            through: "actor_movie",
-            foreignKey: "movie_id",
-            otherKey: "actor_id",
-            timestamps: false
-        })
-    }*/
+    }
 
 
     return Carrito_Producto;

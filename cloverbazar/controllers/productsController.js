@@ -20,26 +20,12 @@ const productsController = {
                 res.render('products/cambios', { productos })
             })
     },
-    guardarCambios: function (req, res, next) {
-        db.Productos.findAll()
-            .then(function (productos) {
-                for (let i = 0; i < productos.length; i++) {
-                    db.Productos.update({
-                        precio: req.body.precioProducto[i],
-                        descuento: req.body.descuento[i],
-                        stock: req.body.stockProducto[i]
-                    }, {
-                        where: {
-                            id: productos[i].id
-                        }
-                    })
-                }
-                res.redirect('/products/cambios')
-            })
-
+    guardarCambios: function(req,res,next){
+        
+        
     },
 
-    rubro: function (req, res, next) {
+    rubro: function (req,res,next) {
         db.Categorias.findAll()
             .then(function (categorias) {
                 // esto es para que el header sea dinamico por si estas o no logueado

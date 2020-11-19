@@ -74,10 +74,44 @@ const usersController = {
         })
     },
     perfil: function(req,res,next){
+       // vista de errores
+       let errors = validationResult(req)
+       if (!errors.isEmpty()) {
+           res.render("users/perfil", { errors: errors.errors })
+       }
         db.Usuarios.findByPk(req.params.id)
         .then(function(usuario){
             res.render('users/perfil', {usuario})
         })
+    },
+    uploadUser: function(req,res,next){
+        db.Usuarios.upload({
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            direccion: req.body.direccion,
+            telefono: req.body.telefono
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(){
+            res.redirect('/')
+        })
+    },
+    uploadPassword: function(req,res,next){
+        if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
+            db.Usuarios.upload({
+                contrasena: bcrypt.hashSync(req.body.passwordNew)
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then(function(){
+                res.redirect('/')
+            })
+        }
     },
 
     destroySession: function (req, res, next){

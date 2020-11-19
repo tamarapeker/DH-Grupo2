@@ -12,6 +12,9 @@
             <% } %>
             <p class="nombre-producto"><%=productos[i].nombre%></p>
             <div>
+                <input type="hidden" name="idProducto" id="idProducto" value= '<%=productos[i].id %>' >
+            </div>
+            <div>
                 <label for="precioProducto">Precio:</label>
                 <input type="text" name="precioProducto" id="precioProducto" value= '<%=productos[i].precio %>' >
             </div>

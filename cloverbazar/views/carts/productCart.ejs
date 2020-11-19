@@ -4,9 +4,11 @@
 <main>
     <h2>Tu Compra</h2>
     <form action="/products/cart>" method="POST" class="forms formulario-carrito">
+        <%for(let i=0 ; i < items.length ; i++){
+            for(let j=0 ; j < productos.length ; j++){%>
         <article>
             <img src="/images/imagentipo.png" alt="Imagen de producto seleccionado">
-            <p>Nombre</p>
+            <p><%=items[i].productos[j].nombre%>></p>
             <p>Cant</p>
             <p>$$$</p>
         </article>

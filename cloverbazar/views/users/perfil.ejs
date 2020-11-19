@@ -4,5 +4,32 @@
 
 <main>
     <h2>Bienvenido <%=usuario.nombre%></h2>
+    <% if (typeof errors != "undefined"){ %>
+        <ul style="padding: 0;">
+            <% for (var i= 0; i< errors.length ; i++) { %>
+                <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+            <%}%>
+        </ul>
+    <%}%>
+    <% if(typeof errorAlLoguear != "undefined"){ %>
+        <p style="color:red"><%= errorAlLoguear %></p>
+    <% } %>
+    <div>
+        <form action="/users/perfil/<%=usuario.id%>" method="POST" class="forms">
+            <h3>Cambiar datos personales</h3>
+            <input type="text" name="nombre" placeholder="Nombre" value="<%=usuario.nombre%>">
+            <input type="text" name="apellido" placeholder="Apellido" value="<%=usuario.apellido%>">
+            <input type="text" name="direccion" placeholder="Dirección" value="<%=usuario.direccion%>">
+            <input type="text" name="telefono" placeholder="Teléfono" value="<%=usuario.telefono%>">
+            <button type="submit">Guardar cambios</button>
+        </form>
+        <form action="/users/password/<%=usuario.id%>" method="POST" class="forms">
+            <h3>Cambiar contraseña</h3>
+            <input type="password" name="password" placeholder="Contraseña anterior">
+            <input type="password" name="passwordNew" placeholder="Contraseña nueva">
+            <input type="password" name="confirmPasswordNew" placeholder="Confirmar contraseña nueva">
+            <button type="submit">Guardar cambios</button>
+        </form>
+</div> 
 </main>
 <%-include('../partials/footer')%>

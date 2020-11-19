@@ -14,11 +14,19 @@
 <body>
     <header>
         <div class="barra1">
-            <a href="/products/cart">
+            <%if(!locals.isAuthenticated) {%>
+            <a href="/carts/login">
                 <div class="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
             </a>
+            <%} else {%>
+                <a href="/carts/<%=locals.usuarioLogueado.id%>">
+                    <div class="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </a>
+            <% } %>
             <%if(!locals.isAuthenticated){%>
             <a href="/users/login">
                 <div class="loginButton">
