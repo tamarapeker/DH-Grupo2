@@ -1,8 +1,8 @@
 module.exports = {
   "development": {
     "username": "root",
-    //"password": "null",
-    //"password": "root",
+    "password": "null",
+    "password": "root",
     "database": "clover",
     "database": "cloverbazar",
     "host": "127.0.0.1",
