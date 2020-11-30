@@ -10,7 +10,16 @@
                 <h1 class="nombreprod"> <%=product.nombre%></h1>
                 <h1 class="precioprod"> $ <%=product.precio%></h1>
                 <form action="/carts/agregar/<%=product.id%>" method="POST" class="agregar-al-carrito">
-                    <input type="number" name="cantidad" value="1" style="margin-bottom: 5px; width: 40px;">
+                    <%if(product.stock > 0){%>
+                    <select name="cantidad">
+                        <%for(let i=1 ; i <= product.stock ; i++) {%>
+                            <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                    </select>
+                        
+                    <%}else{%>
+                        <p>Sin stock</p>
+                    <%}%>
                     <button type="submit">Agregar al carrito</button>
                 </form>
             </div>
