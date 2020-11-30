@@ -2,7 +2,7 @@
 
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
-    <h2>Listado de productos</h2>
+    <h2>Modificaciones</h2>
     <section>
         <form action="/products/cambios" method="POST">
         <%for(let i=0 ; i < productos.length ; i++) {%>
@@ -12,7 +12,7 @@
             <% } %>
             <p class="nombre-producto"><%=productos[i].nombre%></p>
             <div>
-                <input type="hidden" name="idProducto" id="idProducto" value= '<%=productos[i].id %>' >
+                <input type="hidden" name="idProducto" id="idProducto" value='<%=productos[i].id %>'>
             </div>
             <div>
                 <label for="precioProducto">Precio:</label>

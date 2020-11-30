@@ -5,24 +5,53 @@ const db = require('../database/models');
 
 const productsController = {
     index: function (req, res, next) {
-        db.Productos.findAll({
+        db.Productos.findAll(
+            {
+            where: {
+                estado: 1
+            },
             include: [{ association: "imagenes" }]
-        })
+            })
             .then(function (productos) {
-                res.render('products/productList', { products: productos });
+                res.render('products/productList', {productos});
             })
     },
     cambios: function (req, res, next) {
         db.Productos.findAll({
-            include: [{ association: "imagenes" }]
+            include: [{ association: "imagenes" }],
+            where: {
+                estado: 1
+            }
         })
             .then(function (productos) {
-                res.render('products/cambios', { productos })
+                res.render('products/productListCambios', { productos })
             })
     },
     guardarCambios: function(req,res,next){
-        
-        
+        for(let i=0 ; i < req.body.idProducto.length ; i++){
+            db.Productos.update({
+                precio: req.body.precioProducto[i],
+                descuento: req.body.descuentoProducto[i],
+                stock: req.body.stockProducto[i]
+            },{
+                where: {
+                    id: req.body.idProducto[i]
+                }
+            })
+            .then(function(){})
+        }
+        res.redirect('/products/cambios')
+    },
+    inactivos: function(req,res,next){
+        db.Productos.findAll({
+            where: {
+                estado: 0
+            },
+            include: [{association: "imagenes"}]
+        })
+        .then(function(productos){
+            res.render('products/productListInactivos', {productos})
+        })
     },
 
     rubro: function (req,res,next) {
@@ -46,7 +75,8 @@ const productsController = {
     combos: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                nombre: { [db.Sequelize.Op.or]: [{ [db.Sequelize.Op.like]: '%combo%' }, { [db.Sequelize.Op.like]: '%set%' }] }
+                nombre: { [db.Sequelize.Op.or]: [{ [db.Sequelize.Op.like]: '%combo%' }, { [db.Sequelize.Op.like]: '%set%' }] },
+                estado: 1
             },
             include: [{ association: "imagenes" }]
         })
@@ -70,7 +100,8 @@ const productsController = {
     ofertas: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                descuento: { [db.Sequelize.Op.gt]: 0 }
+                descuento: { [db.Sequelize.Op.gt]: 0 },
+                estado: 1
             },
             include: [{ association: "imagenes" }]
         })
@@ -94,7 +125,8 @@ const productsController = {
     destacados: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                stock: { [db.Sequelize.Op.gte]: 10 }
+                stock: { [db.Sequelize.Op.gte]: 10 },
+                estado: 1
             },
             include: [{ association: "imagenes" }]
         })
@@ -118,7 +150,8 @@ const productsController = {
     productCategory: function (req, res, next) {
         db.Productos.findAll({
             where: {
-                categoria_id: req.params.category_id
+                categoria_id: req.params.category_id,
+                estado: 1
             },
             include: [{ association: "imagenes" }]
         })
@@ -143,12 +176,20 @@ const productsController = {
     },
 
     detail: function (req, res, next) {
-        let pedidoProducto = db.Productos.findByPk(req.params.id, {
+        let pedidoProducto = db.Productos.findByPk(req.params.id,
+            {
+            where: {
+                estado: 1
+            },
+            
+            
             include: [{ association: "imagenes" }]
-        })
+            }
+        )
         let pedidoProductos = db.Productos.findAll({
             where: {
-                id: { [db.Sequelize.Op.ne]: req.params.id }
+                id: { [db.Sequelize.Op.ne]: req.params.id },
+                estado: 1
             },
             include: [{ association: "imagenes" }]
         })
@@ -171,10 +212,6 @@ const productsController = {
             })
     },
 
-    cart: function (req, res, next) {
-        res.render('products/productCart');
-    },
-
     create: function (req, res, next) {
         db.Categorias.findAll()
             .then(function (categorias) {
@@ -192,15 +229,20 @@ const productsController = {
             categoria_id: req.body.rubroProducto,
             color: req.body.colorProducto,
             medidas: req.body.medidasProducto,
-            descripcion: req.body.descripcionProducto
+            descripcion: req.body.descripcionProducto,
+            estado: 1
         })
             .then(function (producto) {
-                db.Imagenes.create({
-                    ruta: req.files[0].filename,
-                    producto_id: producto.null
-                }).then(function () {
+                if(req.files[0] == undefined){
                     res.redirect('/products');
-                })
+                } else {
+                    db.Imagenes.create({
+                        ruta: req.files[0].filename,
+                        producto_id: producto.null
+                    }).then(function () {
+                        res.redirect('/products');
+                    })
+                }
             })
     },
 
@@ -225,41 +267,41 @@ const productsController = {
             categoria_id: req.body.rubroProducto,
             color: req.body.colorProducto,
             medidas: req.body.medidasProducto,
-            descripcion: req.body.descripcionProducto
+            descripcion: req.body.descripcionProducto,
+            estado: req.body.estadoProducto
         }, {
             where: {
                 id: req.params.id
             }
         })
             .then(function () {
-
-                db.Imagenes.update({
-                    ruta: req.files[0].filename
-                }, {
-                    where: {
-                        producto_id: req.params.id
-                    }
-                })
+                if(req.files[0] == undefined){
+                    res.redirect("/products");
+                } else {
+                    db.Imagenes.update({
+                        ruta: req.files[0].filename
+                    }, {
+                        where: {
+                            producto_id: req.params.id
+                        }
+                    })
                     .then(function () {
                         res.redirect("/products");
                     })
+                }
             })
     },
 
     destroy: function (req, res, next) {
-        db.Productos.destroy({
+        db.Productos.update({
+            estado: 0
+        },{
             where: {
                 id: req.params.id
             }
         }).then(function () {
-            db.Imagenes.destroy({
-                where: {
-                    producto_id: req.params.id
-                }
-            })
-                .then(function () {
-                    res.redirect('/products');
-                })
+            res.redirect('/products');
+                
         })
 
     }

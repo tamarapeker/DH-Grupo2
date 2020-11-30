@@ -2,7 +2,7 @@
 
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
-    <h2>Listado de productos</h2>
+    <h2>Listado de productos inactivos</h2>
     <section>
         <%for(let i=0 ; i < productos.length ; i++) {%>
 
@@ -14,16 +14,8 @@
             <p>$<%=productos[i].precio%></p>
             <p><%=productos[i].descuento%>%</p>
             <a href="/products/edit/<%=productos[i].id%>" class="links">EDITAR</a>
-            <a href="/products/destroy/<%=productos[i].id%>" class="links">ELIMINAR</a>
         </article>
         <%  } %>
-        <form action="/products/create" class="forms">
-            <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
-        </form>
-        <form action="/products/cambios" class="forms">
-            <button type="submit" class="nuevo-producto">MODIFICACIONES</button>
-        </form>
-        <a href="/products/inactivos" class="links">Productos inactivos</a>
     </section>
 </main>
 <%-include('../partials/footer')%>

@@ -114,6 +114,9 @@ main section form button{
     background-color: rgb(46, 46, 46);
 }
 @media (min-width: 768px){
+    main section.carrusel img{
+        height: 300px;
+    }
     main section.productos article{
         width: 150px;
     }
@@ -124,7 +127,15 @@ main section form button{
     }
 }
 @media (min-width: 1024px){
+    main section.carrusel img{
+        height: 400px;
+    }
     main section.productos article{
         width: 230px;
+    }
+}
+@media (min-width: 1350px){
+    main section.carrusel img{
+        height: 500px;
     }
 }

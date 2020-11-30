@@ -33,22 +33,18 @@ router.post('/register',[
 ], usersController.create);
 
 router.get('/perfil/:id',authMiddleware, usersController.perfil);
-router.post('/perfil/:id',[
+router.post('/perfil/:id', [
   check("nombre").isLength( {min:1, max:30} ).withMessage("Nombre inválido "),
-  check("apellido").isLength( {min:1, max:30} ).withMessage("Apellido inválido "),
-  body("confirmPasswordNew","passwordNew").custom(function (value, {req}){
-    if (req.body.passwordNew == value){
-      return true;
-    }else{ return false}
-  }).withMessage("Las contraseñas no coinciden")
+  check("apellido").isLength( {min:1, max:30} ).withMessage("Apellido inválido ")
 ],authMiddleware, usersController.uploadUser);
+router.get('/password/:id', authMiddleware, usersController.changePassword)
 router.post('/password/:id',[
   body("confirmPasswordNew","passwordNew").custom(function (value, {req}){
     if (req.body.passwordNew == value){
       return true;
     }else{ return false}
   }).withMessage("Las contraseñas no coinciden")
-], usersController.uploadPassword);
+],authMiddleware, usersController.uploadPassword);
 
 
 router.get('/destroySession', usersController.destroySession);

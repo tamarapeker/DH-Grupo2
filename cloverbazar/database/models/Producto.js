@@ -13,7 +13,8 @@ module.exports = (sequelize, dataTypes) =>{
         color: dataTypes.STRING,
         medidas: dataTypes.STRING,
         descripcion: dataTypes.STRING,
-        categoria_id: dataTypes.INTEGER
+        categoria_id: dataTypes.INTEGER,
+        estado: dataTypes.INTEGER
     }
     let config = {
         tableName : 'productos',
@@ -48,6 +49,9 @@ module.exports = (sequelize, dataTypes) =>{
         
     }
 
-
+    Producto.calculoDescuento = function(){
+        //let calculoDescuento = this.precio*(1-this.descuento/100)
+        return "hola"
+    }
     return Producto;
 }

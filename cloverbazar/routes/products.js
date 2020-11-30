@@ -22,6 +22,7 @@ var upload = multer({ storage: storage })
 router.get('/' ,authMiddleware, adminMiddleware ,productsController.index);
 router.get('/cambios',authMiddleware, adminMiddleware, productsController.cambios)
 router.post('/cambios',authMiddleware, adminMiddleware, productsController.guardarCambios)
+router.get('/inactivos',authMiddleware, adminMiddleware, productsController.inactivos)
 
 router.get('/combos', productsController.combos);
 router.get('/ofertas', productsController.ofertas);

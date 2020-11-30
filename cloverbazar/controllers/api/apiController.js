@@ -72,7 +72,7 @@ const apiController = {
                   [db.Sequelize.Op.gte]: moment().subtract(7, 'days').toDate()
                 }
               },
-              include: [{ association: "productos" }/*, {association: "imagenes" }*/]
+              include: [{ association: "productos" }]
             }) 
             .then(
                 function (compras) {
@@ -81,10 +81,7 @@ const apiController = {
                             status: 200,
                             url: "/api/carritos/ultimasCompras"
                         },
-                        data: {
-                            fecha: compras.fecha_compra
-                            
-                         }
+                        data: compras
                     }
                     res.json(respuesta)
                 }

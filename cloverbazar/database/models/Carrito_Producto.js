@@ -8,7 +8,8 @@ module.exports = (sequelize, dataTypes) =>{
         },
         carrito_id: dataTypes.INTEGER,
         producto_id: dataTypes.INTEGER,
-        precio_congelado: dataTypes.FLOAT
+        precio_congelado: dataTypes.FLOAT,
+        cantidad: dataTypes.INTEGER
     }
     let config = {
         tableName : 'carrito_producto',
@@ -22,6 +23,12 @@ module.exports = (sequelize, dataTypes) =>{
             as: "productos",
             foreignKey: "producto_id"
         });
+        Carrito_Producto.hasMany(models.Imagenes, {
+            as: "imagenes",
+            foreignKey: "producto_id",
+            sourceKey: "producto_id"
+        })
+
     }
 
 

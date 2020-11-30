@@ -19,8 +19,9 @@ var storage = multer.diskStorage({
  
 var upload = multer({ storage: storage })
 
-router.get('/:usuario_id', authMiddleware, cartsController.cart)
+router.get('/:usuario_id', authMiddleware, cartsController.mostrarCarrito)
 router.post('/agregar/:producto_id', authMiddleware, cartsController.agregarProducto)
-
+router.get('/eliminar/:carrito_id/:producto_id', cartsController.eliminarProducto)
+router.post('/comprar/:carrito_id', cartsController.confirmarCompra)
 
 module.exports = router;

@@ -63,7 +63,7 @@ const usersController = {
                 if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
                     req.session.usuarioLogueado = usuario
                     if(req.body.remember != undefined){
-                        res.cookie('remember', usuario.email, {maxAge:60000})
+                        res.cookie('remember', usuario.email, {maxAge:300000})
                     }
                     res.redirect('/');
                 } else {
@@ -74,49 +74,72 @@ const usersController = {
         })
     },
     perfil: function(req,res,next){
-       // vista de errores
-       let errors = validationResult(req)
-       if (!errors.isEmpty()) {
-           res.render("users/perfil", { errors: errors.errors })
-       }
         db.Usuarios.findByPk(req.params.id)
         .then(function(usuario){
             res.render('users/perfil', {usuario})
         })
     },
     uploadUser: function(req,res,next){
-        db.Usuarios.upload({
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            direccion: req.body.direccion,
-            telefono: req.body.telefono
-        }, {
-            where: {
-                id: req.params.id
+        db.Usuarios.findByPk(req.params.id)
+        .then(function(usuario){
+            let errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                res.render("users/perfil", { errors: errors.errors, usuario })
+            } else {
+                db.Usuarios.update({
+                    nombre: req.body.nombre,
+                    apellido: req.body.apellido,
+                    direccion: req.body.direccion,
+                    telefono: req.body.telefono
+                }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then(function(){
+                    res.redirect('/users/perfil/'+req.params.id)
+                })
             }
         })
-        .then(function(){
-            res.redirect('/')
+    },
+
+    changePassword: function(req,res,next){
+        db.Usuarios.findByPk(req.params.id)
+        .then(function(usuario){
+            res.render('users/passwordChange', {usuario})
         })
     },
+
     uploadPassword: function(req,res,next){
-        if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
-            db.Usuarios.upload({
-                contrasena: bcrypt.hashSync(req.body.passwordNew)
-            }, {
-                where: {
-                    id: req.params.id
+        db.Usuarios.findByPk(req.params.id)
+        .then(function(usuario){
+            let errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                res.render("users/passwordChange", { errors: errors.errors, usuario})
+            } else {
+                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
+                    db.Usuarios.update({
+                        contrasena: bcrypt.hashSync(req.body.passwordNew)
+                    }, {
+                        where: {
+                            id: req.params.id
+                        }
+                    })
+                    .then(function(){
+                        res.redirect('/users/perfil/'+req.params.id)
+                    })
+                } else {
+                    res.render("users/passwordChange",{errorAlLoguear:"contraseña invalida.", usuario});      
                 }
-            })
-            .then(function(){
-                res.redirect('/')
-            })
-        }
+            }
+        })
+        
     },
 
     destroySession: function (req, res, next){
         req.session.destroy(
             function (){
+                res.clearCookie('remember')
                 res.redirect("/users/login")
             }
         )

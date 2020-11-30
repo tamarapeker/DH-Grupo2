@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 13, 2020 at 03:35 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-11-2020 a las 18:29:46
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cloverbazar`
+-- Base de datos: `cloverbazar`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carritos`
+-- Estructura de tabla para la tabla `carritos`
 --
 
 CREATE TABLE `carritos` (
@@ -32,26 +32,58 @@ CREATE TABLE `carritos` (
   `usuario_id` int(10) UNSIGNED NOT NULL,
   `fecha_compra` date DEFAULT NULL,
   `fecha_creacion` date NOT NULL,
-  `estado` int(10) UNSIGNED NOT NULL
+  `estado` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `carritos`
+--
+
+INSERT INTO `carritos` (`id`, `usuario_id`, `fecha_compra`, `fecha_creacion`, `estado`) VALUES
+(1, 5, NULL, '2020-11-19', 1),
+(3, 6, NULL, '2020-11-20', 0),
+(4, 7, NULL, '2020-11-20', 1),
+(5, 6, NULL, '2020-11-28', 0),
+(6, 6, NULL, '2020-11-28', 0),
+(7, 6, '2020-11-28', '2020-11-28', 0),
+(8, 6, NULL, '2020-11-28', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carrito_producto`
+-- Estructura de tabla para la tabla `carrito_producto`
 --
 
 CREATE TABLE `carrito_producto` (
   `id` int(10) UNSIGNED NOT NULL,
   `carrito_id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
+  `cantidad` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `precio_congelado` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `carrito_producto`
+--
+
+INSERT INTO `carrito_producto` (`id`, `carrito_id`, `producto_id`, `cantidad`, `precio_congelado`) VALUES
+(23, 1, 5, 0, 0),
+(24, 1, 18, 0, 0),
+(37, 3, 2, 1, 0),
+(38, 5, 3, 1, 0),
+(39, 5, 16, 3, 0),
+(40, 6, 10, 1, 0),
+(41, 6, 19, 1, 0),
+(42, 7, 3, 1, 221),
+(43, 7, 2, 4, 220),
+(44, 7, 7, 1, 485),
+(46, 8, 5, 1, 0),
+(47, 8, 10, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estructura de tabla para la tabla `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -61,7 +93,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorias`
+-- Volcado de datos para la tabla `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `imagen`) VALUES
@@ -73,7 +105,7 @@ INSERT INTO `categorias` (`id`, `nombre`, `imagen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `imagenes`
+-- Estructura de tabla para la tabla `imagenes`
 --
 
 CREATE TABLE `imagenes` (
@@ -83,7 +115,7 @@ CREATE TABLE `imagenes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `imagenes`
+-- Volcado de datos para la tabla `imagenes`
 --
 
 INSERT INTO `imagenes` (`id`, `ruta`, `producto_id`) VALUES
@@ -106,12 +138,15 @@ INSERT INTO `imagenes` (`id`, `ruta`, `producto_id`) VALUES
 (17, 'sethermeticos-acrilico-rosa.png', 17),
 (18, 'mate-autocebante-rosa.png', 18),
 (19, 'bowlchico-geom-lila.png', 19),
-(20, 'setmatero-frase-amarillo.png', 20);
+(20, 'setmatero-frase-amarillo.png', 20),
+(21, 'imagen-1606505420946.jpg', 21),
+(22, 'imagen-1606505700939.jpg', 22),
+(23, 'imagen-1606592948549.jpg', 23);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Estructura de tabla para la tabla `productos`
 --
 
 CREATE TABLE `productos` (
@@ -123,39 +158,43 @@ CREATE TABLE `productos` (
   `color` varchar(30) NOT NULL,
   `medidas` varchar(30) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
-  `categoria_id` int(10) NOT NULL
+  `categoria_id` int(10) NOT NULL,
+  `estado` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `productos`
+-- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id`, `nombre`, `precio`, `descuento`, `stock`, `color`, `medidas`, `descripcion`, `categoria_id`) VALUES
-(1, 'Vaso térmico tipo Starbucks', 220, 0, 15, 'Lila', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2),
-(2, 'Vaso térmico tipo Starbucks', 220, 0, 5, 'Verde agua', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2),
-(3, 'Vaso térmico liso', 260, 15, 12, 'Rosa', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2),
-(4, 'Vaso térmico liso', 260, 15, 15, 'Celeste', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2),
-(5, 'Mate clásico con bombilla', 180, 0, 8, 'Lila', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1),
-(6, 'Mate clásico con bombilla', 180, 0, 4, 'Rosa', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1),
-(7, 'Set matero clásico', 485, 0, 15, 'Celeste', 'Yerbera 600ml. Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarros con tapa flexible y flip-flap.', 1),
-(8, 'Set matero frase', 730, 15, 5, 'Salmon', 'Yerbera 1000ml Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarro con tapa con pico vertedor. Todo estampado con distintas frases.', 1),
-(9, 'Bowl geométrico grande', 215, 5, 10, 'Verde agua', 'Diámetro 19cm. Altura 11cm', 'Bowl ensaladera. Plástico rígido de alta calidad. Apto para calentar en microondas (no para cocinar)', 3),
-(10, 'Combo bowls', 600, 0, 5, 'Celeste', 'Grande: 19cm. Chico: 12cm', '1 bowl grande + 4 bowls chicos. Diámetro grande: 19cm. Diámetro chico: 12cm. Plástico rígido de alta calidad.', 3),
-(11, 'Combo bowls', 600, 0, 2, 'Rosa', 'Grande: 19cm. Chico: 12cm', '1 bowl grande + 4 bowls chicos. Diámetro grande: 19cm. Diámetro chico: 12cm. Plástico rígido de alta calidad.', 3),
-(12, 'Botella deportiva', 300, 10, 8, 'Negro', '750ml', 'Botella plástica deportiva. Tapa con pico rebatible y manija para llevar o colgar.', 4),
-(13, 'Botella deportiva', 300, 10, 4, 'Verde', '750ml', 'Botella plástica deportiva. Tapa con pico rebatible y manija para llevar o colgar.', 4),
-(14, 'Secaplatos pasto', 750, 10, 5, 'Verde', '35cmX24cm', 'Secaplatos pasto con bandeja plástica escurridora.', 4),
-(15, 'Vaso acrílico', 160, 0, 8, 'Rojo', '400ml', 'Vasos de acrílico. Translúcidos de colores.', 2),
-(16, 'Vaso acrílico', 160, 0, 6, 'Azul', '400ml', 'Vasos de acrílico. Translúcidos de colores.', 2),
-(17, 'Set herméticos', 650, 10, 2, 'Rosa', 'Alto: 1200ml. Bajo: 400ml', 'Set de herméticos 1 alto + 1 bajo de acrílico con tapa con sello de silicona.', 4),
-(18, 'Mate autocebante', 430, 10, 4, 'Rosa', '350ml', 'Mate + bombilla metálica + termo todo en uno.', 1),
-(19, 'Bowl geométrico chico', 120, 0, 15, 'Lila', 'Diámetro 12cm. Altura: 5cm', 'Bowl compotera. Plástico rígido de alta calidad. Apto para calentar en microondas (no para cocinar)', 3),
-(20, 'Set matero frase', 730, 10, 3, 'Amarillo', 'Yerbera 1000ml Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarro con tapa con pico vertedor. Todo estampado con distintas frases.', 1);
+INSERT INTO `productos` (`id`, `nombre`, `precio`, `descuento`, `stock`, `color`, `medidas`, `descripcion`, `categoria_id`, `estado`) VALUES
+(1, 'Vaso térmico tipo Starbucks', 220, 0, 15, 'Lila', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2, 1),
+(2, 'Vaso térmico tipo Starbucks', 220, 0, 5, 'Verde agua', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2, 1),
+(3, 'Vaso térmico liso', 260, 15, 12, 'Rosa', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2, 1),
+(4, 'Vaso térmico liso', 260, 15, 15, 'Celeste', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2, 1),
+(5, 'Mate clásico con bombilla', 180, 0, 8, 'Lila', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1, 1),
+(6, 'Mate clásico con bombilla', 180, 0, 4, 'Rosa', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1, 1),
+(7, 'Set matero clásico', 485, 0, 15, 'Celeste', 'Yerbera 600ml. Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarros con tapa flexible y flip-flap.', 1, 1),
+(8, 'Set matero frase', 730, 15, 5, 'Salmon', 'Yerbera 1000ml Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarro con tapa con pico vertedor. Todo estampado con distintas frases.', 1, 1),
+(9, 'Bowl geométrico grande', 215, 5, 10, 'Verde agua', 'Diámetro 19cm. Altura 11cm', 'Bowl ensaladera. Plástico rígido de alta calidad. Apto para calentar en microondas (no para cocinar)', 3, 1),
+(10, 'Combo bowls', 600, 0, 5, 'Celeste', 'Grande: 19cm. Chico: 12cm', '1 bowl grande + 4 bowls chicos. Diámetro grande: 19cm. Diámetro chico: 12cm. Plástico rígido de alta calidad.', 3, 1),
+(11, 'Combo bowls', 600, 0, 2, 'Rosa', 'Grande: 19cm. Chico: 12cm', '1 bowl grande + 4 bowls chicos. Diámetro grande: 19cm. Diámetro chico: 12cm. Plástico rígido de alta calidad.', 3, 1),
+(12, 'Botella deportiva', 300, 10, 8, 'Negro', '750ml', 'Botella plástica deportiva. Tapa con pico rebatible y manija para llevar o colgar.', 4, 1),
+(13, 'Botella deportiva', 300, 10, 4, 'Verde', '750ml', 'Botella plástica deportiva. Tapa con pico rebatible y manija para llevar o colgar.', 4, 1),
+(14, 'Secaplatos pasto', 750, 10, 5, 'Verde', '35cmX24cm', 'Secaplatos pasto con bandeja plástica escurridora.', 4, 1),
+(15, 'Vaso acrílico', 160, 0, 8, 'Rojo', '400ml', 'Vasos de acrílico. Translúcidos de colores.', 2, 1),
+(16, 'Vaso acrílico', 160, 0, 6, 'Azul', '400ml', 'Vasos de acrílico. Translúcidos de colores.', 2, 1),
+(17, 'Set herméticos', 650, 10, 2, 'Rosa', 'Alto: 1200ml. Bajo: 400ml', 'Set de herméticos 1 alto + 1 bajo de acrílico con tapa con sello de silicona.', 4, 1),
+(18, 'Mate autocebante', 430, 10, 4, 'Rosa', '350ml', 'Mate + bombilla metálica + termo todo en uno.', 1, 1),
+(19, 'Bowl geométrico chico', 120, 0, 15, 'Lila', 'Diámetro 12cm. Altura: 5cm', 'Bowl compotera. Plástico rígido de alta calidad. Apto para calentar en microondas (no para cocinar)', 3, 1),
+(20, 'Set matero frase', 730, 10, 3, 'Amarillo', 'Yerbera 1000ml Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarro con tapa con pico vertedor. Todo estampado con distintas frases.', 1, 1),
+(21, 'Vaso Prueba', 100, 1, 8, 'Rosa', '120', 'aaaaaa', 1, 0),
+(22, 'hola', 148, 8, 12, 'AAA', '152', '256565sadasffx', 1, 0),
+(23, 'aguan', 95, 5, 10, 'Verde', '20', 'xFksfhdjfndsjljksfjdsklfjdkslfjsk', 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -169,95 +208,100 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contrasena`, `direccion`, `telefono`) VALUES
 (1, 'Pipo', 'Pipo', 'pipo@pipo.com', '$2a$10$3nppumMtUGQGygzMu5nt6e8', 'Pipo', 'Pipo'),
 (2, 'Pipo', 'Pipo', 'pipo@dh.com', '$2a$10$w6/eUFS.I6WveZMp0.zCn.lTpAG40cqPLOsLBdxW92Q2/Zsq76sjK', 'Pipo', 'Pipo'),
-(3, 'Ventas', 'Clover Bazar', 'ventascloverbazar@gmail.com', '$2a$10$c5OemlIcQKNIPwGG.JbBbe1THVrgv3T/0oJTp9OFNVUFb1zb0U/02', '', '');
+(3, 'Ventas', 'Clover Bazar', 'ventascloverbazar@gmail.com', '$2a$10$c5OemlIcQKNIPwGG.JbBbe1THVrgv3T/0oJTp9OFNVUFb1zb0U/02', '', ''),
+(4, 'Pipo1', 'Pipo1', '', '$2a$10$OC2CRzCMNIrVCbcYFMlZw.pfPwnVO3ZndRzJ9k0MykiQJyzHtBiU.', '', ''),
+(5, 'Pipo1', 'Pipo1', 'pipo1@pipo.com', '$2a$10$4l5d7IUWQ7GhNnsd6GB5V.i74jyl8jXVUWfmfz4XG6DmiVHdKZT6e', 'sss', 'aaa'),
+(6, 'pipo2', 'pipo2', 'pipo2@pipo.com', '$2a$10$WrtMtH70koezEeex7Lvda.gy96GbnNGYpSFAQx9iOteXzFVmDOAO.', 'Calle', '123'),
+(7, 'pipo3', 'pipo3', 'pipo3@pipo.com', '$2a$10$WyFvk53ogZaORafPlLnBEu2U9.IUoGuKQTX8dl4AHNrFxaz9RukMu', 'pp', 'pp');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `carritos`
+-- Indices de la tabla `carritos`
 --
 ALTER TABLE `carritos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `carrito_producto`
+-- Indices de la tabla `carrito_producto`
 --
 ALTER TABLE `carrito_producto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categorias`
+-- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `imagenes`
+-- Indices de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `producto_id` (`producto_id`);
 
 --
--- Indexes for table `productos`
+-- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categoria_id` (`categoria_id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `carritos`
+-- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `carrito_producto`
+-- AUTO_INCREMENT de la tabla `carrito_producto`
 --
 ALTER TABLE `carrito_producto`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `imagenes`
+-- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `productos`
+-- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

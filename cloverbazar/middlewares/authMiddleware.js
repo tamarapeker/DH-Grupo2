@@ -5,7 +5,7 @@ let authMiddleware = function (req, res, next) {
         next();
     } else {
         res.locals.isAuthenticated = false;
-        res.send("Debes iniciar sesion")
+        res.redirect("/users/login")
     }
 
 }
