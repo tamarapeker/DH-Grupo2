@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="/stylesheets/productDetail.css">
 
-<%-include('../partials/header', {title: product.nombre})%>
+<%-include('../partials/header', {title: producto.nombre})%>
 <main>
  <section class="detalleprod">
-        <%for(let i = 0 ; i < product.imagenes.length ; i++) {%>
+        <%for(let i = 0 ; i < producto.imagenes.length ; i++) {%>
         <article class="image">
-            <img src="/images/products/<%=product.imagenes[i].ruta%>" alt="Imagen del producto <%=product.nombre%>">
+            <img src="/images/products/<%=producto.imagenes[i].ruta%>" alt="Imagen del producto <%=producto.nombre%>">
             <div>
-                <h1 class="nombreprod"> <%=product.nombre%></h1>
-                <h1 class="precioprod"> $ <%=product.precio%></h1>
-                <form action="/carts/agregar/<%=product.id%>" method="POST" class="agregar-al-carrito">
-                    <%if(product.stock > 0){%>
+                <h1 class="nombreprod"> <%=producto.nombre%></h1>
+                <h1 class="precioprod"> $ <%=producto.precio%></h1>
+                <form action="/carts/agregar/<%=producto.id%>" method="POST" class="agregar-al-carrito">
+                    <%if(producto.stock > 0){%>
                     <select name="cantidad">
-                        <%for(let i=1 ; i <= product.stock ; i++) {%>
+                        <%for(let i=1 ; i <= producto.stock ; i++) {%>
                             <option value="<%=i%>"><%=i%></option>
                             <%}%>
                     </select>
@@ -28,16 +28,16 @@
         <article class="detail">
             <p>Detalles del producto </p>
             <ul>
-                <li>Color: <%=product.color%></li>
-                <li><%=product.medidas%></li>
-                <li><%=product.descripcion%></li>
+                <li>Color: <%=producto.color%></li>
+                <li><%=producto.medidas%></li>
+                <li><%=producto.descripcion%></li>
             </ul>
         </article>
     </section> 
     <h2 class="titulorel">Productos relacionados</h2>
      <section class="relacionados">
         <%for(let i=0 ; i < productos.length ; i++) {
-            if(product.categoria_id == productos[i].categoria_id && product.nombre != productos[i].nombre) { %>
+            if(producto.categoria_id == productos[i].categoria_id && producto.nombre != productos[i].nombre) { %>
         <a href="/products/detail/<%=productos[i].id%>">
             <article>
                 <%if( productos[i].imagenes.length > 0) {%>

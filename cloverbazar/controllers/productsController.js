@@ -181,8 +181,6 @@ const productsController = {
             where: {
                 estado: 1
             },
-            
-            
             include: [{ association: "imagenes" }]
             }
         )
@@ -195,7 +193,7 @@ const productsController = {
         })
 
         Promise.all([pedidoProducto, pedidoProductos])
-            .then(function ([product, productos]) {
+            .then(function ([producto, productos]) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
                     if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
@@ -208,7 +206,7 @@ const productsController = {
                     res.locals.isAuthenticated = false;
 
                 }
-                res.render('products/productDetail', { product, productos });
+                res.render('products/productDetail', { producto, productos });
             })
     },
 

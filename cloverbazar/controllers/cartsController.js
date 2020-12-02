@@ -77,6 +77,21 @@ const cartsController = {
                         })
                     }
                 })
+            } else {
+                let producto = db.Productos.findByPk(req.params.product_id, {
+                    include: [{association: 'imagenes'}]
+                })
+                let productos = db.Productos.findAll({
+                    where: {
+                        estado: 1
+                    },
+                    include: [{association: 'imagenes'}]
+                })
+                Promise.all([producto, productos])
+                .then(function([producto, productos]){
+                    res.render("products/productDetail", {producto, productos, sinStock})
+                })
+                
             }
         })
 
@@ -84,8 +99,7 @@ const cartsController = {
     eliminarProducto: function(req,res,next){
         db.carrito_producto.destroy({
             where: {
-                carrito_id: req.params.carrito_id,
-                producto_id: req.params.producto_id
+                id: req.params.id
             }
         })
         .then(function(){
