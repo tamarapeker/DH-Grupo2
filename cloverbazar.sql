@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2020 a las 18:29:46
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.5
+-- Servidor: localhost:8889
+-- Tiempo de generación: 30-11-2020 a las 21:34:44
+-- Versión del servidor: 5.7.26
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,7 +31,7 @@ CREATE TABLE `carritos` (
   `usuario_id` int(10) UNSIGNED NOT NULL,
   `fecha_compra` date DEFAULT NULL,
   `fecha_creacion` date NOT NULL,
-  `estado` int(10) UNSIGNED NOT NULL DEFAULT 1
+  `estado` int(10) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -46,7 +45,9 @@ INSERT INTO `carritos` (`id`, `usuario_id`, `fecha_compra`, `fecha_creacion`, `e
 (5, 6, NULL, '2020-11-28', 0),
 (6, 6, NULL, '2020-11-28', 0),
 (7, 6, '2020-11-28', '2020-11-28', 0),
-(8, 6, NULL, '2020-11-28', 1);
+(8, 6, '2020-11-30', '2020-11-28', 0),
+(9, 3, NULL, '2020-11-30', 1),
+(10, 6, NULL, '2020-11-30', 1);
 
 -- --------------------------------------------------------
 
@@ -58,8 +59,8 @@ CREATE TABLE `carrito_producto` (
   `id` int(10) UNSIGNED NOT NULL,
   `carrito_id` int(11) NOT NULL,
   `producto_id` int(11) NOT NULL,
-  `cantidad` int(10) UNSIGNED NOT NULL DEFAULT 1,
-  `precio_congelado` float NOT NULL
+  `cantidad` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `precio_congelado` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -77,8 +78,10 @@ INSERT INTO `carrito_producto` (`id`, `carrito_id`, `producto_id`, `cantidad`, `
 (42, 7, 3, 1, 221),
 (43, 7, 2, 4, 220),
 (44, 7, 7, 1, 485),
-(46, 8, 5, 1, 0),
-(47, 8, 10, 1, 0);
+(47, 8, 10, 1, 600),
+(48, 8, 2, 1, 220),
+(49, 8, 3, 3, 221),
+(56, 10, 2, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -97,10 +100,10 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `imagen`) VALUES
-(1, 'mates', 'rubro-mates.png'),
-(2, 'vasos', 'rubro-vasos.png'),
-(3, 'bowls', 'rubro-bowls.png'),
-(4, 'varios', 'rubro-varios.png');
+(1, 'Mates', 'rubro-mates.png'),
+(2, 'Vasos', 'rubro-vasos.png'),
+(3, 'Bowls', 'rubro-bowls.png'),
+(4, 'Varios', 'rubro-varios.png');
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,7 @@ CREATE TABLE `productos` (
   `medidas` varchar(30) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `categoria_id` int(10) NOT NULL,
-  `estado` int(10) UNSIGNED NOT NULL DEFAULT 1
+  `estado` int(10) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -271,13 +274,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `carrito_producto`
 --
 ALTER TABLE `carrito_producto`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -302,7 +305,6 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

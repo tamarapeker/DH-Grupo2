@@ -25,8 +25,8 @@ header div.barra2{
     background-color: #faeded;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-around;/**/
+    /*width: 100%;*/
     /*cambio 5*/
     padding: 20px; 
 } 
@@ -50,6 +50,7 @@ header div.barra2 div.menuysearch {
 header div.barra2 div.menuysearch form.search-form {
     margin-right: 15px;
 }
+
 
 header div.barra2 nav ul{
 display: none;
@@ -214,7 +215,7 @@ footer nav ul li {
         flex-flow: row wrap;
         list-style: none;
         width: 400px;
-        justify-content: space-between;
+        justify-content: space-around;/**/
         padding-left: 0;
     }
 

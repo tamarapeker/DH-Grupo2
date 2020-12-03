@@ -12,23 +12,23 @@ main section article {
     max-width: 220px;
 }
 
-h1 {
+main h1 {
     text-align: center;
 }
-h3{
+main h3{
     font-weight: bolder;
   
 }
-p{
+main p{
     color: rgb(46, 46, 46);
 }
 
-p.aclaracion {
+main p.aclaracion {
     font-size: 14px;
     margin: 0;
 }
 
-ul {
+main ul {
     padding: 0;
     margin: auto 20px;
 }
