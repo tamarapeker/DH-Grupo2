@@ -10,16 +10,23 @@
                 <h1 class="nombreprod"> <%=producto.nombre%></h1>
                 <h1 class="precioprod"> $ <%=producto.precio%></h1>
                 <form action="/carts/agregar/<%=producto.id%>" method="POST" class="agregar-al-carrito">
-                    <%if(producto.stock > 0){%>
+                    <%if(producto.stock > 5){%>
                     <select name="cantidad">
-                        <%for(let i=1 ; i <= producto.stock ; i++) {%>
+                        <%for(let i=1 ; i <= 5 ; i++) {%>
                             <option value="<%=i%>"><%=i%></option>
                             <%}%>
                     </select>
-                        
-                    <%}else{%>
+                    <%}else{
+                        if(producto.stock <= 5){%>
+                            <select name="cantidad">
+                                <%for(let i=1 ; i <= producto.stock ; i++) {%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                    <%}%>
+                            </select>
+                        <%} else {%>
                         <p>Sin stock</p>
-                    <%}%>
+                        <%}%>
+                <% } %>
                     <button type="submit">Agregar al carrito</button>
                 </form>
             </div>

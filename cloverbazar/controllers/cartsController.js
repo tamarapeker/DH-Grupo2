@@ -5,7 +5,7 @@ const db = require('../database/models');
 
 const cartsController = {
     mostrarCarrito: function(req,res,next){
-        //mostrar el carrito del usuario con los productos
+        //Busca si el usuario tiene un carrito abierto
         db.Carritos.findOne({
             where: {
                 usuario_id: req.params.usuario_id,
@@ -13,6 +13,7 @@ const cartsController = {
             }
         })
         .then(function(carrito){
+            //Si no lo tiene se crea un carrito, que en principio esta vacio
             if(!carrito){
                 db.Carritos.create({
                     usuario_id: req.params.usuario_id,
@@ -24,6 +25,7 @@ const cartsController = {
                     res.render('carts/productCart', {carrito_producto})
                 })
             } else {
+                //Si ya tenia un carrito abierto, busco los productos que tiene para mostrarlos
                 db.carrito_producto.findAll({
                     where: {
                         carrito_id: carrito.id
@@ -38,9 +40,11 @@ const cartsController = {
     },
     agregarProducto: function(req,res,next){
         let id_usuarioLogueado = req.session.usuarioLogueado.id
+        //Busco el producto a agregar
         db.Productos.findByPk(req.params.producto_id)
         .then(function(producto){
             if(producto.stock >= req.body.cantidad){
+                //Si el stock de producto a agregar es mayor a la cantidad, busco si el usuario logueado tiene ya un carrito abierto
                 db.Carritos.findOne({
                     where: {
                         usuario_id: id_usuarioLogueado,
@@ -48,6 +52,7 @@ const cartsController = {
                     }
                 })
                 .then(function(carrito){
+                    //Si no tiene carrito, se crea uno
                     if(!carrito){
                         db.Carritos.create({
                             usuario_id: id_usuarioLogueado,
@@ -55,44 +60,80 @@ const cartsController = {
                             estado: 1
                         })
                         .then(function(carrito){
-                            db.carrito_producto.create({
-                                carrito_id: carrito.null,
-                                producto_id: req.params.producto_id,
-                                cantidad: req.body.cantidad
+                            //Luego, se busca si ya existe ese producto en ese carrito
+                            db.carrito_producto.findOne({
+                                where: {
+                                    carrito_id: carrito.null,
+                                    producto_id: req.params.producto_id
+                                }
                             })
-                            .then(function(){
-                                let producto_id = req.params.producto_id 
-                                res.redirect("/products/detail/"+producto_id)
+                            .then(function(carrito_producto){
+                                //Si no existia el producto en el carrito lo agrega
+                                if(!carrito_producto){
+                                    db.carrito_producto.create({
+                                        carrito_id: carrito.null,
+                                        producto_id: req.params.producto_id,
+                                        cantidad: req.body.cantidad
+                                    })
+                                    .then(function(){
+                                        let producto_id = req.params.producto_id 
+                                        res.redirect("/products/detail/"+producto_id)
+                                    })
+                                } else {
+                                    //Si ya existia el producto entonces le actualiza la cantidad
+                                    db.carrito_producto.update({
+                                        cantidad: Number(carrito_producto.cantidad) + Number(req.body.cantidad)
+                                    }, {
+                                        where: {
+                                            id: carrito_producto.id
+                                        }
+                                    })
+                                    .then(function(){
+                                        let producto_id = req.params.producto_id 
+                                        res.redirect("/products/detail/"+producto_id)
+                                    })
+                                }
                             })
+                            
                         })
                     } else {
-                        db.carrito_producto.create({
-                            carrito_id: carrito.id,
-                            producto_id: req.params.producto_id,
-                            cantidad: req.body.cantidad
+                        //Si ya existe un carrito abierto, busco si tiene ya el producto a agregar
+                        db.carrito_producto.findOne({
+                            where: {
+                                carrito_id: carrito.id,
+                                producto_id: req.params.producto_id
+                            }
                         })
-                        .then(function(){
-                            let producto_id = req.params.producto_id 
-                            res.redirect("/products/detail/"+producto_id)
+                        .then(function(carrito_producto){
+                            //Si no tiene el producto lo crea
+                            if(!carrito_producto){
+                                db.carrito_producto.create({
+                                    carrito_id: carrito.id,
+                                    producto_id: req.params.producto_id,
+                                    cantidad: req.body.cantidad
+                                })
+                                .then(function(){
+                                    let producto_id = req.params.producto_id 
+                                    res.redirect("/products/detail/"+producto_id)
+                                })
+                            } else {
+                                //Si ya tenia el producto se actualiza la cantidad
+                                db.carrito_producto.update({
+                                    cantidad: Number(carrito_producto.cantidad) + Number(req.body.cantidad)
+                                }, {
+                                    where: {
+                                        id: carrito_producto.id
+                                    }
+                                })
+                                .then(function(){
+                                    let producto_id = req.params.producto_id 
+                                    res.redirect("/products/detail/"+producto_id)
+                                })
+                            }
                         })
                     }
                 })
-            } else {
-                let producto = db.Productos.findByPk(req.params.product_id, {
-                    include: [{association: 'imagenes'}]
-                })
-                let productos = db.Productos.findAll({
-                    where: {
-                        estado: 1
-                    },
-                    include: [{association: 'imagenes'}]
-                })
-                Promise.all([producto, productos])
-                .then(function([producto, productos]){
-                    res.render("products/productDetail", {producto, productos, sinStock})
-                })
-                
-            }
+            } 
         })
 
     },
