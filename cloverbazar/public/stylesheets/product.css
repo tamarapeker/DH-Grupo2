@@ -31,6 +31,17 @@ main section h3{
 main section a{
     text-decoration: none;
 }
+main section article .precios h3{
+    display: inline-block;
+}
+main section article h3.precioConDto{
+    color: black;
+    margin-left: 15px;
+}
+main section article h3.tachado{
+    text-decoration: line-through;
+    color: black;
+}
 @media (min-width: 768px){
     main section article{
         width: 270px;

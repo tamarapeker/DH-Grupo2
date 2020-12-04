@@ -122,6 +122,10 @@ main section.relacionados a {
         width: 600px;
     }
 }
+    .tachado{
+        text-decoration: line-through;
+        margin-right: 10px;
+    }
 
 @media(min-width: 1024px) {
      main section.relacionados {

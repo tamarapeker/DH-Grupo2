@@ -2,32 +2,36 @@
 
 <%-include('../partials/header', {title: producto.nombre})%>
 <main>
- <section class="detalleprod">
+    <section class="detalleprod">
         <%for(let i = 0 ; i < producto.imagenes.length ; i++) {%>
         <article class="image">
             <img src="/images/products/<%=producto.imagenes[i].ruta%>" alt="Imagen del producto <%=producto.nombre%>">
             <div>
                 <h1 class="nombreprod"> <%=producto.nombre%></h1>
+                <% if(producto.descuento>0){ %>
+                <h1 class="precioprod"> $ <%=(producto.precio * (100-producto.descuento))/100%></h1>
+                <%} else {%>
                 <h1 class="precioprod"> $ <%=producto.precio%></h1>
+                <%} %>
                 <form action="/carts/agregar/<%=producto.id%>" method="POST" class="agregar-al-carrito">
                     <%if(producto.stock > 5){%>
                     <select name="cantidad">
                         <%for(let i=1 ; i <= 5 ; i++) {%>
-                            <option value="<%=i%>"><%=i%></option>
-                            <%}%>
+                        <option value="<%=i%>"><%=i%></option>
+                        <%}%>
                     </select>
                     <%}else{
                         if(producto.stock <= 5){%>
-                            <select name="cantidad">
-                                <%for(let i=1 ; i <= producto.stock ; i++) {%>
-                                    <option value="<%=i%>"><%=i%></option>
-                                    <%}%>
+                        <select name="cantidad">
+                            <%for(let i=1 ; i <= producto.stock ; i++) {%>
+                            <option value="<%=i%>"><%=i%></option>
+                            <%}%>
                             </select>
                         <%} else {%>
-                        <p>Sin stock</p>
-                        <%}%>
+                            <p>Sin stock</p>
+                            <%}%>
                 <% } %>
-                    <button type="submit">Agregar al carrito</button>
+                            <button type="submit">Agregar al carrito</button>
                 </form>
             </div>
         </article>
@@ -40,9 +44,9 @@
                 <li><%=producto.descripcion%></li>
             </ul>
         </article>
-    </section> 
+    </section>
     <h2 class="titulorel">Productos relacionados</h2>
-     <section class="relacionados">
+    <section class="relacionados">
         <%for(let i=0 ; i < productos.length ; i++) {
             if(producto.categoria_id == productos[i].categoria_id && producto.nombre != productos[i].nombre) { %>
         <a href="/products/detail/<%=productos[i].id%>">
@@ -50,8 +54,19 @@
                 <%if( productos[i].imagenes.length > 0) {%>
                 <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="">
                 <% } %>
-                <h4><span class="producto"> <%=productos[i].nombre%></span><span class="precio"> $<%=productos[i].precio%> </span></h4>
-                
+                <h4><span class="producto"> <%=productos[i].nombre%></span>
+                    <%if( productos[i].descuento > 0) {%>
+                    <h4 class="precio ">
+                        <span class="tachado">$<%=productos[i].precio%> </span> <span>$<%=(productos[i].precio * (100-productos[i].descuento))/100%></span>
+                     </h4>
+                        <% } else{ %>
+                            <h4 class="precio">
+                                $<%=productos[i].precio%>
+                             </h4>   
+                            <% }%>
+                    </h4>
+              
+
             </article>
         </a>
         <% } } %>

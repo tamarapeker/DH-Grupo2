@@ -93,7 +93,7 @@ const productsController = {
                     res.locals.isAuthenticated = false;
 
                 }
-                res.render('products/combos', { productsCombos: productos });
+                res.render('products/combos', { productos: productos });
             })
     },
 
