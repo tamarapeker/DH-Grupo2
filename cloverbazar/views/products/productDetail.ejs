@@ -9,7 +9,7 @@
             <div>
                 <h1 class="nombreprod"> <%=producto.nombre%></h1>
                 <% if(producto.descuento>0){ %>
-                <h1 class="precioprod"> $ <%=(producto.precio * (100-producto.descuento))/100%></h1>
+                <h1 class="precioprod"> <span class="tachado">$<%=producto.precio%> </span> <span>$<%=(producto.precio * (1-(producto.descuento)/100))%></span></h1>
                 <%} else {%>
                 <h1 class="precioprod"> $ <%=producto.precio%></h1>
                 <%} %>
@@ -21,14 +21,14 @@
                         <%}%>
                     </select>
                     <%}else{
-                        if(producto.stock <= 5){%>
+                        if(producto.stock <= 5 && producto.stock > 0){%>
                         <select name="cantidad">
                             <%for(let i=1 ; i <= producto.stock ; i++) {%>
                             <option value="<%=i%>"><%=i%></option>
                             <%}%>
                             </select>
                         <%} else {%>
-                            <p>Sin stock</p>
+                            <p style="color:red">Sin stock</p>
                             <%}%>
                 <% } %>
                             <button type="submit">Agregar al carrito</button>
@@ -57,7 +57,7 @@
                 <h4><span class="producto"> <%=productos[i].nombre%></span>
                     <%if( productos[i].descuento > 0) {%>
                     <h4 class="precio ">
-                        <span class="tachado">$<%=productos[i].precio%> </span> <span>$<%=(productos[i].precio * (100-productos[i].descuento))/100%></span>
+                        <span class="tachado">$<%=productos[i].precio%> </span> <span>$<%=(productos[i].precio * (1-(productos[i].descuento)/100))%></span>
                      </h4>
                         <% } else{ %>
                             <h4 class="precio">

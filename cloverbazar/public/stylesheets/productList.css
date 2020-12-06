@@ -53,22 +53,23 @@ main section article a.links{
     text-decoration: none;
 }
 
-main section article a.links:hover {
+main a:hover {
     cursor: pointer;
 }
 
-form.forms button.nuevo-producto{
-    margin: 20px 20px 20px 20px;
+div.boton{
+    margin: 50px;
+}
+
+main a.botones{
+    margin: 5px 30px 10px 10px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 150px;
+    width: 100px;
     background-color: rgb(46, 46, 46);
     color: #fbdcc4;
-}
-
-form.forms button.nuevo-producto:hover {
-    cursor: pointer;
+    text-decoration: none;
 }
 
 @media(min-width: 768px){

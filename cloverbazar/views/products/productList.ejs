@@ -17,13 +17,11 @@
             <a href="/products/destroy/<%=productos[i].id%>" class="links">ELIMINAR</a>
         </article>
         <%  } %>
-        <form action="/products/create" class="forms">
-            <button type="submit" class="nuevo-producto">NUEVO PRODUCTO</button>
-        </form>
-        <form action="/products/cambios" class="forms">
-            <button type="submit" class="nuevo-producto">MODIFICACIONES</button>
-        </form>
-        <a href="/products/inactivos" class="links">Productos inactivos</a>
+        <div class="boton">
+        <a href="/products/create" class="botones">NUEVO PRODUCTO</a>
+        <a href="/products/cambios" class="botones">MODIFICACIONES</a>
+        <a href="/products/inactivos" class="botones">Productos inactivos</a>
+        </div>
     </section>
 </main>
 <%-include('../partials/footer')%>

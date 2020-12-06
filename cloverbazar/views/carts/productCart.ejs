@@ -11,7 +11,7 @@
             <img src="/images/products/<%=carrito_producto[i].imagenes[0].ruta%>" alt="Imagen de producto seleccionado">
             <p><%=carrito_producto[i].productos.nombre%></p>
             <p><%=carrito_producto[i].cantidad%> </p>
-            <p>$ <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%></p>
+            <p>$ <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%></p>
             <input type="hidden" name="id" value="<%=carrito_producto[i].id%>">
             <input type="hidden" name="precio" value="<%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%>">
             <a href="/carts/eliminar/<%=carrito_producto[0].carrito_id%>/<%=carrito_producto[i].id%>" style="position: relative; bottom: 55px; text-decoration: none;">X</a>

@@ -3,21 +3,21 @@
 <%-include('../partials/header', {title: 'Editar producto'})%>
 <main>
     <section>
-        <h2>Editar producto: <%= product.nombre%></h2>
-        <form action="/products/edit/<%= product.id%>" method="POST" class="forms" enctype="multipart/form-data">
+        <h2>Editar producto: <%= producto.nombre%></h2>
+        <form action="/products/edit/<%= producto.id%>" method="POST" class="forms" enctype="multipart/form-data">
             <div class="contenedor-datos">
                 <label for="nombreProducto">Nombre de Producto:</label>
-                <input type="text" name="nombreProducto" id="nombreProducto" value= '<%=product.nombre %>' >
+                <input type="text" name="nombreProducto" id="nombreProducto" value= '<%=producto.nombre %>' >
                 <label for="precioProducto">Precio de Producto:</label>
-                <input type="text" name="precioProducto" id="precioProducto" value= '<%=product.precio %>' >
+                <input type="text" name="precioProducto" id="precioProducto" value= '<%=producto.precio %>' >
                 <label for="stockProducto">Stock de Producto:</label>
-                <input type="text" name="stockProducto" id="stockProducto" value= '<%=product.stock %>' >
+                <input type="text" name="stockProducto" id="stockProducto" value= '<%=producto.stock %>' >
                 <label for="descuentoProducto">Descuento de Producto:</label>
-                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=product.descuento %>' >
+                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=producto.descuento %>' >
                 <label for="rubroProducto">Rubro:</label>
                 <select name="rubroProducto">
                     <%for(let i=0 ; i < categorias.length ; i++) { %>
-                        <%if(categorias[i].id == product.categoria_id) {%>
+                        <%if(categorias[i].id == producto.categoria_id) {%>
                         <option value="<%=categorias[i].id%>" selected>
                             <%=categorias[i].nombre%>
                         </option>
@@ -28,22 +28,28 @@
                     <% } } %>
                 </select>
                 <label for="colorProducto">Color:</label>
-                <input type="text" name="colorProducto" id="colorProducto" value='<%=product.color %>' >
+                <input type="text" name="colorProducto" id="colorProducto" value='<%=producto.color %>' >
                 <label for="medidasProducto">Medidas:</label>
-                <input type="text" name="medidasProducto" id="medidasProducto" value='<%=product.medidas %>' >
+                <input type="text" name="medidasProducto" id="medidasProducto" value='<%=producto.medidas %>' >
                 <label for="estadoProducto">Estado:</label>
+                <%if(producto.estado == 1){%>
                 <select name="estadoProducto">
-                    <option value="">Seleccione una opcion</option>
-                    <option value="1">Activo</option>
+                    <option value="1" selected>Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
+                <%} else { %>
+                    <select name="estadoProducto">
+                        <option value="1">Activo</option>
+                        <option value="0" selected>Inactivo</option>
+                    </select>
+                <% } %>
                 <label for="descripcionProducto">Descripcion:</label>
-                <textarea name="descripcionProducto" id="descripcionProducto" cols="45" rows="10"><%=product.descripcion%></textarea>
+                <textarea name="descripcionProducto" id="descripcionProducto" cols="45" rows="10"><%=producto.descripcion%></textarea>
             </div>
             <div class="contenedor-img">
                 <label for="imagen">Imagen de Producto:</label>
-                <%if( product.imagenes.length > 0) {%>
-                <input type="file" name="imagen" id="imagen" value="/images/products/<%=product.imagenes[0].ruta%>">
+                <%if( producto.imagenes.length > 0) {%>
+                <input type="file" name="imagen" id="imagen" value="/images/products/<%=producto.imagenes[0].ruta%>">
                 <% } %>
             </div>
             <div class="contenedor-botones">

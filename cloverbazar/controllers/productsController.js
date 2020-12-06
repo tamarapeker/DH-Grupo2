@@ -5,6 +5,7 @@ const db = require('../database/models');
 
 const productsController = {
     index: function (req, res, next) {
+        //listado de productos para el admin
         db.Productos.findAll(
             {
             where: {
@@ -17,6 +18,7 @@ const productsController = {
             })
     },
     cambios: function (req, res, next) {
+        //listado de productos para admin. Para editar precios, stock y descuento rapidamente
         db.Productos.findAll({
             include: [{ association: "imagenes" }],
             where: {
@@ -28,6 +30,7 @@ const productsController = {
             })
     },
     guardarCambios: function(req,res,next){
+        //guarda los cambios rapidos de precio, stock y descuento
         for(let i=0 ; i < req.body.idProducto.length ; i++){
             db.Productos.update({
                 precio: req.body.precioProducto[i],
@@ -43,6 +46,7 @@ const productsController = {
         res.redirect('/products/cambios')
     },
     inactivos: function(req,res,next){
+        //listado de productos inactivos para admin
         db.Productos.findAll({
             where: {
                 estado: 0
@@ -55,6 +59,7 @@ const productsController = {
     },
 
     rubro: function (req,res,next) {
+        //muestra las categorias
         db.Categorias.findAll()
             .then(function (categorias) {
                 // esto es para que el header sea dinamico por si estas o no logueado
@@ -73,6 +78,7 @@ const productsController = {
             })
     },
     combos: function (req, res, next) {
+        //muestra los productos que se venden por COMBO o SET
         db.Productos.findAll({
             where: {
                 nombre: { [db.Sequelize.Op.or]: [{ [db.Sequelize.Op.like]: '%combo%' }, { [db.Sequelize.Op.like]: '%set%' }] },
@@ -98,6 +104,7 @@ const productsController = {
     },
 
     ofertas: function (req, res, next) {
+        //muestra los productos en oferta
         db.Productos.findAll({
             where: {
                 descuento: { [db.Sequelize.Op.gt]: 0 },
@@ -123,6 +130,7 @@ const productsController = {
     },
 
     destacados: function (req, res, next) {
+        //muestra productos destacados
         db.Productos.findAll({
             where: {
                 stock: { [db.Sequelize.Op.gte]: 10 },
@@ -148,6 +156,7 @@ const productsController = {
     },
 
     productCategory: function (req, res, next) {
+        //muestra los productos por categoria
         db.Productos.findAll({
             where: {
                 categoria_id: req.params.category_id,
@@ -176,6 +185,7 @@ const productsController = {
     },
 
     detail: function (req, res, next) {
+        //muestra detalle de producto
         let pedidoProducto = db.Productos.findByPk(req.params.id,
             {
             where: {
@@ -211,6 +221,7 @@ const productsController = {
     },
 
     create: function (req, res, next) {
+        //formulario creacion de producto
         db.Categorias.findAll()
             .then(function (categorias) {
                 res.render('products/productAdd', { categorias });
@@ -218,7 +229,7 @@ const productsController = {
     },
 
     store: function (req, res, next) {
-
+        //guarda el producto creado
         db.Productos.create({
             nombre: req.body.nombreProducto,
             precio: req.body.precioProducto,
@@ -245,18 +256,20 @@ const productsController = {
     },
 
     edit: function (req, res, next) {
+        //formulario de edicion de producto
         let pedidoProducto = db.Productos.findByPk(req.params.id, {
             include: [{ association: "imagenes" }]
         })
         let pedidoCategorias = db.Categorias.findAll()
 
         Promise.all([pedidoProducto, pedidoCategorias])
-            .then(function ([product, categorias]) {
-                res.render("products/productEdit", { product, categorias })
+            .then(function ([producto, categorias]) {
+                res.render("products/productEdit", { producto, categorias })
             })
     },
 
     upload: function (req, res, next) {
+        //guarda el producto editado
         db.Productos.update({
             nombre: req.body.nombreProducto,
             precio: req.body.precioProducto,
@@ -291,6 +304,7 @@ const productsController = {
     },
 
     destroy: function (req, res, next) {
+        //pasa el producto a estado inactivo
         db.Productos.update({
             estado: 0
         },{
