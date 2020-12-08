@@ -9,7 +9,7 @@ const mainController = {
         db.Productos.findAll({
             where: {
                 precio: { [db.Sequelize.Op.lt]: 500 },
-                stock: { [db.Sequelize.Op.gte]: 10 }
+                stock: { [db.Sequelize.Op.gte]: 5 }
             },
             include: [{ association: "imagenes" }]
         })

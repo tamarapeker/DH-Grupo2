@@ -105,6 +105,13 @@ form.forms a{
 .confirmar-compra{
     margin-top: 20px;
 }
+a.cambioContra{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: rgb(46, 46, 46);
+    font-size: 14px;
+}
 
 @media(min-width: 768px){
     .formulario-carrito{

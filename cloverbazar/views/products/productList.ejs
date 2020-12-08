@@ -2,8 +2,14 @@
 
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
+    
     <h2>Listado de productos</h2>
     <section>
+        <div class="boton">
+            <a href="/products/create" class="botones">Crear producto </a>
+            <a href="/products/cambios" class="botones">Modificar Varios</a>
+            <a href="/products/inactivos" class="botones">Ver productos inactivos</a>
+            </div>
         <%for(let i=0 ; i < productos.length ; i++) {%>
 
         <article>
@@ -17,11 +23,7 @@
             <a href="/products/destroy/<%=productos[i].id%>" class="links">ELIMINAR</a>
         </article>
         <%  } %>
-        <div class="boton">
-        <a href="/products/create" class="botones">NUEVO PRODUCTO</a>
-        <a href="/products/cambios" class="botones">MODIFICACIONES</a>
-        <a href="/products/inactivos" class="botones">Productos inactivos</a>
-        </div>
+
     </section>
 </main>
 <%-include('../partials/footer')%>

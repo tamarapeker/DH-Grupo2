@@ -62,14 +62,18 @@ div.boton{
 }
 
 main a.botones{
-    margin: 5px 30px 10px 10px;
+    display: block;
+    margin: 0px 30px 10px 10px;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 100px;
     background-color: rgb(46, 46, 46);
     color: #fbdcc4;
     text-decoration: none;
+}
+main div.botones{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 @media(min-width: 768px){
@@ -86,5 +90,8 @@ main a.botones{
 
     p.nombre-producto {
         width: 130px;
+    }
+    main a.botones{
+        display: inline-block;
     }
 }

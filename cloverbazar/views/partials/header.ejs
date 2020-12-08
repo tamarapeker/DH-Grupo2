@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,11 @@
 
     <title><%= title %> - Clover bazar & home</title>
 </head>
+
 <body>
     <header>
         <div class="barra1">
-            <%if(!locals.isAuthenticated) {%>
-            <a href="/carts/login">
-                <div class="cart">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-            </a>
-            <%} else {%>
-                <a href="/carts/<%=locals.usuarioLogueado.id%>">
-                    <div class="cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                </a>
-            <% } %>
+
             <%if(!locals.isAuthenticated){%>
             <a href="/users/login">
                 <div class="loginButton">
@@ -39,24 +29,37 @@
                 </div>
             </a>
             <%} else {%>
-                <a href="/users/perfil/<%=locals.usuarioLogueado.id%>">
-                    <div class="loginButton">
-                        <button>Hola <%=locals.usuarioLogueado.nombre%></button>
-                    </div>
-                </a>
+            <a href="/users/perfil/<%=locals.usuarioLogueado.id%>">
+                <div class="loginButton">
+                    <button>Hola <%=locals.usuarioLogueado.nombre%></button>
+                </div>
+            </a>
 
-                <a href="/users/destroySession">
-                    <div class="loginButton">
-                        <button>Cerrar sesión</button>
-                    </div>
-                </a>
+            <a href="/users/destroySession">
+                <div class="loginButton">
+                    <button>Cerrar sesión</button>
+                </div>
+            </a>
             <% } %>
             <%if(locals.adminLogueado){%>
-                <a href="/products">
-                    <div class="loginButton">
-                        <button>Listado</button>
-                    </div>
-                </a>
+            <a href="/products">
+                <div class="loginButton">
+                    <button>Listado</button>
+                </div>
+            </a>
+            <% } %>
+            <%if(!locals.isAuthenticated) {%>
+            <a href="/carts/login">
+                <div class="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </a>
+            <%} else {%>
+            <a href="/carts/<%=locals.usuarioLogueado.id%>">
+                <div class="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </a>
             <% } %>
         </div>
         <div class="barra2">
@@ -67,6 +70,9 @@
             </a>
             <nav>
                 <ul>
+                    <a href="/">
+                        <li>Inicio</li>
+                    </a>
                     <a href="/products/rubro">
                         <li>Productos</li>
                     </a>

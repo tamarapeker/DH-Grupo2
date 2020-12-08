@@ -55,6 +55,9 @@ header div.barra2 div.menuysearch form.search-form {
 header div.barra2 nav ul{
 display: none;
 }
+header div.barra2 nav ul a{
+    margin-right: 10px;
+    }
 
 header i{
     color: rgb(46, 46, 46);
@@ -214,9 +217,17 @@ footer nav ul li {
         display: flex;
         flex-flow: row wrap;
         list-style: none;
-        width: 400px;
+        width: 600px;
         justify-content: space-around;/**/
         padding-left: 0;
+    }
+    header div.barra2 nav ul :hover{
+        color: rgb(100, 100, 100);
+    }
+    header .loginbutton button:hover{
+        cursor: pointer;
+        background-color:  rgb(100, 100, 100);
+       
     }
 
     header div.barra2 nav ul a {
