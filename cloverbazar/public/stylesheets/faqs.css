@@ -9,6 +9,10 @@ main {
 }
 
 .accordion{
+    max-width: 800px;
+}
+
+.accordion-item{
     background-color: #fbdcc4;
     border-radius: 10px;
     padding: 15px;
@@ -30,17 +34,16 @@ main {
     max-height: 0;
     overflow: hidden;
     position: relative;
+    transition: 1000ms;
 }
 
 .accordion-answer p{
     color: rgb(102, 101, 101);
-    transition: 350ms;
 }
 
-.accordion:target .answer{
-    max-height: 30rem;
+.accordion-item:target .accordion-answer{
+    max-height: 20rem;
 }
-
 
 
 main section article {
