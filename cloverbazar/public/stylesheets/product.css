@@ -40,7 +40,7 @@ main section article h3.precioConDto{
 }
 main section article h3.tachado{
     text-decoration: line-through;
-    color: black;
+    color: rgb(100, 100, 100);    
 }
 @media (min-width: 768px){
     main section article{

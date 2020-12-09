@@ -16,7 +16,7 @@ const mainController = {
             .then(function (productos) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if (req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com') {
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -40,7 +40,7 @@ const mainController = {
             .then(function (productsResult) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if (req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com') {
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -58,7 +58,7 @@ const mainController = {
     contacto: function (req, res, next) {
         // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
-            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+            if (req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com') {
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
@@ -74,7 +74,7 @@ const mainController = {
     faqs: function (req, res, next) {
         // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
-            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+            if (req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com') {
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
@@ -90,7 +90,7 @@ const mainController = {
     mayorista: function (req, res, next) {
         // esto es para que el header sea dinamico por si estas o no logueado
         if (req.session.usuarioLogueado) {
-            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+            if (req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com') {
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
