@@ -60,7 +60,7 @@ const cartsController = {
                             estado: 1
                         })
                         .then(function(carrito){
-                            //Agrega el producto al carrito
+                            //Agrega el producto al carrito que estaba vacio
                             db.carrito_producto.create({
                                 carrito_id: carrito.null,
                                 producto_id: req.params.producto_id,
@@ -88,44 +88,29 @@ const cartsController = {
                                     cantidad: req.body.cantidad
                                 })
                                 .then(function(){
-                                    //Actualizo el stock del producto a agregar al carrito
-                                        db.Productos.update({
-                                            stock: producto.stock - req.body.cantidad
-                                        }, {
-                                            where: {
-                                                id: req.params.producto_id
-                                            }
-                                        })
-                                        .then(function(){
-                                            let producto_id = req.params.producto_id
-                                            res.redirect("/products/detail/"+producto_id)
-                                        })
-                                    
+                                    let producto_id = req.params.producto_id
+                                    res.redirect("/products/detail/"+producto_id)
                                 })
                             } else {
                                 //Si ya tenia el producto se actualiza la cantidad
-                                db.carrito_producto.update({
-                                    cantidad: Number(carrito_producto.cantidad) + Number(req.body.cantidad)
-                                }, {
-                                    where: {
-                                        id: carrito_producto.id
-                                    }
-                                })
-                                .then(function(){
-                                    //Actualizo el stock del producto a agregar al carrito  
-                                        db.Productos.update({
-                                            stock: producto.stock - req.body.cantidad
-                                        }, {
-                                            where: {
-                                                id: req.params.producto_id
-                                            }
-                                        })
-                                        .then(function(){
-                                            let producto_id = req.params.producto_id
-                                            res.redirect("/products/detail/"+producto_id)
-                                        })
-                                 
-                                })
+                                let cantidadNew = Number(carrito_producto.cantidad) + Number(req.body.cantidad)
+                                if(cantidadNew <= producto.stock){
+                                    db.carrito_producto.update({
+                                        cantidad: cantidadNew
+                                    }, {
+                                        where: {
+                                            id: carrito_producto.id
+                                        }
+                                    })
+                                    .then(function(){
+                                        let producto_id = req.params.producto_id
+                                        res.redirect("/products/detail/"+producto_id)
+                                    
+                                    })  
+                                } else {
+                                    let producto_id = req.params.producto_id
+                                    res.redirect("/products/detail/"+producto_id)
+                                }
                             }
                         })
                     }
@@ -137,21 +122,6 @@ const cartsController = {
 
     },
     eliminarProducto: function(req,res,next){
-        //Busca la fila de carrito_producto a eliminar
-        db.carrito_producto.findByPk(req.params.id)
-        .then(function(carrito_producto){
-            //Busca el producto a eliminar del carrito
-            db.Productos.findByPk(carrito_producto.producto_id)
-            .then(function(producto){
-                db.Productos.update({
-                    //Actualiza el stock del producto a eliminar del carrito
-                    stock: producto.stock + carrito_producto.cantidad
-                }, {
-                    where: {
-                        id: carrito_producto.producto_id
-                    }
-                })
-                .then(function(){
                     //Elimina el producto del carrito
                     db.carrito_producto.destroy({
                         where: {
@@ -164,10 +134,6 @@ const cartsController = {
                             res.redirect("/carts/"+carrito.usuario_id)
                         })
                     })
-                })
-            })
-        })
-        
     },
     confirmarCompra: function(req,res,next){
         db.Carritos.update({
@@ -179,7 +145,7 @@ const cartsController = {
             }
         })
         .then(function(){
-            for(let i=0 ; i < req.body.precio.length ; i++){
+            for(let i=0 ; i < req.body.id.length ; i++){
                 db.carrito_producto.update({
                     precio_congelado: req.body.precio[i]
                 }, {
@@ -188,6 +154,19 @@ const cartsController = {
                     }
                 })
                 .then(function(){})
+            }
+            for(let i=0 ; i < req.body.id.length ; i++){
+                db.Productos.findByPk(req.body.id)
+                .then(function(producto){
+                    db.Productos.update({
+                        stock: producto.stock - req.body.cantidad[i]
+                    },{
+                        where: {
+                            id: req.body.id[i]
+                        }
+                    })
+                    .then(function(){})
+                })
             }
             res.redirect('/')
         })
