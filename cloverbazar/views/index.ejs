@@ -1,62 +1,61 @@
+<link rel="stylesheet" href="/stylesheets/index.css">
 
-  <link rel="stylesheet" href="/stylesheets/index.css">
-
-  <%-include('./partials/header', {title: ''})%>
-  <main>
-    <section class="carrusel">
-      <a href="">
-        <img src="/images/portada.png" alt="">
+<%-include('./partials/header', {title: ''})%>
+<main>
+  <section class="carrusel">
+    <a href="">
+      <img src="/images/portada.png" alt="">
+    </a>
+    <br>
+  </section>
+  <section class="secciones">
+    <article>
+      <a href="/products/destacados">
+        <img src="/images/products/index-destacados.png" alt="destacados">
+        <h3>Destacados</h3>
       </a>
-      <br>
-    </section>
-    <section class="secciones">
-      <article>
-        <a href="/products/destacados">
-          <img src="/images/products/index-destacados.png" alt="destacados">
-          <h3>Destacados</h3>
-        </a>
-      </article>
-      <article>
-        <a href="/products/ofertas">
-          <img src="/images/products/index-ofertas.png" alt="ofertas">
-          <h3>Ofertas</h3>
-        </a>
-      </article>
-      <article>
-        <a href="/products/rubro">
-          <img src="/images/products/index-productos.png" alt="lineaproductos">
-          <h3>Linea de productos</h3>
-        </a>
-      </article>
-      <article>
-        <a href="/products/combos">
-          <img src="/images/products/index-combos.png" alt="Combos">
-          <h3>Combos</h3>
-        </a>
-      </article>
-    </section>
-    <h2>Productos</h2>
-    <section class="productos">
-      <%for(let i=0 ; i < productos.length ; i++) {%>
-        <%for(let j=0 ; j < productos[i].imagenes.length ; j++) {%>
-      <article class="producto">
-        <a href="/products/detail/<%=productos[i].id%>">
-          <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Producto">
-          <h3><%=productos[i].nombre%></h3>
-        </a>
-      </article>
-      <% } } %>
-    </section>
-    <section class="formulario">
-      <form action="">
-        <label for="Asunto">
-          Escribinos!
-        </label>
-        <input type="text" id="Asunto" placeholder="Asunto"> 
-        <input type="email" placeholder="Email"> 
-        <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </main>
-  <%-include('./partials/footer')%>
+    </article>
+    <article>
+      <a href="/products/ofertas">
+        <img src="/images/products/index-ofertas.png" alt="ofertas">
+        <h3>Ofertas</h3>
+      </a>
+    </article>
+    <article>
+      <a href="/products/rubro">
+        <img src="/images/products/index-productos.png" alt="lineaproductos">
+        <h3>Linea de productos</h3>
+      </a>
+    </article>
+    <article>
+      <a href="/products/combos">
+        <img src="/images/products/index-combos.png" alt="Combos">
+        <h3>Combos</h3>
+      </a>
+    </article>
+  </section>
+  <h2>Productos</h2>
+  <section class="productos">
+    <%for(let i=0 ; i < productos.length ; i++) {%>
+    <%for(let j=0 ; j < productos[i].imagenes.length ; j++) {%>
+    <article class="producto">
+      <a href="/products/detail/<%=productos[i].id%>">
+        <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Producto">
+        <h3><%=productos[i].nombre%></h3>
+      </a>
+    </article>
+    <% } } %>
+  </section>
+  <section class="formulario">
+    <form action="">
+      <label for="Asunto">
+        Escribinos!
+      </label>
+      <input type="text" id="Asunto" placeholder="Asunto">
+      <input type="email" placeholder="Email">
+      <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+</main>
+<%-include('./partials/footer')%>

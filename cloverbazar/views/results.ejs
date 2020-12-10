@@ -4,11 +4,11 @@
 <main>
     <h2>Resultados de la búsqueda: <%=loQueBuscoElUsuario%></h2>
     <%if (productsResult.length < 1) {%>
-        <h2 style="font-weight: bold; text-align: center;">No hay resultados para: <%=loQueBuscoElUsuario%></h2>
-        <% }else{ %>
+    <h2 style="font-weight: bold; text-align: center;">No hay resultados para: <%=loQueBuscoElUsuario%></h2>
+    <% }else{ %>
     <section>
         <%for(let i = 0 ; i < productsResult.length ; i++) { %>
-            <%for(let j=0 ; j < productsResult[i].imagenes.length ; j++) {%>
+        <%for(let j=0 ; j < productsResult[i].imagenes.length ; j++) {%>
         <article>
             <a href="/products/detail/<%=productsResult[i].id%>">
                 <img src="/images/products/<%=productsResult[i].imagenes[0].ruta%>" alt="">

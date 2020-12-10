@@ -125,6 +125,7 @@ main section.relacionados a {
     .tachado{
         text-decoration: line-through;
         margin-right: 10px;
+        color: rgb(100, 100, 100)
     }
 
 @media(min-width: 1024px) {

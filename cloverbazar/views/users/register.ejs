@@ -5,14 +5,15 @@
 <main>
     <h2>Registro</h2>
     <% if (typeof errors != "undefined"){ %>
-        <ul style="padding: 0;">
-            <% for (var i= 0; i< errors.length ; i++) { %>
-                <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
-            <%}%>
+    <ul style="padding: 0;">
+        <% for (var i= 0; i< errors.length ; i++) { %>
+        <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+        <%}%>
         </ul>
     <%}%>
-    <% if(typeof errorAlLoguear != "undefined"){ %>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
         <p style="color:red"><%= errorAlLoguear %></p>
+<<<<<<< HEAD
     <% } %>
     <form action="/users/register" method="POST" class="forms">
         <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
@@ -24,5 +25,18 @@
         <input type="text" name="telefono" id="telefono" placeholder="Telefono">
         <button type="submit">Registrate</button>
     </form>
+=======
+        <% } %>
+        <form action="/users/register" method="POST" class="forms">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="text" name="apellido" placeholder="Apellido">
+            <input type="email" name="email" placeholder="E-mail">
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="password" name="confirmPassword" placeholder="Confirmar contraseña">
+            <input type="text" name="direccion" placeholder="Direccion">
+            <input type="text" name="telefono" placeholder="Telefono">
+            <button type="submit">Registrate</button>
+        </form>
+>>>>>>> 004ef66246635b93cf1b9b54b4c420df859e66f4
 </main>
 <%-include('../partials/footer')%>

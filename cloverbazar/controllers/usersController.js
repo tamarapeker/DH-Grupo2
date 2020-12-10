@@ -21,24 +21,24 @@ const usersController = {
                 email: req.body.email
             }
         })
-        .then(function(usuario){
-            if(!usuario){
-                db.Usuarios.create({
-                    nombre: req.body.nombre,
-                    apellido: req.body.apellido,
-                    email: req.body.email,
-                    contrasena: bcrypt.hashSync(req.body.password, 10),
-                    direccion: req.body.direccion,
-                    telefono: req.body.telefono 
-                })
-                .then(function(usuario){
-                    req.session.usuarioLogueado = usuario
-                    res.redirect('/');
-                })
-            } else {
-                res.render("users/register",{errorAlLoguear:"El email ingresado ya existe."});
-            }
-        })
+            .then(function (usuario) {
+                if (!usuario) {
+                    db.Usuarios.create({
+                        nombre: req.body.nombre,
+                        apellido: req.body.apellido,
+                        email: req.body.email,
+                        contrasena: bcrypt.hashSync(req.body.password, 10),
+                        direccion: req.body.direccion,
+                        telefono: req.body.telefono
+                    })
+                        .then(function (usuario) {
+                            req.session.usuarioLogueado = usuario
+                            res.redirect('/');
+                        })
+                } else {
+                    res.render("users/register", { errorAlLoguear: "El email ingresado ya existe." });
+                }
+            })
     },
 
     login: function (req, res, next) {
@@ -56,94 +56,94 @@ const usersController = {
                 email: req.body.email
             }
         })
-        .then(function(usuario){
-            if(!usuario){
-                res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});  
-            } else {
-                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
-                    req.session.usuarioLogueado = usuario
-                    if(req.body.remember != undefined){
-                        res.cookie('remember', usuario.email, {maxAge:300000})
-                    }
-                    res.redirect('/');
+            .then(function (usuario) {
+                if (!usuario) {
+                    res.render("users/login", { errorAlLoguear: "Usuario y/o contraseña invalida." });
                 } else {
-                    res.render("users/login",{errorAlLoguear:"Usuario y/o contraseña invalida."});
-                }
-            }
-            
-        })
-    },
-    perfil: function(req,res,next){
-        db.Usuarios.findByPk(req.params.id)
-        .then(function(usuario){
-            res.render('users/perfil', {usuario})
-        })
-    },
-    uploadUser: function(req,res,next){
-        db.Usuarios.findByPk(req.params.id)
-        .then(function(usuario){
-            let errors = validationResult(req)
-            if (!errors.isEmpty()) {
-                res.render("users/perfil", { errors: errors.errors, usuario })
-            } else {
-                db.Usuarios.update({
-                    nombre: req.body.nombre,
-                    apellido: req.body.apellido,
-                    direccion: req.body.direccion,
-                    telefono: req.body.telefono
-                }, {
-                    where: {
-                        id: req.params.id
+                    if (bcrypt.compareSync(req.body.password, usuario.contrasena)) {
+                        req.session.usuarioLogueado = usuario
+                        if (req.body.remember != undefined) {
+                            res.cookie('remember', usuario.email, { maxAge: 300000 })
+                        }
+                        res.redirect('/');
+                    } else {
+                        res.render("users/login", { errorAlLoguear: "Usuario y/o contraseña invalida." });
                     }
-                })
-                .then(function(){
-                    res.redirect('/users/perfil/'+req.params.id)
-                })
-            }
-        })
-    },
+                }
 
-    changePassword: function(req,res,next){
-        db.Usuarios.findByPk(req.params.id)
-        .then(function(usuario){
-            res.render('users/passwordChange', {usuario})
-        })
+            })
     },
-
-    uploadPassword: function(req,res,next){
+    perfil: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
-        .then(function(usuario){
-            let errors = validationResult(req)
-            if (!errors.isEmpty()) {
-                res.render("users/passwordChange", { errors: errors.errors, usuario})
-            } else {
-                if(bcrypt.compareSync(req.body.password, usuario.contrasena)){
+            .then(function (usuario) {
+                res.render('users/perfil', { usuario })
+            })
+    },
+    uploadUser: function (req, res, next) {
+        db.Usuarios.findByPk(req.params.id)
+            .then(function (usuario) {
+                let errors = validationResult(req)
+                if (!errors.isEmpty()) {
+                    res.render("users/perfil", { errors: errors.errors, usuario })
+                } else {
                     db.Usuarios.update({
-                        contrasena: bcrypt.hashSync(req.body.passwordNew)
+                        nombre: req.body.nombre,
+                        apellido: req.body.apellido,
+                        direccion: req.body.direccion,
+                        telefono: req.body.telefono
                     }, {
                         where: {
                             id: req.params.id
                         }
                     })
-                    .then(function(){
-                        res.redirect('/users/perfil/'+req.params.id)
-                    })
-                } else {
-                    res.render("users/passwordChange",{errorAlLoguear:"contraseña invalida.", usuario});      
+                        .then(function () {
+                            res.redirect('/users/perfil/' + req.params.id)
+                        })
                 }
-            }
-        })
-        
+            })
     },
 
-    destroySession: function (req, res, next){
+    changePassword: function (req, res, next) {
+        db.Usuarios.findByPk(req.params.id)
+            .then(function (usuario) {
+                res.render('users/passwordChange', { usuario })
+            })
+    },
+
+    uploadPassword: function (req, res, next) {
+        db.Usuarios.findByPk(req.params.id)
+            .then(function (usuario) {
+                let errors = validationResult(req)
+                if (!errors.isEmpty()) {
+                    res.render("users/passwordChange", { errors: errors.errors, usuario })
+                } else {
+                    if (bcrypt.compareSync(req.body.password, usuario.contrasena)) {
+                        db.Usuarios.update({
+                            contrasena: bcrypt.hashSync(req.body.passwordNew)
+                        }, {
+                            where: {
+                                id: req.params.id
+                            }
+                        })
+                            .then(function () {
+                                res.redirect('/users/perfil/' + req.params.id)
+                            })
+                    } else {
+                        res.render("users/passwordChange", { errorAlLoguear: "contraseña invalida.", usuario });
+                    }
+                }
+            })
+
+    },
+
+    destroySession: function (req, res, next) {
         req.session.destroy(
-            function (){
+            function () {
                 res.clearCookie('remember')
                 res.redirect("/users/login")
             }
         )
-        
+
     }
 }
 
