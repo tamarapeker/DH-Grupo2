@@ -68,7 +68,7 @@ const cartsController = {
                             })
                             .then(function(){
                                 let producto_id = req.params.producto_id 
-                                res.redirect("/products/detail/"+producto_id)
+                                res.redirect("/carts/"+usuario_id)
                             })
                         })
                     } else {
@@ -89,7 +89,7 @@ const cartsController = {
                                 })
                                 .then(function(){
                                     let producto_id = req.params.producto_id
-                                    res.redirect("/products/detail/"+producto_id)
+                                    res.redirect("/carts/"+id_usuarioLogueado)
                                 })
                             } else {
                                 //Si ya tenia el producto se actualiza la cantidad
@@ -104,12 +104,12 @@ const cartsController = {
                                     })
                                     .then(function(){
                                         let producto_id = req.params.producto_id
-                                        res.redirect("/products/detail/"+producto_id)
+                                        res.redirect("/carts/"+id_usuarioLogueado)
                                     
                                     })  
                                 } else {
                                     let producto_id = req.params.producto_id
-                                    res.redirect("/products/detail/"+producto_id)
+                                    res.redirect("/carts/"+id_usuarioLogueado)
                                 }
                             }
                         })
