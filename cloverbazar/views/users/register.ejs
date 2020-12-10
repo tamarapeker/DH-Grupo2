@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/forms.css">
+<script src="/public/js/validaciones.js"></script>
 
 <%-include('../partials/header', {title: 'Registrate'})%>
 <main>
@@ -14,13 +15,13 @@
         <p style="color:red"><%= errorAlLoguear %></p>
     <% } %>
     <form action="/users/register" method="POST" class="forms">
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="text" name="apellido" placeholder="Apellido">
-        <input type="email" name="email" placeholder="E-mail">
-        <input type="password" name="password" placeholder="Contraseña">
-        <input type="password" name="confirmPassword" placeholder="Confirmar contraseña">
-        <input type="text" name="direccion" placeholder="Direccion">
-        <input type="text" name="telefono" placeholder="Telefono">
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+        <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+        <input type="email" name="email" id="email" placeholder="E-mail" required>
+        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+        <input type="password" name="confirmPassword" placeholder="Confirmar contraseña" required>
+        <input type="text" name="direccion" id="direccion" placeholder="Direccion">
+        <input type="text" name="telefono" id="telefono" placeholder="Telefono">
         <button type="submit">Registrate</button>
     </form>
 </main>
