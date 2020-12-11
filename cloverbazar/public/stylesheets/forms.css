@@ -114,6 +114,10 @@ a.cambioContra{
 }
 
 @media(min-width: 768px){
+    form{
+        width: 330px;
+    }
+
     .formulario-carrito{
         width: 60%;
     }

@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/forms.css">
+<script src="/js/validacionesSesion.js"></script>
 
 <%-include('../partials/header', {title: 'Iniciar sesión'})%>
 <main>
@@ -11,8 +12,10 @@
         </ul>
     <%}%>
     <form action="/users/login" method="POST" class="forms form-login">
-        <input type="email" name="email" placeholder="E-mail">
-        <input type="password" name="password" placeholder="Contraseña">
+        <input type="email" name="email" id="email" placeholder="E-mail">
+        <div class="emailError"></div>
+        <input type="password" name="password" id="password" placeholder="Contraseña">
+        <div class="passwordError"></div>
         <label for="remember">Recordame</label>
         <input type="checkbox" name="remember" class="remember" id="remember">
         <a href="/users/register">No tenes cuenta? Registrate</a>
