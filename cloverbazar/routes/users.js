@@ -46,8 +46,11 @@ router.post('/password/:id', [
   }).withMessage("Las contraseñas no coinciden")
 ], authMiddleware, usersController.uploadPassword);
 
+router.get('/historialCompras/:id', authMiddleware, usersController.historialCompras)
 
 router.get('/destroySession', usersController.destroySession);
+
+router.get('/destroy/:id', usersController.destroyUser)
 
 
 module.exports = router;

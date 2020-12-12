@@ -32,7 +32,9 @@ const usersController = {
                         telefono: req.body.telefono
                     })
                         .then(function (usuario) {
+                            usuario.id = usuario.null
                             req.session.usuarioLogueado = usuario
+                            console.log(req.session.usuarioLogueado)
                             res.redirect('/');
                         })
                 } else {
@@ -135,6 +137,18 @@ const usersController = {
             })
 
     },
+    historialCompras: function(req,res,next){
+        db.Carritos.findAll({
+            where: {
+                usuario_id: req.params.id,
+                estado: 0
+            },
+            include: [{association: 'producto_carrito'}, {association: 'productos'}]
+        })
+        .then(function(carritos){
+            res.render("users/historialCompras", {carritos})
+        })
+    },
 
     destroySession: function (req, res, next) {
         req.session.destroy(
@@ -144,6 +158,22 @@ const usersController = {
             }
         )
 
+    },
+
+    destroyUser: function(req,res,next){
+        db.Usuarios.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(function(){
+            req.session.destroy(
+                function () {
+                    res.clearCookie('remember')
+                    res.redirect("/users/login")
+                }
+            )
+        })
     }
 }
 

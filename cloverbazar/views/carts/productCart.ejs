@@ -1,19 +1,20 @@
 <link rel="stylesheet" href="/stylesheets/forms.css">
-
 <%-include('../partials/header', {title: 'Carrito'})%>
 <main>
     <%if(carrito_producto.length > 0){%>
     <h2>Tu Compra</h2>
     <form action="/carts/comprar/<%=carrito_producto[0].carrito_id%>" method="POST" class="forms formulario-carrito">
-            <% let total = 0 
+            <% let total = 0  
             for(let i=0 ; i < carrito_producto.length ; i++){%>
         <article>
             <img src="/images/products/<%=carrito_producto[i].imagenes[0].ruta%>" alt="Imagen de producto seleccionado">
             <p><%=carrito_producto[i].productos.nombre%></p>
             <p><%=carrito_producto[i].cantidad%> </p>
-            <input type="hidden" name="cantidad" value="carrito_producto[i].cantidad%>">
+            <input type="hidden" name="cantidad" value="<%=carrito_producto[i].cantidad%>">
             <p>$ <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%></p>
             <input type="hidden" name="id" value="<%=carrito_producto[i].id%>">
+            <input type="hidden" name="id_producto" value="<%=carrito_producto[i].productos.id%>">
+            <input type="hidden" name="stock_producto" value="<%=carrito_producto[i].productos.stock%>">
             <input type="hidden" name="precio" value="<%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%>">
             <a href="/carts/eliminar/<%=carrito_producto[0].carrito_id%>/<%=carrito_producto[i].id%>" style="position: relative; bottom: 55px; text-decoration: none;">X</a>
         </article>

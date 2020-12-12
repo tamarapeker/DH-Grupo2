@@ -40,13 +40,26 @@ const apiController = {
                     let respuesta = {
                         meta: {
                             status: 200,
-                            url: "/api/categorias/cantidadTotal"
+                            url: "/api/productos/categorias/cantidadTotal"
                         },
                         data: { cantidadCategorias: cantidad }
                     }
                     res.json(respuesta)
                 }
             )
+    },
+    listadoCategorias: function(req,res,next){
+        db.Categorias.findAll()
+        .then(function(categorias){
+            let respuesta = {
+                meta: {
+                    status: 200,
+                    url: "/api/productos/categorias/listado"
+                },
+                data: categorias
+            }
+            res.json(respuesta)
+        })
     },
     cantidadCarritos: function (req, res, next) {
         db.Carritos.count({
@@ -69,7 +82,7 @@ const apiController = {
         db.Carritos.findAll({
             where: {
                 fecha_compra: {
-                  [db.Sequelize.Op.gte]: moment().subtract(7, 'days').toDate()
+                  [db.Sequelize.Op.gte]: moment().subtract(15, 'days').toDate()
                 }
               },
               include: [{ association: "productos" }]

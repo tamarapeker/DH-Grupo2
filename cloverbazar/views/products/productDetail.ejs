@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/productDetail.css">
-
+<script src="/js/avisoCarrito.js"></script>
 <%-include('../partials/header', {title: producto.nombre})%>
 <main>
     <section class="detalleprod">
@@ -31,7 +31,9 @@
                             <p style="color:red">Sin stock</p>
                             <%}%>
                 <% } %>
+                            <%if(producto.stock > 0){%>
                             <button type="submit">Agregar al carrito</button>
+                            <% } %>
                 </form>
             </div>
         </article>
