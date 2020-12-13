@@ -7,15 +7,15 @@ class PageContent extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            cantidadProductos: ""
+            cantidadProductos: "",
+            cantidadUsuarios: "",
+            listadoCategorias: [],
+            cantidadCarritos: ""
         }
     }
 
     apiCall(url, consecuencia){
-        fetch(url, {
-            mode: 'no-cors',
-            headers: {'Access-Control-Allow-Origin': 'Origin'}
-        })
+        fetch(url)
             .then(response => response.json())
             .then(data => consecuencia(data))
             .catch(error => console.log(error))     
@@ -24,22 +24,43 @@ class PageContent extends React.Component {
     componentDidMount(){
         console.log("Pagina montada")
         this.apiCall("http://localhost:3000/api/productos/cantidadTotal", this.productosCantidadTotal)
+        this.apiCall("http://localhost:3000/api/usuarios/cantidadTotal", this.usuariosCantidadTotal)
+        this.apiCall("http://localhost:3000/api/productos/categorias/listado", this.categoriasListado)
+        this.apiCall("http://localhost:3000/api/carritos/cantidadTotal", this.carritosCantidadTotal)
     }
     productosCantidadTotal = (data) => 
         {this.setState({
             cantidadProductos: data.data.cantidadProductos
         })} 
     
+    usuariosCantidadTotal = (data) => 
+        {this.setState({
+            cantidadUsuarios: data.data.cantidadUsuarios
+        })} 
 
+    categoriasListado = (data) => 
+        {this.setState({
+            listadoCategorias: data.data
+        })}
+
+    carritosCantidadTotal = (data) => 
+        {this.setState({
+            cantidadCarritos: data.data.cantidadCarritos
+        })} 
         
     render(){
         console.log('estoy renderizando')
-        const cards = [{title: 'Products in Data Base', icon: 'fa-clipboard-list', font: 'text-primary', border: 'border-left-primary'}, {title: 'Amount un products',icon: 'fa-dollar-sign', font: 'text-success', border: 'border-left-success'}, {title: 'Users quantity', icon: 'fa-user-check', font: 'text-warning', border: 'border-left-warning'}]
-        let contenido;
+        const cards = [{title: 'Cantidad de productos', icon: 'fa-clipboard-list', font: 'text-primary', border: 'border-left-primary'}, {title: 'Cantidad de carritos cerrados',icon: 'fa-dollar-sign', font: 'text-success', border: 'border-left-success'}, {title: 'Cantidad de ususarios', icon: 'fa-user-check', font: 'text-warning', border: 'border-left-warning'}]
+        let contenido = []
+        let categorias = []
         if(this.state.cantidadProductos === ""){
-            contenido = "Cargando..."
+            contenido = ["Cargando..."]
         } else {
-            contenido = this.state.cantidadProductos
+            contenido = [this.state.cantidadProductos, this.state.cantidadCarritos, this.state.cantidadUsuarios]
+            for(let i=0 ; i < this.state.listadoCategorias.length ; i++){
+                categorias.push(this.state.listadoCategorias[i].nombre)
+            }
+            console.log(categorias)
         }
         return (
             <div className="container-fluid">
@@ -49,12 +70,27 @@ class PageContent extends React.Component {
                 <div className="row">
                     {cards.map(card => <CardsPageContent
                         title ={card.title} 
-                        number = {contenido}
+                        number = {contenido[cards.indexOf(card)]}
                         icon = {card.icon}
                         font = {card.font}
                         border = {card.border}
                     />)}
-            </div>
+                </div>
+                <div className="row">
+                    <LastProductPageContent/>
+                    <div className="col-lg-6 mb-4">						
+					    <div className="card shadow mb-4">
+						    <div className="card-header py-3">
+							    <h6 className="m-0 font-weight-bold text-primary">Categorías en la base de datos</h6>
+						    </div>
+                            <div className="card-body">
+							    <div className="row">
+                                    {categorias.map(categoria => <CategoryPageContent categoria = {categoria} />)}              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

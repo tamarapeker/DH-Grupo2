@@ -11,6 +11,7 @@ var productsRouter = require('./routes/products');
 var apiRouter = require('./routes/api/api');
 var cartsRouter = require('./routes/carts');
 var rememberMiddleware = require('./middlewares/rememberMiddleware');
+const cors = require('./middlewares/corsMiddleware');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'Secreto', resave: false, saveUninitialized: false}));
 app.use(rememberMiddleware);
+app.use(cors);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
