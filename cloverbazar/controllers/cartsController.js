@@ -66,9 +66,8 @@ const cartsController = {
                                 producto_id: req.params.producto_id,
                                 cantidad: req.body.cantidad
                             })
-                            .then(function(){
-                                let producto_id = req.params.producto_id 
-                                res.redirect("/carts/"+usuario_id)
+                            .then(function(){ 
+                                res.redirect("/carts/"+id_usuarioLogueado)
                             })
                         })
                     } else {
@@ -88,11 +87,10 @@ const cartsController = {
                                     cantidad: req.body.cantidad
                                 })
                                 .then(function(){
-                                    let producto_id = req.params.producto_id
                                     res.redirect("/carts/"+id_usuarioLogueado)
                                 })
                             } else {
-                                //Si ya tenia el producto se actualiza la cantidad
+                                //Si ya tenia el producto se actualiza la cantidad previo chequeo de que esa cantidad mas la que ya tenia no supere el stock
                                 let cantidadNew = Number(carrito_producto.cantidad) + Number(req.body.cantidad)
                                 if(cantidadNew <= producto.stock){
                                     db.carrito_producto.update({
@@ -103,12 +101,12 @@ const cartsController = {
                                         }
                                     })
                                     .then(function(){
-                                        let producto_id = req.params.producto_id
+                                       
                                         res.redirect("/carts/"+id_usuarioLogueado)
                                     
                                     })  
                                 } else {
-                                    let producto_id = req.params.producto_id
+                                    res.locals.stockInsuficiente=true
                                     res.redirect("/carts/"+id_usuarioLogueado)
                                 }
                             }
@@ -122,18 +120,18 @@ const cartsController = {
 
     },
     eliminarProducto: function(req,res,next){
-                    //Elimina el producto del carrito
-                    db.carrito_producto.destroy({
-                        where: {
-                            id: req.params.id
-                        }
+        //Elimina el producto del carrito
+        db.carrito_producto.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(function(){
+                db.Carritos.findByPk(req.params.carrito_id)
+                    .then(function(carrito){
+                        res.redirect("/carts/"+carrito.usuario_id)
                     })
-                    .then(function(){
-                        db.Carritos.findByPk(req.params.carrito_id)
-                        .then(function(carrito){
-                            res.redirect("/carts/"+carrito.usuario_id)
-                        })
-                    })
+            })
     },
     confirmarCompra: function(req,res,next){
         db.Carritos.update({
@@ -153,20 +151,24 @@ const cartsController = {
                         id: req.body.id[i]
                     }
                 })
-                .then(function(){})
-            }
-            for(let i=0 ; i < req.body.id.length ; i++){
-                db.Productos.findByPk(req.body.id)
-                .then(function(producto){
-                    db.Productos.update({
-                        stock: producto.stock - req.body.cantidad[i]
-                    },{
-                        where: {
-                            id: req.body.id[i]
-                        }
-                    })
-                    .then(function(){})
+                .then(function(){
+                   
                 })
+            }
+
+            for(let i=0 ; i < req.body.id.length ; i++){
+                console.log("stock")
+                console.log(req.body.stock_producto[i])
+                console.log("cantidad")
+                console.log(req.body.cantidad[i])
+                db.Productos.update({
+                    stock: Number(req.body.stock_producto[i]) - Number(req.body.cantidad[i])
+                },{
+                    where: {
+                        id: req.body.id_producto[i]
+                    }
+                })
+                .then(function(){})
             }
             res.redirect('/')
         })

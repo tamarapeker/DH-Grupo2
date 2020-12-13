@@ -94,7 +94,9 @@
             </div>
             <button type="submit" class="guardar-cambios">Guardar cambios</button>
         </form>
-        <a class="cambio-contra" href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
-    </section> 
+        <a class="cambioContra" href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
+        <a class="cambioContra" href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
+        <a class="cambioContra" href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red;">ELIMINAR CUENTA</h3> </a>
+</div> 
 </main>
 <%-include('../partials/footer')%>

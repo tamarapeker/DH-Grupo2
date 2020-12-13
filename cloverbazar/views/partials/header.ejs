@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/modals.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -49,11 +50,27 @@
             </a>
             <% } %>
             <%if(!locals.isAuthenticated) {%>
-            <a id="aviso" href="/users/login">
-                <div class="cart">
-                    <i class="fas fa-shopping-cart"></i>
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn">
+                 
+                        <div class="cart">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+         
+                </button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Debes loguearte para continuar</p>
+                        <a href="/users/login">Iniciar sesion</a>
+                    </div>
+
                 </div>
-            </a>
+            
             <%} else {%>
             <a href="/carts/<%=locals.usuarioLogueado.id%>">
                 <div class="cart">
