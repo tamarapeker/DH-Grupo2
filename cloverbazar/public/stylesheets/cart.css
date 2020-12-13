@@ -1,0 +1,101 @@
+main{
+    text-align: center;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+img{
+    display: block;
+    max-width: 100px;
+}
+
+form{
+    margin: auto;
+}
+
+.section-form{
+    max-width: 1100px;
+    display: flex;
+    flex-flow: column;
+    margin: 3rem auto;
+    padding: 20px;
+    position: relative;;
+}
+
+.section-form h2{
+    font-size: 2.5rem;
+}
+
+.grid-container{
+    border-bottom: solid 2px #fbdcc4;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 280px;
+    position: relative;
+}
+
+.grid-container a{
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    text-decoration: none;
+}
+
+.grid-item{
+    padding: 1rem;
+    align-self: center;
+}
+
+.grid-item__subtotal{
+    font-weight: bold;
+}
+
+.confirmar-compra{
+    background-color: #2e2e2e;
+    color: white;
+    font-size: 18px;
+    border-style: none;
+    border-radius: 20px;
+    padding: 10px 20px 10px 20px;
+    margin: 0 auto;
+}
+
+.ctas-container{
+    margin-top: 50px;
+}
+
+.seguir-comprando{
+    font-size: 14px;
+    color: black;
+    margin-left: 10px;
+}
+
+.total-compra{
+    margin: 40px;
+    font-size: 22px;
+}
+
+.total-precio{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+
+
+
+@media (min-width: 768px){
+    .grid-container{
+    border-bottom: solid 2px #fbdcc4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 600px;
+    position: relative;
+}
+}
