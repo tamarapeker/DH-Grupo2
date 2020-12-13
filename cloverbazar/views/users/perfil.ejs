@@ -1,31 +1,53 @@
-
-
-
 <%-include('../partials/header', {title: 'Hola ' + usuario.nombre})%>
 <style>
     main{
-        margin: 100px;
         text-align: center;
+        display: flex;
+        flex-flow: column;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    body{
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        min-height: 100vh;
     }
 
     .section-form{
         display: flex;
         flex-flow: column;
         align-items: center;
-    }
-
-    .forms{
-        width: 800px;
-    }
-
-    .grid-container{
         background-color: #faeded;
         margin: 10px;
         padding: 60px;
         border-radius: 20px;
+    }
+
+    .options-container{
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        background-color: #faeded;
+        margin: 10px;
+        padding: 60px;
+        border-radius: 20px;
+    }
+
+    .options-container a{
+        color: #2e2e2e;
+    }
+
+    .forms{
+        max-width: 800px;
+    }
+
+    .grid-container{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 12px;
+        width: 290px;
     }
 
     .grid-item{
@@ -37,7 +59,7 @@
         border: none;
         border-bottom: solid 1px #bbb4be;
         background: none;
-        max-width: 200px;
+        width: 50%;
     }
 
     .grid-input:focus{
@@ -52,20 +74,46 @@
         border-style: none;
         border-radius: 20px;
         padding: 10px 20px 10px 20px;
-        margin:20px;
+        margin-top: 50px;
 }
 
-    .cambio-contra{
-        text-decoration: none;
-    }
-
     @media(min-width: 786px){
+        main{
+            margin: auto;
+            text-align: center;
+            display: flex;
+            flex-flow: row;
+            justify-content: space-around;
+            max-width: 1100px;
+        }
 
+        .section-form{
+            max-width: 600px;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            background-color: #faeded;
+            margin: 10px;
+            padding: 60px;
+            border-radius: 20px;
+        }
+
+        .grid-container{
+            margin: auto;
+            max-width: 500px;
+        }
+
+        .grid-item{
+            width: 100%;
+        }
+        
+        .grid-input{  
+            max-width: 200px;
+        }
     }
 
 </style>
 <main>
-    <h2>Mis datos personales</h2>
     <% if (typeof errors != "undefined"){ %>
         <ul style="padding: 0;">
             <% for (var i= 0; i< errors.length ; i++) { %>
@@ -77,6 +125,7 @@
         <p style="color:red"><%= errorAlLoguear %></p>
     <% } %>
     <section class="section-form">
+        <h2>Mis datos personales</h2>
         <form action="/users/perfil/<%=usuario.id%>" method="POST" class="forms">
             <div class="grid-container">
                 <div class="grid-item">
@@ -94,9 +143,11 @@
             </div>
             <button type="submit" class="guardar-cambios">Guardar cambios</button>
         </form>
-        <a class="cambioContra" href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
-        <a class="cambioContra" href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
-        <a class="cambioContra" href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red;">ELIMINAR CUENTA</h3> </a>
-</div> 
+    </section>
+    <div class="options-container">
+        <a href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
+        <a href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
+        <a href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> </a>
+    </div>
 </main>
 <%-include('../partials/footer')%>

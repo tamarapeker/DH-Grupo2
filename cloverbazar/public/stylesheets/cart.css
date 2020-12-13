@@ -1,6 +1,12 @@
 main{
     text-align: center;
-    margin: 0 auto;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
 }
 
 img{
@@ -54,7 +60,6 @@ form{
     background-color: #2e2e2e;
     color: white;
     font-size: 18px;
-    font-weight: bold;
     border-style: none;
     border-radius: 20px;
     padding: 10px 20px 10px 20px;

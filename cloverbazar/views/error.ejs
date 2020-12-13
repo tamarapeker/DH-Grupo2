@@ -1,12 +1,52 @@
 <%-include('./partials/header', {title: 'error'})%>
 <link rel="stylesheet" href="/stylesheets/product.css">
 <main>
-<h1>Oops! No pudimos encontrar la página</h1>
+<div class="mensaje-error">
+    <h1>¡Ups! No pudimos encontrar la página</h1>
+    <p>Dejanos ayudarte para poder seguir buscando lo que necesitas</p>
+</div>
+<div class="ctas">
+    <a href="/products/ofertas">Ofertas</a>
+    <a href="/products/destacados">Destacados</a>
+    <a href="/products/combos">Combos</a>
+    <a href="/products/rubro">Productos</a>
+</div>
 </main>
 <%-include('./partials/footer')%>
-<style>    main{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 200px;
-}</style>
+<style>    
+    main{
+        display: flex;
+        flex-flow: column wrap;
+        text-align: center;
+    }
+
+    .ctas a{
+        width: 150px;
+        padding: 15px;
+        border: solid 4px #fbdcc4;
+        border-radius: 30px;
+        background-color: white;
+        text-align: center;
+        text-decoration: none;
+        color: #2e2e2e;
+        box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.75);
+    }
+
+    .ctas a:hover{
+        background-color: #fbdcc4;
+        transition-duration: 200ms;
+    }
+
+    .mensaje-error{
+        margin-bottom: 30px;
+    }
+
+    .ctas{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        width: 400px;
+        align-self: center;
+    }
+
+</style>
