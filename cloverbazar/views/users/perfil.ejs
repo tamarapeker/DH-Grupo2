@@ -1,9 +1,71 @@
-<link rel="stylesheet" href="/stylesheets/forms.css">
+
+
 
 <%-include('../partials/header', {title: 'Hola ' + usuario.nombre})%>
+<style>
+    main{
+        margin: 100px;
+        text-align: center;
+    }
 
+    .section-form{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .forms{
+        width: 800px;
+    }
+
+    .grid-container{
+        background-color: #faeded;
+        margin: 10px;
+        padding: 60px;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 12px;
+    }
+
+    .grid-item{
+        width: 100%;
+    }
+    
+    .grid-input{  
+        padding: 15px;
+        border: none;
+        border-bottom: solid 1px #bbb4be;
+        background: none;
+        max-width: 200px;
+    }
+
+    .grid-input:focus{
+        outline: none;
+    }
+
+    .guardar-cambios{
+        background-color: #2e2e2e;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border-style: none;
+        border-radius: 20px;
+        padding: 10px 20px 10px 20px;
+        margin:20px;
+}
+
+    .cambio-contra{
+        text-decoration: none;
+    }
+
+    @media(min-width: 786px){
+
+    }
+
+</style>
 <main>
-    <h2>Bienvenido <%=usuario.nombre%></h2>
+    <h2>Mis datos personales</h2>
     <% if (typeof errors != "undefined"){ %>
         <ul style="padding: 0;">
             <% for (var i= 0; i< errors.length ; i++) { %>
@@ -14,16 +76,25 @@
     <% if(typeof errorAlLoguear != "undefined"){ %>
         <p style="color:red"><%= errorAlLoguear %></p>
     <% } %>
-    <div>
+    <section class="section-form">
         <form action="/users/perfil/<%=usuario.id%>" method="POST" class="forms">
-            <h3>Cambiar datos personales</h3>
-            <input type="text" name="nombre" placeholder="Nombre" value="<%=usuario.nombre%>">
-            <input type="text" name="apellido" placeholder="Apellido" value="<%=usuario.apellido%>">
-            <input type="text" name="direccion" placeholder="Dirección" value="<%=usuario.direccion%>">
-            <input type="text" name="telefono" placeholder="Teléfono" value="<%=usuario.telefono%>">
-            <button type="submit">Guardar cambios</button>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="nombre" placeholder="Nombre" value="<%=usuario.nombre%>">
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="apellido" placeholder="Apellido" value="<%=usuario.apellido%>">
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="direccion" placeholder="Dirección" value="<%=usuario.direccion%>">
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="telefono" placeholder="Teléfono" value="<%=usuario.telefono%>">
+                </div>
+            </div>
+            <button type="submit" class="guardar-cambios">Guardar cambios</button>
         </form>
-        <a class="cambioContra" href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
-</div> 
+        <a class="cambio-contra" href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
+    </section> 
 </main>
 <%-include('../partials/footer')%>
