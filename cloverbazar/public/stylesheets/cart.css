@@ -86,9 +86,23 @@ form{
     margin-left: 10px;
 }
 
+.link-productos{
+    margin-top: 40px;
+    width: 150px;
+    padding: 15px;
+    border: solid 4px #fbdcc4;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    color: #2e2e2e;
+    box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.75);
+}
 
-
-
+.link-productos:hover{
+    background-color: #fbdcc4;
+    transition-duration: 200ms;
+}
 
 @media (min-width: 768px){
     .grid-container{
