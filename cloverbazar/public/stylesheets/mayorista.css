@@ -60,3 +60,8 @@ main form button{
     color: #fbdcc4;
     background-color: rgb(46, 46, 46);
 }
+main form button:hover{
+    background-color:rgb(100, 100, 100);
+    cursor: pointer;
+   
+}

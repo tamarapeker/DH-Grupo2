@@ -124,6 +124,11 @@ main section form button{
         margin-left: 30px;
         position: relative;
     }
+    main form button:hover{
+        background-color:rgb(100, 100, 100);
+        cursor: pointer;
+       
+    }
 }
 @media (min-width: 1024px){
     main section.carrusel img{
