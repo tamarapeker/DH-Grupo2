@@ -50,7 +50,7 @@ main section.detalleprod form.agregar-al-carrito button {
     margin-bottom: 5px;
 }
 
-main section.detalleprod article.image div {
+main section.detalleprod article.image div.contenedor {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;

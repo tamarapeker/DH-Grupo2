@@ -111,4 +111,9 @@ iframe{
         justify-content: space-around;
         width: 700px;
     }
+    main form button:hover{
+        background-color:rgb(100, 100, 100);
+        cursor: pointer;
+       
+    }
 }

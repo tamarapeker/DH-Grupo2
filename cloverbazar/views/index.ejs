@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/index.css">
+<script src="/js/avisoCarrito.js"></script>
 
 <%-include('./partials/header', {title: ''})%>
 <main>
@@ -57,5 +58,17 @@
       <button type="submit">Enviar</button>
     </form>
   </section>
+
+<!-- The Modal -->
+<div id="myModal-cart" class="modal-cart">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <p class="text"></p>
+  </div>
+
+</div>
+
 </main>
 <%-include('./partials/footer')%>

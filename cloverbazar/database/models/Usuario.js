@@ -11,7 +11,8 @@ module.exports = (sequelize, dataTypes) =>{
         email: dataTypes.STRING,
         contrasena: dataTypes.STRING,
         direccion: dataTypes.STRING,
-        telefono: dataTypes.STRING
+        telefono: dataTypes.STRING,
+        estado: dataTypes.INTEGER
     }
     let config = {
         tableName : 'usuarios',

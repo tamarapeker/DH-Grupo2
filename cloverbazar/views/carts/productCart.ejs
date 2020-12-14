@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/cart.css">
+<script src="/js/avisoCarrito.js"></script>
+
 <%-include('../partials/header', {title: 'Carrito'})%>
 <main>
     <%if(carrito_producto.length > 0){%>
@@ -24,6 +26,8 @@
                     <p class="grid-item__subtotal">$ <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%></p>
                     <input type="hidden" name="id" value="<%=carrito_producto[i].id%>">
                     <input type="hidden" name="precio" value="<%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%>">
+                    <input type="hidden" name="stock_producto" value="<%=carrito_producto[i].productos.stock%>">
+                    <input type="hidden" name="id_producto" value="<%=carrito_producto[i].productos.id%>">
                 </div>
                     <a href="/carts/eliminar/<%=carrito_producto[0].carrito_id%>/<%=carrito_producto[i].id%>">Eliminar</a> 
             </article>
@@ -44,5 +48,22 @@
                 <a href="/products/rubro" class="link-productos">Ir a Productos</a>
         <% } %>
     </section>
+<<<<<<< HEAD
 </main>
+=======
+
+<!-- The Modal -->
+<div id="myModal-cart" class="modal-cart">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p class="text"></p>
+    </div>
+
+</div>
+
+
+
+>>>>>>> 89c064cd8436977b8716f0608353422081a85bb2
 <%-include('../partials/footer')%>

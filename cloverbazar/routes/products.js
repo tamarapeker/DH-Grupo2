@@ -41,5 +41,6 @@ router.get('/edit/:id',authMiddleware, adminMiddleware, productsController.edit)
 router.post('/edit/:id', authMiddleware, adminMiddleware, upload.any(), productsController.upload);
 
 router.get('/destroy/:id', authMiddleware, adminMiddleware, productsController.destroy);
+router.get('/activar/:id', authMiddleware, adminMiddleware, productsController.activar);
 
 module.exports = router;

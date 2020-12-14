@@ -67,7 +67,7 @@ const cartsController = {
                                 cantidad: req.body.cantidad
                             })
                             .then(function(){ 
-                                res.redirect("/carts/"+id_usuarioLogueado)
+                                res.redirect("/carts/"+id_usuarioLogueado+"#agregadoOk")
                             })
                         })
                     } else {
@@ -87,7 +87,7 @@ const cartsController = {
                                     cantidad: req.body.cantidad
                                 })
                                 .then(function(){
-                                    res.redirect("/carts/"+id_usuarioLogueado)
+                                    res.redirect("/carts/"+id_usuarioLogueado+"#agregadoOk")
                                 })
                             } else {
                                 //Si ya tenia el producto se actualiza la cantidad previo chequeo de que esa cantidad mas la que ya tenia no supere el stock
@@ -102,12 +102,11 @@ const cartsController = {
                                     })
                                     .then(function(){
                                        
-                                        res.redirect("/carts/"+id_usuarioLogueado)
+                                        res.redirect("/carts/"+id_usuarioLogueado+"#agregadoOk")
                                     
                                     })  
                                 } else {
-                                    res.locals.stockInsuficiente=true
-                                    res.redirect("/carts/"+id_usuarioLogueado)
+                                    res.redirect("/carts/"+id_usuarioLogueado+"#stockInsuficiente")
                                 }
                             }
                         })
@@ -170,7 +169,7 @@ const cartsController = {
                 })
                 .then(function(){})
             }
-            res.redirect('/')
+            res.redirect('/#compraOk')
         })
     }
 }

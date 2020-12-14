@@ -4,21 +4,31 @@
 
 <main>
     <h2>Historial de compras</h2>
-    <% 
-    for(let i=0 ; i < carritos.length ; i++){%>
-        <%let total = 0%>
+    
+    <%for(let i=0 ; i < carritos.length ; i++){%>
+        <div class="compras">
+    <%let total = 0%>
+
         <h3><%=carritos[i].fecha_compra%></h3>
+        <div class="descripcion">
         <%for(let j=0 ; j < carritos[i].producto_carrito.length ; j++){%>
-            <ul>
-                <li>Producto: <%=carritos[i].productos[j].nombre%></li>
-                <li>Color: <%=carritos[i].productos[j].color%></li>
-                <li>Cantidad: <%=carritos[i].producto_carrito[j].cantidad%></li>
-                <li>Precio: $<%=carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%></li>
-            </ul>
-            <%total = total + carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
-            
+        <ul class="historial">
+            <li>Producto: <%=carritos[i].productos[j].nombre%></li>
+            <li>Color: <%=carritos[i].productos[j].color%></li>
+            <li>Cantidad: <%=carritos[i].producto_carrito[j].cantidad%></li>
+            <li>Precio: $<%=carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <%total = total + carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
+
     <% } %>
     <h4>Total: $<%=total%></h4>
     <% } %>
+</div>
+
 </main>
 <%-include('../partials/footer')%>
