@@ -316,6 +316,18 @@ const productsController = {
                 
         })
 
+    },
+    activar: function(req,res,send){
+        db.Productos.update({
+            estado: 1
+        },{
+            where: {
+                id: req.params.id
+            }
+        }).then(function () {
+            res.redirect('/products');
+                
+        })
     }
 }
 

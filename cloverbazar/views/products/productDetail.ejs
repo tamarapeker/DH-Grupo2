@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/productDetail.css">
-<script src="/js/avisoCarrito.js"></script>
+<script src="/js/avisoLogin.js"></script>
+<link rel="stylesheet" href="/stylesheets/modals.css">
+
 <%-include('../partials/header', {title: producto.nombre})%>
 <main>
     <section class="detalleprod">
@@ -30,14 +32,33 @@
                         <%} else {%>
                             <p style="color:red">Sin stock</p>
                             <%}%>
-                <% } %>
-                            <%if(producto.stock > 0){%>
-                            <button type="submit">Agregar al carrito</button>
-                            <% } %>
+                    <% } %>
+                    <%if(producto.stock > 0){%>
+                        <%if(locals.isAuthenticated){%>
+                        <button type="submit">Agregar al carrito</button>
+                        <% } %>
+                    <% } %>
                 </form>
+
             </div>
+                       
         </article>
         <% } %>
+        <%if(!locals.isAuthenticated){%>
+            <button id="myBtn-login"> Agregar al carrito</button>
+            
+            <div id="myModal-login" class="modal-login">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close-login">&times;</span>
+                    <p>Debes loguearte para continuar</p>
+                    <a href="/users/login">Iniciar sesion</a>
+                </div>
+
+            </div>
+           
+            <% } %> 
         <article class="detail">
             <p>Detalles del producto </p>
             <ul>
@@ -73,5 +94,7 @@
         </a>
         <% } } %>
     </section>
+
+
 </main>
 <%-include('../partials/footer')%>

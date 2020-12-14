@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/stylesheets/forms.css">
 <script src="/js/validacionesSesion.js"></script>
+<script src="/js/avisoCarrito.js"></script>
 
 <%-include('../partials/header', {title: 'Iniciar sesión'})%>
 <main>
@@ -24,5 +25,18 @@
     <% if(typeof errorAlLoguear != "undefined"){ %>
         <p><%= errorAlLoguear %></p>
     <% } %>
+
+<!-- The Modal -->
+<div id="myModal-cart" class="modal-cart">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p class="text"></p>
+    </div>
+
+</div>
+
+
 </main>
 <%-include('../partials/footer')%>

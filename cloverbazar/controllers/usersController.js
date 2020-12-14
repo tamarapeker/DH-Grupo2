@@ -161,7 +161,9 @@ const usersController = {
     },
 
     destroyUser: function(req,res,next){
-        db.Usuarios.destroy({
+        db.Usuarios.update({
+            estado: 0
+        },{
             where: {
                 id: req.params.id
             }
