@@ -53,10 +53,9 @@ main form textarea{
 main form button{
     width: 95px;
     border: 0;
+    background-color:  rgb(46, 46, 46);
     border-radius: 5px;
-    margin: 5px 0;
-    font-family: 'Libre Franklin', sans-serif;
-    padding: 5px;
+    padding: 15px;
     color: #fbdcc4;
     background-color: rgb(46, 46, 46);
 }

@@ -40,14 +40,12 @@ main section article.image h1.precioprod {
 
 main section.detalleprod form.agregar-al-carrito button {
     width: 170px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 0px;
+    border: 0;
+    background-color:  rgb(46, 46, 46);
     border-radius: 5px;
-    background-color:rgb(46, 46, 46);
-    color: #faeded;
-    text-align: center;
-    margin-bottom: 5px;
+    padding: 15px;
+    color: #fbdcc4;
+    background-color: rgb(46, 46, 46);
 }
 
 main section.detalleprod article.image div.contenedorDetalles {
