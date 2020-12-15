@@ -21,6 +21,8 @@ router.get('/carritos/cantidadTotal', apiController.cantidadCarritos);
 // listado de ultimas compras
 router.get('/carritos/ultimasCompras', apiController.ultimasCompras);
 
+// listado de compras
+router.get('/carritos/compras', apiController.compras);
 
 
 

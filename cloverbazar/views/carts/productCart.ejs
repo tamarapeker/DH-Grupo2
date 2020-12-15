@@ -6,7 +6,7 @@
     <%if(carrito_producto.length > 0){%>
     <section class="section-form">
         <h2>Tu Compra</h2>
-        <form action="/carts/comprar/<%=carrito_producto[0].carrito_id%>" method="POST">
+        <form action="" method="POST">
             <% let total = 0 
                 for(let i=0 ; i < carrito_producto.length ; i++){%>
             <article class="grid-container">
@@ -19,9 +19,24 @@
                 </div>
                 <div class="grid-item">
                     <select name="cantidad" id="cantidad">
-                        <option value="cantidad"><%=carrito_producto[i].cantidad%></option>
+                        <%if(carrito_producto[i].productos.stock <=10 && carrito_producto[i].productos.stock > 0){%>
+                            <%for(let j=1 ; j <= carrito_producto[i].productos.stock ; j++){%>
+                                    <%if(j == carrito_producto[i].cantidad){%>
+                                        <option value="<%=j%>" selected><%=j%></option>
+                                    <%} else {%>
+                                        <option value="<%=j%>"><%=j%></option>
+                                    <%}%>
+                            <% } %>
+                        <%} else {%>
+                            <%for(let j=1 ; j <= 10 ; j++){%>
+                                <%if(j == carrito_producto[i].cantidad){%>
+                                    <option value="<%=j%>" selected><%=j%></option>
+                                <%} else {%>
+                                    <option value="<%=j%>"><%=j%></option>
+                                <%}%>
+                            <% } %>
+                        <%}%>
                     </select>
-                    <input type="hidden" name="cantidad" value="<%=carrito_producto[i].cantidad%>">
                 </div>
                 <div class="grid-item">
                     <p class="grid-item__subtotal">$
@@ -43,7 +58,8 @@
                 <span class="total-precio">$<%=total%></span>
             </article>
             <div class="ctas-container">
-                <button type="submit" class="confirmar-compra">Confirmar</button>
+                <button type="submit" class="confirmar-compra" formaction="/carts/guardar/<%=carrito_producto[0].carrito_id%>">Guardar cambios</button>
+                <button type="submit" class="confirmar-compra" formaction="/carts/comprar/<%=carrito_producto[0].carrito_id%>">Confirmar</button>
                 <a href="/products/rubro" class="seguir-comprando">Seguir comprando</a>
             </div>
         </form>

@@ -100,7 +100,26 @@ const apiController = {
                 }
             )
     },
-    
+    compras: function (req, res, next) {
+        db.Carritos.findAll({
+            where: {
+                estado: 0
+              },
+              include: [{ association: "productos" }]
+            }) 
+            .then(
+                function (compras) {
+                    let respuesta = {
+                        meta: {
+                            status: 200,
+                            url: "/api/carritos/compras"
+                        },
+                        data: compras
+                    }
+                    res.json(respuesta)
+                }
+            )
+    },
 
 
 }

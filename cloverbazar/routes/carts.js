@@ -22,6 +22,8 @@ var upload = multer({ storage: storage })
 router.get('/:usuario_id', authMiddleware, cartsController.mostrarCarrito)
 router.post('/agregar/:producto_id', authMiddleware, cartsController.agregarProducto)
 router.get('/eliminar/:carrito_id/:id', cartsController.eliminarProducto)
+router.post('/guardar/:carrito_id', cartsController.guardarCambios)
 router.post('/comprar/:carrito_id', cartsController.confirmarCompra)
+
 
 module.exports = router;

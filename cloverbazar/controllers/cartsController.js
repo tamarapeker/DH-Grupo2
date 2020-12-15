@@ -119,6 +119,7 @@ const cartsController = {
 
     },
     eliminarProducto: function(req,res,next){
+        let id_usuarioLogueado = req.session.usuarioLogueado.id
         //Elimina el producto del carrito
         db.carrito_producto.destroy({
             where: {
@@ -126,12 +127,25 @@ const cartsController = {
             }
         })
             .then(function(){
-                db.Carritos.findByPk(req.params.carrito_id)
-                    .then(function(carrito){
-                        res.redirect("/carts/"+carrito.usuario_id)
-                    })
+                res.redirect("/carts/"+id_usuarioLogueado)
             })
     },
+    guardarCambios: function(req,res,next){
+        let id_usuarioLogueado = req.session.usuarioLogueado.id
+        for(let i=0 ; i < req.body.id.length; i++){
+            db.carrito_producto.update({
+                cantidad: req.body.cantidad[i]
+            },{
+                where: {
+                    id: req.body.id[i]
+                }
+            })
+            .then(function(){})
+        }
+        res.redirect("/carts/"+id_usuarioLogueado)
+        
+    },
+
     confirmarCompra: function(req,res,next){
         db.Carritos.update({
             estado: 0,
