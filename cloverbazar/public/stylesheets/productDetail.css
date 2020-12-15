@@ -50,7 +50,7 @@ main section.detalleprod form.agregar-al-carrito button {
     margin-bottom: 5px;
 }
 
-main section.detalleprod article.image div.contenedor {
+main section.detalleprod article.image div.contenedorDetalles {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
@@ -103,13 +103,19 @@ main section.relacionados a {
     color: rgb(46, 46, 46);
 }
 
+.add2{
+    padding: 10px;
+    color: blue
+}
+
+
 @media(min-width: 768px) {
     main section article.image img {
         width: 300px;
         height: 300px;
     }   
 
-    main section.detalleprod article.image div {
+    main section.detalleprod article.image div.contenedorDetalles {
         height: 300px;
         width: 300px;
         align-items: center;
@@ -127,6 +133,7 @@ main section.relacionados a {
         margin-right: 10px;
         color: rgb(100, 100, 100)
     }
+
 
 @media(min-width: 1024px) {
      main section.relacionados {

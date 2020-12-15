@@ -12,17 +12,18 @@
                 <% } %>
                 <h3><%=productos[i].nombre%> </h3>
                 <div class="precios">
-                <%if( productos[i].descuento > 0) {%>
-                <h3 class= "tachado"> $<%=productos[i].precio%> </h3>
-                <h3 class="precioConDto">$<%=(productos[i].precio * (100-productos[i].descuento))/100%></h3>
-                <% } else{ %>
-                    <h3> $<%=productos[i].precio%> </h3>
-                </div>
-                <% } %>
-                <%if( productos[i].stock <= 0) {%>
-
-                <h3>Agotado</h3>
-                <% } %>
+                    <%if( productos[i].stock <= 0) {%>
+    
+                        <h3>Agotado</h3>
+                        <% } else{ %>   
+                    <%if( productos[i].descuento > 0) {%>
+                    <h3 class= "tachado"> $<%=productos[i].precio%> </h3>
+                    <h3 class="precioConDto">$<%=(productos[i].precio * (100-productos[i].descuento))/100%></h3>
+                    <% } else{ %>
+                        <h3> $<%=productos[i].precio%> </h3>
+                    </div>
+                    <% } %>
+                    <% } %>
             </a>
         </article>
         <% } %>

@@ -6,12 +6,13 @@
     <%if(carrito_producto.length > 0){%>
     <section class="section-form">
         <h2>Tu Compra</h2>
-        <form action="/carts/comprar/<%=carrito_producto[0].carrito_id%>" method="POST">      
-                <% let total = 0 
+        <form action="/carts/comprar/<%=carrito_producto[0].carrito_id%>" method="POST">
+            <% let total = 0 
                 for(let i=0 ; i < carrito_producto.length ; i++){%>
             <article class="grid-container">
                 <div class="grid-item">
-                    <img src="/images/products/<%=carrito_producto[i].imagenes[0].ruta%>" alt="Imagen de producto seleccionado">
+                    <img src="/images/products/<%=carrito_producto[i].imagenes[0].ruta%>"
+                        alt="Imagen de producto seleccionado">
                 </div>
                 <div class="grid-item">
                     <p><%=carrito_producto[i].productos.nombre%></p>
@@ -20,19 +21,22 @@
                     <select name="cantidad" id="cantidad">
                         <option value="cantidad"><%=carrito_producto[i].cantidad%></option>
                     </select>
-                    <input type="hidden" name="cantidad" value="carrito_producto[i].cantidad%>">
+                    <input type="hidden" name="cantidad" value="<%=carrito_producto[i].cantidad%>">
                 </div>
                 <div class="grid-item">
-                    <p class="grid-item__subtotal">$ <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%></p>
+                    <p class="grid-item__subtotal">$
+                        <%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%>
+                    </p>
                     <input type="hidden" name="id" value="<%=carrito_producto[i].id%>">
-                    <input type="hidden" name="precio" value="<%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%>">
+                    <input type="hidden" name="precio"
+                        value="<%=(carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)%>">
                     <input type="hidden" name="stock_producto" value="<%=carrito_producto[i].productos.stock%>">
                     <input type="hidden" name="id_producto" value="<%=carrito_producto[i].productos.id%>">
                 </div>
-                    <a href="/carts/eliminar/<%=carrito_producto[0].carrito_id%>/<%=carrito_producto[i].id%>">Eliminar</a> 
+                <a href="/carts/eliminar/<%=carrito_producto[0].carrito_id%>/<%=carrito_producto[i].id%>">Eliminar</a>
             </article>
-                <% total = total + (carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%>
-                <% } %>
+            <% total = total + (carrito_producto[i].productos.precio)*(1-(carrito_producto[i].productos.descuento)/100)*carrito_producto[i].cantidad%>
+            <% } %>
             </div>
             <article class="total-compra">
                 <span style="font-size: 18px;">Total de la compra </span>
@@ -44,26 +48,22 @@
             </div>
         </form>
         <% } else { %>
-                <h2 style="margin-bottom: 50px;">No hay productos para mostrar</h2>
-                <a href="/products/rubro" class="link-productos">Ir a Productos</a>
+        <h2 style="margin-bottom: 50px;">No hay productos para mostrar</h2>
+        <a href="/products/rubro" class="link-productos">Ir a Productos</a>
         <% } %>
     </section>
-<<<<<<< HEAD
-</main>
-=======
 
-<!-- The Modal -->
-<div id="myModal-cart" class="modal-cart">
+    <!-- The Modal -->
+    <div id="myModal-cart" class="modal-cart">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p class="text"></p>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="text"></p>
+        </div>
+
     </div>
 
-</div>
 
 
-
->>>>>>> 89c064cd8436977b8716f0608353422081a85bb2
-<%-include('../partials/footer')%>
+    <%-include('../partials/footer')%>
