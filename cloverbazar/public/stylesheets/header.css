@@ -224,7 +224,7 @@ footer nav ul li {
     header div.barra2 nav ul :hover{
         color: rgb(100, 100, 100);
     }
-    header div.barra1  #myBtn i:hover{
+    header div.barra1 i:hover{
         cursor: pointer;
         color:  rgb(100, 100, 100);
         }

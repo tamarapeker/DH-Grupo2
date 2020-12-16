@@ -103,6 +103,18 @@ form{
     background-color: #fbdcc4;
     transition-duration: 200ms;
 }
+select{
+    padding: 10px;
+    background-color: rgb(46, 46, 46);
+    color: #fbdcc4;
+    border-radius: 5px;
+
+}
+select:hover{
+    cursor:pointer;
+    background-color: rgb(100,100,100);
+}
+
 
 @media (min-width: 768px){
     .grid-container{
