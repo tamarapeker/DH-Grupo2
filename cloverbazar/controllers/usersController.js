@@ -29,6 +29,7 @@ const usersController = {
                         email: req.body.email,
                         contrasena: bcrypt.hashSync(req.body.password, 10),
                         direccion: req.body.direccion,
+                        provincia: req.body.provincias,
                         telefono: req.body.telefono
                     })
                         .then(function (usuario) {
@@ -99,6 +100,7 @@ const usersController = {
                         nombre: req.body.nombre,
                         apellido: req.body.apellido,
                         direccion: req.body.direccion,
+                        provincia: req.body.provincias,
                         telefono: req.body.telefono
                     }, {
                         where: {

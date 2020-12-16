@@ -1,3 +1,4 @@
+<script src="/js/apiProvincias.js"></script>
 <%-include('../partials/header', {title: 'Hola ' + usuario.nombre})%>
 <style>
     main{
@@ -45,7 +46,7 @@
 
     .grid-container{
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         grid-gap: 12px;
         width: 290px;
     }
@@ -136,6 +137,7 @@
                 <div class="grid-item">
                     <input class="grid-input" type="text" name="direccion" placeholder="Dirección" value="<%=usuario.direccion%>">
                 </div>
+                <div class="apiProvincias"></div>
                 <div class="grid-item">
                     <input class="grid-input" type="text" name="telefono" placeholder="Teléfono" value="<%=usuario.telefono%>">
                 </div>
