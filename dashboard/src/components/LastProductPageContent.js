@@ -28,10 +28,17 @@ class LastProductPageContent extends React.Component {
 	
 	render(){
 		let contenido = []
+		let imagen = ""
 		if(this.state.cantidadProductos === ""){
 			contenido = ["Cargando..."]
 		} else {
 			contenido = this.state.ultimoProducto
+			console.log("ahoraa")
+			if( typeof contenido.imagenes != "undefined"){
+				imagen = contenido.imagenes[0].ruta
+			}
+
+			
 		}
 
 		return (
@@ -43,7 +50,7 @@ class LastProductPageContent extends React.Component {
 					<div className="card-body">
 						<div className="text-center">
 						<p className="m-0 font-weight-bold text-dark">{contenido.nombre} - {contenido.color}</p>	
-							<img className="img-fluid px-3 px-sm-4 mt-3 mb-4"  src="/product_dummy.svg" alt="dummy"/>
+							<img className="img-fluid px-3 px-sm-4 mt-3 mb-4"  src={`http://localhost:3000/images/products/${imagen}`} alt="dummy"/>
 						</div>
 						<p>{contenido.descripcion}</p>
 						<a target="_blank" rel="nofollow" href={`http://localhost:3000/products/detail/${contenido.id}`}>Ver detalle de producto</a>

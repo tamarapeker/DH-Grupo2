@@ -4,7 +4,11 @@ const moment = require("moment")
 const db = require('../../database/models');
 const apiController = {
     cantidadUsuarios: function (req, res, next) {
-        db.Usuarios.count()
+        db.Usuarios.count({
+            where: {
+                estado: 1
+            }
+        })
             .then(
                 function (cantidad) {
                     let respuesta = {
@@ -19,7 +23,11 @@ const apiController = {
             )
     },
     cantidadProductos: function (req, res, next) {
-        db.Productos.count()
+        db.Productos.count({
+            where: {
+                estado: 1
+            }
+        })
             .then(
                 function (cantidad) {
                     let respuesta = {
@@ -126,7 +134,6 @@ const apiController = {
             include: [{association: "imagenes"}]
         })
         .then(function(productos){
-            let ultimoID = productos[productos.length - 1].id
             let ultimoProducto = productos[productos.length - 1]
             let respuesta = {
                 meta: {

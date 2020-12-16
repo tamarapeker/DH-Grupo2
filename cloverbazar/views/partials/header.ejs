@@ -72,12 +72,16 @@
                 </div>
             
             <%} else {%>
+                <%if(locals.adminLogueado){%>
+                    <div class="cart" style="display: none;">
+                    </div>
+                <%}else{%>
             <a href="/carts/<%=locals.usuarioLogueado.id%>">
                 <div class="cart">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
             </a>
-            <% } %>
+            <% } }%>
         </div>
         <div class="barra2">
             <a href="/">
