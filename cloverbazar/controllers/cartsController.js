@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const db = require('../database/models');
+const { isArray } = require('util');
 
 const cartsController = {
     mostrarCarrito: function(req,res,next){
@@ -132,17 +133,29 @@ const cartsController = {
     },
     guardarCambios: function(req,res,next){
         let id_usuarioLogueado = req.session.usuarioLogueado.id
-        for(let i=0 ; i < req.body.id.length; i++){
+        if(isArray(req.body.id)){
+            for(let i=0 ; i < req.body.id.length; i++){
+                db.carrito_producto.update({
+                    cantidad: req.body.cantidad[i]
+                },{
+                    where: {
+                        id: req.body.id[i]
+                    }
+                })
+                .then(function(){})
+            }
+        } else {
             db.carrito_producto.update({
-                cantidad: req.body.cantidad[i]
+                cantidad: req.body.cantidad
             },{
                 where: {
-                    id: req.body.id[i]
+                    id: req.body.id
                 }
             })
             .then(function(){})
         }
-        res.redirect("/carts/"+id_usuarioLogueado)
+        
+        res.redirect("/carts/"+id_usuarioLogueado+"#cambiosOk")
         
     },
 
@@ -170,10 +183,6 @@ const cartsController = {
             }
 
             for(let i=0 ; i < req.body.id.length ; i++){
-                console.log("stock")
-                console.log(req.body.stock_producto[i])
-                console.log("cantidad")
-                console.log(req.body.cantidad[i])
                 db.Productos.update({
                     stock: Number(req.body.stock_producto[i]) - Number(req.body.cantidad[i])
                 },{

@@ -105,7 +105,7 @@ const apiController = {
             where: {
                 estado: 0
               },
-              include: [{ association: "productos" }]
+              include: [{association: "producto_carrito"}]
             }) 
             .then(
                 function (compras) {
@@ -120,6 +120,24 @@ const apiController = {
                 }
             )
     },
+
+    ultimoProducto: function(req,res,next){
+        db.Productos.findAll({
+            include: [{association: "imagenes"}]
+        })
+        .then(function(productos){
+            let ultimoID = productos[productos.length - 1].id
+            let ultimoProducto = productos[productos.length - 1]
+            let respuesta = {
+                meta: {
+                    status: 200,
+                    url: "/api/productos/ultimoProducto"
+                },
+                data: ultimoProducto
+            }
+            res.json(respuesta)
+        })
+    }
 
 
 }

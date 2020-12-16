@@ -128,25 +128,20 @@
         <form action="/users/perfil/<%=usuario.id%>" method="POST" class="forms">
             <div class="grid-container">
                 <div class="grid-item">
-                    <p class="grid-input"> Nombre:  <%=usuario.nombre%> </p>
+                    <input class="grid-input" type="text" name="nombre" placeholder="Nombre" value="<%=usuario.nombre%>">
                 </div>
                 <div class="grid-item">
-                    <p class="grid-input"> Apellido: <%=usuario.apellido%> </p>
+                    <input class="grid-input" type="text" name="apellido" placeholder="Apellido" value="<%=usuario.apellido%>">
                 </div>
                 <div class="grid-item">
-                    <p class="grid-input"> Direccion: <%=usuario.direccion%> </p>
+                    <input class="grid-input" type="text" name="direccion" placeholder="Dirección" value="<%=usuario.direccion%>">
                 </div>
                 <div class="grid-item">
-                    <p class="grid-input"> Telefono: <%=usuario.telefono%> </p>
+                    <input class="grid-input" type="text" name="telefono" placeholder="Teléfono" value="<%=usuario.telefono%>">
                 </div>
             </div>
+            <button type="submit" class="guardar-cambios">Guardar cambios</button>
         </form>
     </section>
-    <div class="options-container">
-        <a href="/users/editar/<%=usuario.id%>"> <h3>Cambiar datos usuario</h3> </a>
-        <a href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
-        <a href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
-        <a href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> </a>
-    </div>
 </main>
 <%-include('../partials/footer')%>

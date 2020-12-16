@@ -81,6 +81,13 @@ const usersController = {
                 res.render('users/perfil', { usuario })
             })
     },
+
+    edit: function(req,res,next){
+        db.Usuarios.findByPk(req.params.id)
+        .then(function(usuario){
+            res.render('users/editarPerfil', {usuario})
+        })
+    },
     uploadUser: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
             .then(function (usuario) {

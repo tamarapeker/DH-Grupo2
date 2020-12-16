@@ -33,7 +33,8 @@ router.post('/register', [
 ], usersController.create);
 
 router.get('/perfil/:id', authMiddleware, usersController.perfil);
-router.post('/perfil/:id', [
+router.get('/editar/:id', authMiddleware, usersController.edit);
+router.post('/editar/:id', [
   check("nombre").isLength({ min: 1, max: 30 }).withMessage("Nombre inválido "),
   check("apellido").isLength({ min: 1, max: 30 }).withMessage("Apellido inválido ")
 ], authMiddleware, usersController.uploadUser);

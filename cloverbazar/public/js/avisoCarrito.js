@@ -18,11 +18,17 @@ window.addEventListener("load", function(){
 
     if(window.location.hash == "#compraOk"){ 
         //Texto del modal
-        document.querySelector("p.text").innerHTML = "Se confirmo la compra"
+        document.querySelector("p.text").innerHTML = "Gracias por tu compra!!"
         // Abre el modal
         modal.style.display = "block";
     }
 
+    if(window.location.hash == "#cambiosOk"){ 
+        //Texto del modal
+        document.querySelector("p.text").innerHTML = "Se guardaron los cambios"
+        // Abre el modal
+        modal.style.display = "block";
+    }
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
     

@@ -12,7 +12,6 @@ function App() {
 			  <div id="content">
          <Topbar/>
           <PageContent/>
-          <h1 className="h3 mb-2 text-gray-800">All the products in the Database</h1>
         </div>
         <Footer/>
       </div>

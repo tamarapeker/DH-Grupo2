@@ -24,6 +24,9 @@ router.get('/carritos/ultimasCompras', apiController.ultimasCompras);
 // listado de compras
 router.get('/carritos/compras', apiController.compras);
 
+//ultimo producto agregado
+router.get('/productos/ultimoProducto', apiController.ultimoProducto)
+
 
 
 module.exports = router;
