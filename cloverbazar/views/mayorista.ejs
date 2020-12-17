@@ -5,11 +5,11 @@
     <h1>Venta Mayorista</h1>
     <h4>Si te interesa comprar nuestros productos por mayor completa el formulario y nos comunicaremos lo antes posible
     </h4>
-    <form action="/" method="POST">
-        <input type="text" id="nombre" placeholder="Nombre y Apellido">
-        <input type="email" placeholder="Email">
-        <input type="number" placeholder="Celular">
-        <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Consulta"></textarea>
+    <form action="/mandarMailMayorista" method="POST">
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre y Apellido">
+        <input type="email" name="email" placeholder="Email">
+        <input type="number" name="celular" placeholder="Celular">
+        <textarea name="mensaje" id="Mensaje" cols="30" rows="10" placeholder="Consulta"></textarea>
         <button type="submit">Enviar</button>
     </form>
 </main>

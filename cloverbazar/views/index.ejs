@@ -48,13 +48,13 @@
     <% } } %>
   </section>
   <section class="formulario">
-    <form action="">
+    <form action="/mandarMail" method="POST">
       <label for="Asunto">
         Escribinos!
       </label>
-      <input type="text" id="Asunto" placeholder="Asunto">
-      <input type="email" placeholder="Email">
-      <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
+      <input type="text" name="asunto" id="Asunto" placeholder="Asunto">
+      <input type="email" name="email" placeholder="Email">
+      <textarea name="mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
       <button type="submit">Enviar</button>
     </form>
   </section>
