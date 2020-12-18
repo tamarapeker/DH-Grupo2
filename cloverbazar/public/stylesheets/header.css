@@ -82,15 +82,10 @@ header div.loginButton button.btnHeader{
 
 header form.search-form {
     display: flex;
-    /*cambio 3 flex-wrap: wrap;*/
     justify-content: center;
 }
 
 header form.search-form input.search-form-input {
-    
-    /* cambio 2*/
-    /*width: 40px;
-    height: 20px;*/
     width: 80px;
     height: 30px;
 
@@ -105,7 +100,6 @@ header form.search-form button.search-form-button {
     border: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    /*cambio 4height: 20px;*/
     height: 30px;
     
 }
@@ -116,7 +110,6 @@ header form.search-form button.search-form-button {
 }
 
 header div.menu nav.menu-hamburguesa{
-    
     width: 50%;
     text-align: center;
     background-color: #faeded;
@@ -138,6 +131,7 @@ header div.menu nav.menu-hamburguesa a {
     right: 0;
     top: 150px;
     transition: all .2 ease-out;
+    z-index: 1;
 }
 
 .label-toggle{
