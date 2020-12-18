@@ -79,6 +79,10 @@ const usersController = {
     perfil: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
             .then(function (usuario) {
+                if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    res.locals.isAdmin = true;
+                    res.locals.adminLogueado = req.session.usuarioLogueado;
+                }
                 res.render('users/perfil', { usuario })
             })
     },
@@ -86,6 +90,10 @@ const usersController = {
     edit: function(req,res,next){
         db.Usuarios.findByPk(req.params.id)
         .then(function(usuario){
+            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                res.locals.isAdmin = true;
+                res.locals.adminLogueado = req.session.usuarioLogueado;
+            }
             res.render('users/editarPerfil', {usuario})
         })
     },
@@ -117,6 +125,10 @@ const usersController = {
     changePassword: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
             .then(function (usuario) {
+                if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    res.locals.isAdmin = true;
+                    res.locals.adminLogueado = req.session.usuarioLogueado;
+                }
                 res.render('users/passwordChange', { usuario })
             })
     },
@@ -155,6 +167,10 @@ const usersController = {
             include: [{association: 'producto_carrito'}, {association: 'productos'}]
         })
         .then(function(carritos){
+            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                res.locals.isAdmin = true;
+                res.locals.adminLogueado = req.session.usuarioLogueado;
+            }
             res.render("users/historialCompras", {carritos})
         })
     },

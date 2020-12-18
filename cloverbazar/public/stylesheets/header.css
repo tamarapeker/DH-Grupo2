@@ -20,7 +20,10 @@ header div.barra1 {
     align-items: center;
     justify-content: flex-end;
 }
-header div.barra1 div{
+.loginbutton{
+    padding: 10px;
+}
+.cart{
     padding: 10px;
 }
 
@@ -67,7 +70,7 @@ header i{
     color: rgb(46, 46, 46);
 }
 
-header div.loginButton button{
+header div.loginButton button.btnHeader{
     border: 0;
     background-color:  rgb(46, 46, 46);
     border-radius: 5px;

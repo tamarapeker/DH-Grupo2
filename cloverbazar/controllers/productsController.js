@@ -312,6 +312,23 @@ const productsController = {
                 id: req.params.id
             }
         }).then(function () {
+            db.Carritos.findAll({
+                where: {
+                    estado: 1
+                },
+                include: [{association: "productos"}]
+            })
+            .then(function(carritos){
+                for(let i=0 ; i < carritos.length ; i++){
+                    db.carrito_producto.destroy({
+                        where: {
+                            carrito_id: carritos[i].id,
+                            producto_id: req.params.id
+                        }
+                    })
+                    .then(function(){})
+                }
+            })
             res.redirect('/products');
                 
         })

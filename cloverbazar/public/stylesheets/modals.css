@@ -45,11 +45,27 @@
 
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    background-color: rgba(254, 254, 254, 0.8);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    border: none;
+    border-radius: 5px;
+    width: 30%; /* Could be more or less, depending on screen size */
+    text-align: center;
+  }
+
+  .modal-content a {
+    background-color: rgb(46, 46, 46);
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  .modal-content a:visited {
+    color: white;
   }
   
   /* The Close Button */

@@ -21,34 +21,34 @@
             <%if(!locals.isAuthenticated){%>
             <a href="/users/login">
                 <div class="loginButton">
-                    <button>Iniciar sesión</button>
+                    <button class="btnHeader">Iniciar sesión</button>
                 </div>
             </a>
             <a href="/users/register">
                 <div class="loginButton">
-                    <button>Registrarse</button>
+                    <button class="btnHeader">Registrarse</button>
                 </div>
             </a>
             <%} else {%>
             <a href="/users/perfil/<%=locals.usuarioLogueado.id%>">
                 <div class="loginButton">
-                    <button>Hola <%=locals.usuarioLogueado.nombre%></button>
+                    <button class="btnHeader">Hola <%=locals.usuarioLogueado.nombre%></button>
                 </div>
             </a>
-
+            <%if(locals.adminLogueado){%>
+                <a href="/products">
+                    <div class="loginButton">
+                        <button class="btnHeader">Listado</button>
+                    </div>
+                </a>
+                <% } %>
             <a href="/users/destroySession">
                 <div class="loginButton">
-                    <button>Cerrar sesión</button>
+                    <button class="btnHeader">Cerrar sesión</button>
                 </div>
             </a>
             <% } %>
-            <%if(locals.adminLogueado){%>
-            <a href="/products">
-                <div class="loginButton">
-                    <button>Listado</button>
-                </div>
-            </a>
-            <% } %>
+            
             <%if(!locals.isAuthenticated) {%>
                 <!-- Trigger/Open The Modal -->
                 <button id="myBtn" class="btn">
@@ -56,7 +56,7 @@
                         <div class="cart">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
-         
+        
                 </button>
 
                 <!-- The Modal -->
@@ -65,8 +65,8 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <p>Debes loguearte para continuar</p>
-                        <a href="/users/login">Iniciar sesion</a>
+                        <p>Debes estar logueado para continuar</p>
+                        <a href="/users/login">Iniciar sesión</a>
                     </div>
 
                 </div>
