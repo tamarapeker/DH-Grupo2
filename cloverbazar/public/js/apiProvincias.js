@@ -4,7 +4,7 @@ window.addEventListener("load", function(){
     .then(function(data){
         console.log(data.provincias)
         let div = document.querySelector(".apiProvincias")
-        div.innerHTML += "<select name='provincias' class='selectProvincias'></select>"
+        div.innerHTML += "<select name='provincias' class='selectProvincias grid-input'></select>"
         let select = document.querySelector("select.selectProvincias")
         select.innerHTML += "<option value='' selected>Elegi tu provincia</option>"
         data.provincias.sort(function (a, b) {

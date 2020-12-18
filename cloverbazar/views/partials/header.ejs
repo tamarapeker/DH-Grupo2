@@ -108,30 +108,21 @@
                     </a>
                 </ul>
             </nav>
-            <div class="menuysearch">
-                <form action="/search" method="GET" class="search-form">
-                    <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
-                    <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
-                </form>
+                <div class="menuysearch">
+                    <form action="/search" method="GET" class="search-form">
+                        <input type="text" name="keywords" placeholder="Buscar productos" class="search-form-input">
+                        <button type="submit" class="search-form-button"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
                 <div class="menu">
-                    <i class="fas fa-bars"></i>
+                    <label class="label-toggle" for="toggle">&#9776</label>
+                    <input type="checkbox" id="toggle">
                     <nav class="menu-hamburguesa">
-                        <ul>
-                            <a href="/products/rubro">
-                                <li>Productos</li>
-                            </a>
-                            <a href="/contacto">
-                                <li>Contacto</li>
-                            </a>
-                            <a href="/mayorista">
-                                <li>Mayorista</li>
-                            </a>
-                            <a href="/faqs">
-                                <li>FAQs</li>
-                            </a>
-                        </ul>
+                        <a href="/products/rubro">Productos</a>
+                        <a href="/contacto">Contacto</a>
+                        <a href="/mayorista">Mayorista</a>
+                        <a href="/faqs">FAQs</a>
                     </nav>
                 </div>
-            </div>
         </div>
     </header>

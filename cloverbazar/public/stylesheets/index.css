@@ -88,10 +88,8 @@ main section form input{
     border: 0;
     border-radius: 5px;
     margin: 5px 0;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Libre Franklin', sans-serif;
-
-
 }
 main section form textarea{
     width: 90%;
@@ -99,17 +97,24 @@ main section form textarea{
     border-radius: 5px;
     margin: 5px 0;
     font-family: 'Libre Franklin', sans-serif;
-    padding: 5px;
+    padding: 10px;
 }
 main section form button{
-    width: 95px;
     border: 0;
     background-color:  rgb(46, 46, 46);
     border-radius: 5px;
-    padding: 15px;
-    color: #fbdcc4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px 10px 30px;
+    color: white;
     background-color: rgb(46, 46, 46);
+    font-size: 22px;
 }
+
+.titulo-form{
+    text-align: center;
+}
+
 @media (min-width: 768px){
  /*   main section.carrusel img{
         height: 300px;
