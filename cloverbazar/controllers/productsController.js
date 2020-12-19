@@ -77,7 +77,7 @@ const productsController = {
             .then(function (categorias) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -103,7 +103,7 @@ const productsController = {
             .then(function (productos) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -130,7 +130,7 @@ const productsController = {
             .then(function (productos) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -157,7 +157,7 @@ const productsController = {
             .then(function (productos) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -184,7 +184,7 @@ const productsController = {
             .then(function (productos) {
                 // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }
@@ -224,7 +224,7 @@ const productsController = {
                 .then(function(productos){
                     // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
-                    if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                    if(req.session.usuarioLogueado.rol == 'admin'){
                         res.locals.isAdmin = true;
                         res.locals.adminLogueado = req.session.usuarioLogueado;
                     }

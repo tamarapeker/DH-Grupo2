@@ -80,7 +80,7 @@ const usersController = {
     perfil: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
             .then(function (usuario) {
-                if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                if(req.session.usuarioLogueado.rol == 'admin'){
                     res.locals.isAdmin = true;
                     res.locals.adminLogueado = req.session.usuarioLogueado;
                 }
@@ -91,7 +91,7 @@ const usersController = {
     edit: function(req,res,next){
         db.Usuarios.findByPk(req.params.id)
         .then(function(usuario){
-            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+            if(req.session.usuarioLogueado.rol == 'admin'){
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
@@ -126,7 +126,7 @@ const usersController = {
     changePassword: function (req, res, next) {
         db.Usuarios.findByPk(req.params.id)
             .then(function (usuario) {
-                if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+                if(req.session.usuarioLogueado.rol == 'admin'){
                     res.locals.isAdmin = true;
                     res.locals.adminLogueado = req.session.usuarioLogueado;
                 }
@@ -168,12 +168,52 @@ const usersController = {
             include: [{association: 'producto_carrito'}, {association: 'productos'}]
         })
         .then(function(carritos){
-            if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
+            if(req.session.usuarioLogueado.rol == 'admin'){
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
             res.render("users/historialCompras", {carritos, usuario: req.session.usuarioLogueado})
         })
+    },
+
+    registerAdmin: function (req, res, next) {
+        res.render('users/registerAdmin');
+    },
+
+    createAdmin: function (req, res, next) {
+        // vista de errores
+        let errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            res.render("users/registerAdmin", { errors: errors.errors })
+        }
+        //busco si ya existe el email en la BD, si no existe entonces guardo el nuevo usuario
+        db.Usuarios.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
+            .then(function (usuario) {
+                if (!usuario) {
+                    db.Usuarios.create({
+                        nombre: req.body.nombre,
+                        apellido: req.body.apellido,
+                        email: req.body.email,
+                        contrasena: bcrypt.hashSync(req.body.password, 10),
+                        direccion: req.body.direccion,
+                        provincia: req.body.provincias,
+                        telefono: req.body.telefono,
+                        rol: "admin"
+                    })
+                        .then(function (usuario) {
+                            usuario.id = usuario.null
+                            req.session.usuarioLogueado = usuario
+                            console.log(req.session.usuarioLogueado)
+                            res.redirect('/');
+                        })
+                } else {
+                    res.render("users/registerAdmin", { errorAlLoguear: "El email ingresado ya existe." });
+                }
+            })
     },
 
     destroySession: function (req, res, next) {

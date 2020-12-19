@@ -151,6 +151,9 @@
         <%if(!locals.adminLogueado){%>
         <a href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
         <% } %>
+        <%if(locals.adminLogueado){%>
+        <a href="/users/registerAdmin"> <h3>Registrar administrador</h3> </a>
+        <% } %>
         <a href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> </a>
     </div>
 </main>

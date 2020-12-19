@@ -13,6 +13,7 @@ module.exports = (sequelize, dataTypes) =>{
         direccion: dataTypes.STRING,
         provincia: dataTypes.STRING,
         telefono: dataTypes.STRING,
+        rol: dataTypes.STRING,
         estado: dataTypes.INTEGER
     }
     let config = {
