@@ -19,7 +19,7 @@
                 </div>
                 <div class="grid-item">
                     <select name="cantidad" id="cantidad">
-                        <%if(carrito_producto[i].productos.stock <=10 && carrito_producto[i].productos.stock > 0){%>
+                        <%if(carrito_producto[i].productos.stock <=10 && carrito_producto[i].productos.stock >= 0){%>
                             <%for(let j=1 ; j <= carrito_producto[i].productos.stock ; j++){%>
                                     <%if(j == carrito_producto[i].cantidad){%>
                                         <option value="<%=j%>" selected><%=j%></option>
@@ -35,7 +35,7 @@
                                     <option value="<%=j%>"><%=j%></option>
                                 <%}%>
                             <% } %>
-                        <%}%>
+                        <% } %>
                     </select>
                 </div>
                 <div class="grid-item">

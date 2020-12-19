@@ -61,7 +61,7 @@ form{
     color: white;
     font-size: 18px;
     border-style: none;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 10px 20px 10px 20px;
     margin: 0 auto;
 }
@@ -95,7 +95,7 @@ form{
     width: 150px;
     padding: 15px;
     border: solid 4px #fbdcc4;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: white;
     text-align: center;
     text-decoration: none;

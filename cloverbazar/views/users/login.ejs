@@ -4,15 +4,19 @@
 <link rel="stylesheet" href="/stylesheets/auth.css">
 <%-include('../partials/header', {title: 'Iniciar sesión'})%>
 <main>
-    <% if (typeof errors != "undefined"){ %>
-        <ul>
-            <% for (var i= 0; i< errors.length ; i++) { %>
-                <li> <%= errors[i].msg %> </li>
-            <%}%>
-        </ul>
-    <%}%>
+
     <section class="section-form">
     <h2 class="titulo-form">Iniciar sesión</h2>
+        <% if (typeof errors != "undefined"){ %>
+            <ul>
+                <% for (var i= 0; i< errors.length ; i++) { %>
+                    <li> <%= errors[i].msg %> </li>
+                <%}%>
+            </ul>
+        <%}%>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
+            <p><%= errorAlLoguear %></p>
+        <% } %>
         <form action="/users/login" method="POST" class="forms form-login">
             <div class="grid-container">
                 <div class="grid-item">
@@ -32,9 +36,7 @@
             <button class="guardar-cambios" type="submit">Iniciar sesión</button>
         </form>
     </section>
-    <% if(typeof errorAlLoguear != "undefined"){ %>
-        <p><%= errorAlLoguear %></p>
-    <% } %>
+
 
 <!-- The Modal -->
 <div id="myModal-cart" class="modal-cart">

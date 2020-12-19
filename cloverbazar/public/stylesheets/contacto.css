@@ -85,7 +85,10 @@ main{
     padding-right: 20px;
 }
 
-div{
+div.datos1{
+    display: inline-block;
+}
+div.mapa{
     display: inline-block;
 }
 

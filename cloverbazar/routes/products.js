@@ -3,6 +3,7 @@ const router = express.Router();
 const productsController = require('../controllers/productsController');
 const multer = require('multer');
 const path = require('path');
+const { check, validationResult, body } = require("express-validator")
 const adminMiddleware = require('../middlewares/adminMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 
@@ -35,10 +36,18 @@ router.get('/rubro/:category_id', productsController.productCategory);
 router.get('/detail/:id', productsController.detail);
   
 router.get('/create',authMiddleware, adminMiddleware, productsController.create);
-router.post('/create', authMiddleware, adminMiddleware, upload.any(), productsController.store);
+router.post('/create',upload.any(),[
+  check("nombreProducto").isLength({ min: 3, max: 100 }).withMessage("Nombre de producto inválido "),
+  check("precioProducto").not().isEmpty().withMessage("El precio no puede estar vacio"),
+  check("rubroProducto").not().isEmpty().withMessage("Debe seleccionar una categoria")
+] ,  productsController.store);
   
 router.get('/edit/:id',authMiddleware, adminMiddleware, productsController.edit);
-router.post('/edit/:id', authMiddleware, adminMiddleware, upload.any(), productsController.upload);
+router.post('/edit/:id', upload.any(),[
+  check("nombreProducto").isLength({ min: 3, max: 100 }).withMessage("Nombre de producto inválido "),
+  check("precioProducto").not().isEmpty().withMessage("El precio no puede estar vacio"),
+  check("rubroProducto").not().isEmpty().withMessage("Debe seleccionar una categoria")
+] , productsController.upload);
 
 router.get('/destroy/:id', authMiddleware, adminMiddleware, productsController.destroy);
 router.get('/activar/:id', authMiddleware, adminMiddleware, productsController.activar);

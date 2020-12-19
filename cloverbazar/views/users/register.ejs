@@ -5,18 +5,19 @@
 <%-include('../partials/header', {title: 'Registrate'})%>
 <main>
     
-    <% if (typeof errors != "undefined"){ %>
-    <ul style="padding: 0;">
-        <% for (var i= 0; i< errors.length ; i++) { %>
-        <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
-        <%}%>
-        </ul>
-    <%}%>
-        <% if(typeof errorAlLoguear != "undefined"){ %>
-        <p style="color:red"><%= errorAlLoguear %></p>
-    <% } %>
+   
     <section class="section-form">
         <h2 class="titulo-form">Registro</h2>
+        <% if (typeof errors != "undefined"){ %>
+            <ul style="padding: 0;">
+                <% for (var i= 0; i< errors.length ; i++) { %>
+                <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+                <%}%>
+            </ul>
+        <%}%>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
+            <p style="color:red"><%= errorAlLoguear %></p>
+        <% } %>
         <form action="/users/register" method="POST" class="forms">
             <div class="grid-container">
                 <div class="grid-item">

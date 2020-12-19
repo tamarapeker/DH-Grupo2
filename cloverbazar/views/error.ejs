@@ -1,18 +1,3 @@
-<%-include('./partials/header', {title: 'error'})%>
-<link rel="stylesheet" href="/stylesheets/product.css">
-<main>
-<div class="mensaje-error">
-    <h1>¡Ups! No pudimos encontrar la página</h1>
-    <p>Dejanos ayudarte para poder seguir buscando lo que necesitas</p>
-</div>
-<div class="ctas">
-    <a href="/products/ofertas">Ofertas</a>
-    <a href="/products/destacados">Destacados</a>
-    <a href="/products/combos">Combos</a>
-    <a href="/products/rubro">Productos</a>
-</div>
-</main>
-<%-include('./partials/footer')%>
 <style>    
     main{
         display: flex;
@@ -24,7 +9,7 @@
         width: 150px;
         padding: 15px;
         border: solid 4px #fbdcc4;
-        border-radius: 30px;
+        border-radius: 5px;
         background-color: white;
         text-align: center;
         text-decoration: none;
@@ -51,3 +36,19 @@
     }
 
 </style>
+
+<%-include('./partials/header', {title: 'error'})%>
+<link rel="stylesheet" href="/stylesheets/product.css">
+<main>
+<div class="mensaje-error">
+    <h1>¡Ups! No pudimos encontrar la página</h1>
+    <p>Dejanos ayudarte para poder seguir buscando lo que necesitas</p>
+</div>
+<div class="ctas">
+    <a href="/products/ofertas">Ofertas</a>
+    <a href="/products/destacados">Destacados</a>
+    <a href="/products/combos">Combos</a>
+    <a href="/products/rubro">Productos</a>
+</div>
+</main>
+<%-include('./partials/footer')%>

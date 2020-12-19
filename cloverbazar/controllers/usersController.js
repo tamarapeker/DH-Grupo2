@@ -56,7 +56,8 @@ const usersController = {
 
         db.Usuarios.findOne({
             where: {
-                email: req.body.email
+                email: req.body.email,
+                estado: 1
             }
         })
             .then(function (usuario) {
@@ -171,7 +172,7 @@ const usersController = {
                 res.locals.isAdmin = true;
                 res.locals.adminLogueado = req.session.usuarioLogueado;
             }
-            res.render("users/historialCompras", {carritos})
+            res.render("users/historialCompras", {carritos, usuario: req.session.usuarioLogueado})
         })
     },
 

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
+const { validationResult } = require('express-validator');
 const db = require('../database/models');
 
 const productsController = {
@@ -11,6 +12,10 @@ const productsController = {
             where: {
                 estado: 1
             },
+            order: [
+                ["categoria_id", "ASC"],
+                ["nombre", "ASC"]
+            ],
             include: [{ association: "imagenes" }]
             })
             .then(function (productos) {
@@ -20,10 +25,14 @@ const productsController = {
     cambios: function (req, res, next) {
         //listado de productos para admin. Para editar precios, stock y descuento rapidamente
         db.Productos.findAll({
-            include: [{ association: "imagenes" }],
             where: {
                 estado: 1
-            }
+            },
+            order: [
+                ["categoria_id", "ASC"],
+                ["nombre", "ASC"]
+            ],
+            include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
                 res.render('products/productListCambios', { productos })
@@ -51,6 +60,10 @@ const productsController = {
             where: {
                 estado: 0
             },
+            order: [
+                ["categoria_id", "ASC"],
+                ["nombre", "ASC"]
+            ],
             include: [{association: "imagenes"}]
         })
         .then(function(productos){
@@ -84,6 +97,7 @@ const productsController = {
                 nombre: { [db.Sequelize.Op.or]: [{ [db.Sequelize.Op.like]: '%combo%' }, { [db.Sequelize.Op.like]: '%set%' }] },
                 estado: 1
             },
+            order: db.Sequelize.literal('rand()'),
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
@@ -110,6 +124,7 @@ const productsController = {
                 descuento: { [db.Sequelize.Op.gt]: 0 },
                 estado: 1
             },
+            order: db.Sequelize.literal('rand()'),
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
@@ -136,6 +151,7 @@ const productsController = {
                 stock: { [db.Sequelize.Op.gte]: 10 },
                 estado: 1
             },
+            order: db.Sequelize.literal('rand()'),
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
@@ -162,6 +178,7 @@ const productsController = {
                 categoria_id: req.params.category_id,
                 estado: 1
             },
+            order: db.Sequelize.literal('rand()'),
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
@@ -186,25 +203,26 @@ const productsController = {
 
     detail: function (req, res, next) {
         //muestra detalle de producto
-        let pedidoProducto = db.Productos.findByPk(req.params.id,
-            {
-            where: {
-                estado: 1
-            },
-            include: [{ association: "imagenes" }]
-            }
-        )
-        let pedidoProductos = db.Productos.findAll({
-            where: {
-                id: { [db.Sequelize.Op.ne]: req.params.id },
-                estado: 1
-            },
-            include: [{ association: "imagenes" }]
-        })
-
-        Promise.all([pedidoProducto, pedidoProductos])
-            .then(function ([producto, productos]) {
-                // esto es para que el header sea dinamico por si estas o no logueado
+            db.Productos.findByPk(req.params.id, {
+                where: {
+                    estado: 1
+                },
+                include: [{ association: "imagenes" }]
+            })
+            .then(function(producto){
+                db.Productos.findAll({
+                    where: {
+                        id: { [db.Sequelize.Op.ne]: req.params.id },
+                        categoria_id: { [db.Sequelize.Op.eq]: producto.categoria_id },
+                        nombre: { [db.Sequelize.Op.ne]: producto.nombre },
+                        estado: 1
+                    },
+                    order: db.Sequelize.literal('rand()'),
+                    limit: 5,
+                    include: [{ association: "imagenes" }]
+                })
+                .then(function(productos){
+                    // esto es para que el header sea dinamico por si estas o no logueado
                 if (req.session.usuarioLogueado) {
                     if(req.session.usuarioLogueado.email == 'ventascloverbazar@gmail.com'){
                         res.locals.isAdmin = true;
@@ -216,7 +234,8 @@ const productsController = {
                     res.locals.isAuthenticated = false;
 
                 }
-                res.render('products/productDetail', { producto, productos });
+                    res.render('products/productDetail', { producto, productos });
+                })
             })
     },
 
@@ -229,6 +248,14 @@ const productsController = {
     },
 
     store: function (req, res, next) {
+        // vista de errores
+        let errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            db.Categorias.findAll()
+            .then(function(categorias){
+                res.render("products/productAdd", {categorias, errors: errors.errors })
+            })
+        } else {
         //guarda el producto creado
         db.Productos.create({
             nombre: req.body.nombreProducto,
@@ -253,6 +280,7 @@ const productsController = {
                     })
                 }
             })
+        }
     },
 
     edit: function (req, res, next) {
@@ -269,38 +297,52 @@ const productsController = {
     },
 
     upload: function (req, res, next) {
-        //guarda el producto editado
-        db.Productos.update({
-            nombre: req.body.nombreProducto,
-            precio: req.body.precioProducto,
-            stock: req.body.stockProducto,
-            descuento: req.body.descuentoProducto,
-            categoria_id: req.body.rubroProducto,
-            color: req.body.colorProducto,
-            medidas: req.body.medidasProducto,
-            descripcion: req.body.descripcionProducto,
-            estado: req.body.estadoProducto
-        }, {
-            where: {
-                id: req.params.id
-            }
-        })
-            .then(function () {
-                if(req.files[0] == undefined){
-                    res.redirect("/products");
-                } else {
-                    db.Imagenes.update({
-                        ruta: req.files[0].filename
-                    }, {
-                        where: {
-                            producto_id: req.params.id
-                        }
-                    })
-                    .then(function () {
-                        res.redirect("/products");
-                    })
+        // vista de errores
+        let errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            let pedidoProducto = db.Productos.findByPk(req.params.id, {
+                include: [{ association: "imagenes" }]
+            })
+            let pedidoCategorias = db.Categorias.findAll()
+    
+            Promise.all([pedidoProducto, pedidoCategorias])
+                .then(function ([producto, categorias]) {
+                    res.render("products/productEdit", { producto, categorias, errors: errors.errors })
+                })
+        } else {
+            //guarda el producto editado
+            db.Productos.update({
+                nombre: req.body.nombreProducto,
+                precio: req.body.precioProducto,
+                stock: req.body.stockProducto,
+                descuento: req.body.descuentoProducto,
+                categoria_id: req.body.rubroProducto,
+                color: req.body.colorProducto,
+                medidas: req.body.medidasProducto,
+                descripcion: req.body.descripcionProducto,
+                estado: req.body.estadoProducto
+            }, {
+                where: {
+                    id: req.params.id
                 }
             })
+                .then(function () {
+                    if(req.files[0] == undefined){
+                        res.redirect("/products");
+                    } else {
+                        db.Imagenes.update({
+                            ruta: req.files[0].filename
+                        }, {
+                            where: {
+                                producto_id: req.params.id
+                            }
+                        })
+                        .then(function () {
+                            res.redirect("/products");
+                        })
+                    }
+                })
+        }
     },
 
     destroy: function (req, res, next) {
@@ -342,7 +384,7 @@ const productsController = {
                 id: req.params.id
             }
         }).then(function () {
-            res.redirect('/products');
+            res.redirect('/products/inactivos');
                 
         })
     }

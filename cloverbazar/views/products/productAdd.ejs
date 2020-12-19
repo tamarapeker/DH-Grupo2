@@ -2,6 +2,13 @@
 
 <%-include('../partials/header', {title: 'Crear nuevo producto'})%>
 <main>
+    <% if (typeof errors != "undefined"){ %>
+        <ul style="padding: 0;">
+            <% for (var i= 0; i< errors.length ; i++) { %>
+            <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+            <%}%>
+        </ul>
+    <%}%>
     <section>
         <h2>Agregar productos</h2>
         <form action="/products/create" method="POST" enctype="multipart/form-data" class="forms">

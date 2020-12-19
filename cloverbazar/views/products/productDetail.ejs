@@ -69,8 +69,7 @@
     </section>
     <h2 class="titulorel">Productos relacionados</h2>
     <section class="relacionados">
-        <%for(let i=0 ; i < productos.length ; i++) {
-            if(producto.categoria_id == productos[i].categoria_id && producto.nombre != productos[i].nombre) { %>
+        <%for(let i=0 ; i < productos.length ; i++) {%>
         <a href="/products/detail/<%=productos[i].id%>">
             <article>
                 <%if( productos[i].imagenes.length > 0) {%>
@@ -92,7 +91,7 @@
 
             </article>
         </a>
-        <% } } %>
+        <% } %>
     </section>
 
 

@@ -11,6 +11,8 @@ const mainController = {
                 precio: { [db.Sequelize.Op.lt]: 500 },
                 stock: { [db.Sequelize.Op.gte]: 5 }
             },
+            order: db.Sequelize.literal('rand()'),
+            limit: 10,
             include: [{ association: "imagenes" }]
         })
             .then(function (productos) {
@@ -116,7 +118,7 @@ const mainController = {
                 secure: false, // true for 465, false for other ports
                 auth: {
                 user: "ventascloverbazar@gmail.com", // generated ethereal user
-                pass: "alantami2020", // generated ethereal password
+                pass: "*********", // generated ethereal password
                 },
             });
 
@@ -125,7 +127,7 @@ const mainController = {
                 from: req.body.email, // sender address
                 to: "ventascloverbazar@gmail.com", // list of receivers
                 subject: req.body.asunto, // Subject line
-                text: req.body.mensaje, // plain text body
+                text: "Email: "+req.body.email+"\n"+ "\n" +req.body.mensaje, // plain text body
                 html: "", // html body
             });
 
@@ -154,7 +156,7 @@ const mainController = {
                 secure: false, // true for 465, false for other ports
                 auth: {
                 user: "ventascloverbazar@gmail.com", // generated ethereal user
-                pass: "alantami2020", // generated ethereal password
+                pass: "*********", // generated ethereal password
                 },
             });
 
