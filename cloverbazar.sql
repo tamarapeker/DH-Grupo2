@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2020 a las 21:47:29
+-- Tiempo de generación: 19-12-2020 a las 13:53:38
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.5
 
@@ -67,8 +67,12 @@ INSERT INTO `carritos` (`id`, `usuario_id`, `fecha_compra`, `fecha_creacion`, `e
 (27, 9, '2020-12-14', '2020-12-14', 0),
 (28, 9, '2020-12-15', '2020-12-14', 0),
 (29, 9, '2020-12-16', '2020-12-16', 0),
-(30, 9, NULL, '2020-12-16', 1),
-(31, 3, NULL, '2020-12-16', 1);
+(30, 9, '2020-12-18', '2020-12-16', 0),
+(31, 3, NULL, '2020-12-16', 1),
+(32, 9, '2020-12-18', '2020-12-18', 0),
+(33, 9, NULL, '2020-12-18', 1),
+(34, 16, '2020-12-19', '2020-12-19', 0),
+(35, 16, NULL, '2020-12-19', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +94,6 @@ CREATE TABLE `carrito_producto` (
 
 INSERT INTO `carrito_producto` (`id`, `carrito_id`, `producto_id`, `cantidad`, `precio_congelado`) VALUES
 (23, 1, 5, 0, 0),
-(24, 1, 18, 0, 0),
 (37, 3, 2, 1, 0),
 (38, 5, 3, 1, 0),
 (39, 5, 16, 3, 0),
@@ -136,8 +139,11 @@ INSERT INTO `carrito_producto` (`id`, `carrito_id`, `producto_id`, `cantidad`, `
 (138, 28, 8, 2, 620.5),
 (142, 29, 2, 2, 220),
 (143, 29, 4, 7, 221),
-(144, 30, 2, 2, 0),
-(145, 30, 6, 3, 0);
+(147, 30, 2, 3, 0),
+(148, 32, 6, 2, 180),
+(154, 34, 1, 5, 220),
+(155, 35, 30, 6, 0),
+(156, 35, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -232,7 +238,8 @@ INSERT INTO `imagenes` (`id`, `ruta`, `producto_id`) VALUES
 (52, 'imagen-1608237095493.png', 53),
 (53, 'imagen-1608237166494.png', 54),
 (54, 'imagen-1608237191823.png', 55),
-(55, 'imagen-1608237211963.png', 56);
+(55, 'imagen-1608237211963.png', 56),
+(56, 'imagen-1608336623502.png', 63);
 
 -- --------------------------------------------------------
 
@@ -259,11 +266,11 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `nombre`, `precio`, `descuento`, `stock`, `color`, `medidas`, `descripcion`, `categoria_id`, `estado`) VALUES
 (1, 'Vaso térmico tipo Starbucks', 220, 0, 10, 'Lila', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2, 1),
-(2, 'Vaso térmico tipo Starbucks', 220, 0, 6, 'Verde agua', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2, 1),
+(2, 'Vaso térmico tipo Starbucks', 220, 0, 3, 'Verde agua', '300ml', 'Vaso térmico plástico. Tapa y faja de silicona. Mantiene contenido caliente', 2, 1),
 (3, 'Vaso térmico liso', 260, 15, 12, 'Rosa', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2, 1),
 (4, 'Vaso térmico liso', 260, 15, 8, 'Celeste', '350ml', 'Vaso térmico plástico. Cierre hermético con tapa a rosca. Doble vaso con cámara de aire que mantiene la temperatura del contenido caliente y frío', 2, 1),
 (5, 'Mate clásico con bombilla', 180, 0, 5, 'Lila', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1, 1),
-(6, 'Mate clásico con bombilla', 180, 0, 3, 'Rosa', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1, 1),
+(6, 'Mate clásico con bombilla', 180, 0, 1, 'Rosa', 'Diámetro 6cm. Altura 8cm', 'Mate plástico. Bombilla metálica con disco para fácil limpieza. Puede variar el color de la bombilla.', 1, 1),
 (7, 'Set matero clásico', 485, 0, 13, 'Celeste', 'Yerbera 600ml. Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarros con tapa flexible y flip-flap.', 1, 1),
 (8, 'Set matero frase', 730, 15, 3, 'Salmon', 'Yerbera 1000ml Azucarera 400ml', 'Mate con bombilla metálica + Tarro yerbera + Tarro azucarera. Tarro con tapa con pico vertedor. Todo estampado con distintas frases.', 1, 1),
 (9, 'Bowl geométrico grande', 215, 5, 5, 'Verde agua', 'Diámetro 19cm. Altura 11cm', 'Bowl ensaladera. Plástico rígido de alta calidad. Apto para calentar en microondas (no para cocinar)', 3, 1),
@@ -325,6 +332,7 @@ CREATE TABLE `usuarios` (
   `direccion` varchar(50) DEFAULT NULL,
   `provincia` varchar(20) DEFAULT NULL,
   `telefono` varchar(30) DEFAULT NULL,
+  `rol` varchar(15) NOT NULL DEFAULT 'usuario',
   `estado` smallint(6) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -332,20 +340,22 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contrasena`, `direccion`, `provincia`, `telefono`, `estado`) VALUES
-(1, 'Pipo', 'Pipo', 'pipo@pipo.com', '$2a$10$3nppumMtUGQGygzMu5nt6e8', 'Pipo', NULL, 'Pipo', 1),
-(2, 'Pipo', 'Pipo', 'pipo@dh.com', '$2a$10$w6/eUFS.I6WveZMp0.zCn.lTpAG40cqPLOsLBdxW92Q2/Zsq76sjK', 'Pipo', NULL, 'Pipo', 1),
-(3, 'Ventas', 'Clover Bazar', 'ventascloverbazar@gmail.com', '$2a$10$c5OemlIcQKNIPwGG.JbBbe1THVrgv3T/0oJTp9OFNVUFb1zb0U/02', '', NULL, '', 1),
-(4, 'Pipo1', 'Pipo1', '', '$2a$10$OC2CRzCMNIrVCbcYFMlZw.pfPwnVO3ZndRzJ9k0MykiQJyzHtBiU.', '', NULL, '', 1),
-(5, 'Pipo1', 'Pipo1', 'pipo1@pipo.com', '$2a$10$4l5d7IUWQ7GhNnsd6GB5V.i74jyl8jXVUWfmfz4XG6DmiVHdKZT6e', 'sss', NULL, 'aaa', 1),
-(6, 'pipo2', 'pipo2', 'pipo2@pipo.com', '$2a$10$WrtMtH70koezEeex7Lvda.gy96GbnNGYpSFAQx9iOteXzFVmDOAO.', 'Calle', NULL, '123', 1),
-(7, 'pipo3', 'pipo3', 'pipo3@pipo.com', '$2a$10$WyFvk53ogZaORafPlLnBEu2U9.IUoGuKQTX8dl4AHNrFxaz9RukMu', 'pp', NULL, 'pp', 1),
-(8, 'Pipo4', 'Pipo4', 'pipo4@pipo.com', '$2a$10$p7J5Rjr3k.fokeSE7Rp3yuG1OfU7jzwjL9RzdWsrB8UvdD.MsJfJW', '', NULL, '', 1),
-(9, 'Prueba1', 'Prueba1', 'prueba1@prueba.com', '$2a$10$JOzpBMOuu7d9og/J6bWOrO343Km.0o.sZ2d6ZhjmcEJzqi3tTJs2u', '', NULL, '', 1),
-(12, 'prueba3', 'prueba3', 'prueba3@prueba.com', '$2a$10$r.ax5HeBeZEYHWf8CaEbWuDz8WK90lkvxrW0x341VDyh39l2DICAy', '', NULL, '', 1),
-(13, 'prueba4', 'prueba4', 'prueba4@prueba.com', '$2a$10$jYXiMeC2aZ9TBlZmtQ22qepxcOk8XNP4usCCqm7Lo/nH9mgivbl4C', '', NULL, '', 1),
-(14, 'prueba5', 'prueba5', 'prueba5@prueba.com', '$2a$10$6ge00DYSCkBDIMPIfNFpFuvyohibTuBH.q9WkDZgVsW2H50emyjHC', '', NULL, '', 1),
-(15, 'prueba6', 'prueba6', 'prueba6@prueba.com', '$2a$10$7LgpipZq4fWp7MU9bDiLYedXGt6ipNtKbcPgSwUlicE7eX81D0wsa', '', NULL, '', 1);
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `contrasena`, `direccion`, `provincia`, `telefono`, `rol`, `estado`) VALUES
+(1, 'Pipo', 'Pipo', 'pipo@pipo.com', '$2a$10$3nppumMtUGQGygzMu5nt6e8', 'Pipo', NULL, 'Pipo', 'usuario', 1),
+(2, 'Pipo', 'Pipo', 'pipo@dh.com', '$2a$10$w6/eUFS.I6WveZMp0.zCn.lTpAG40cqPLOsLBdxW92Q2/Zsq76sjK', 'Pipo', NULL, 'Pipo', 'usuario', 1),
+(3, 'Ventas', 'Clover Bazar', 'ventascloverbazar@gmail.com', '$2a$10$c5OemlIcQKNIPwGG.JbBbe1THVrgv3T/0oJTp9OFNVUFb1zb0U/02', '', NULL, '', 'admin', 1),
+(4, 'Pipo1', 'Pipo1', '', '$2a$10$OC2CRzCMNIrVCbcYFMlZw.pfPwnVO3ZndRzJ9k0MykiQJyzHtBiU.', '', NULL, '', 'usuario', 1),
+(5, 'Pipo1', 'Pipo1', 'pipo1@pipo.com', '$2a$10$4l5d7IUWQ7GhNnsd6GB5V.i74jyl8jXVUWfmfz4XG6DmiVHdKZT6e', 'sss', NULL, 'aaa', 'usuario', 1),
+(6, 'pipo2', 'pipo2', 'pipo2@pipo.com', '$2a$10$WrtMtH70koezEeex7Lvda.gy96GbnNGYpSFAQx9iOteXzFVmDOAO.', 'Calle', NULL, '123', 'usuario', 1),
+(7, 'pipo3', 'pipo3', 'pipo3@pipo.com', '$2a$10$WyFvk53ogZaORafPlLnBEu2U9.IUoGuKQTX8dl4AHNrFxaz9RukMu', 'pp', NULL, 'pp', 'usuario', 1),
+(8, 'Pipo4', 'Pipo4', 'pipo4@pipo.com', '$2a$10$p7J5Rjr3k.fokeSE7Rp3yuG1OfU7jzwjL9RzdWsrB8UvdD.MsJfJW', '', NULL, '', 'usuario', 1),
+(9, 'Prueba1', 'Prueba1', 'prueba1@prueba.com', '$2a$10$JOzpBMOuu7d9og/J6bWOrO343Km.0o.sZ2d6ZhjmcEJzqi3tTJs2u', '', NULL, '', 'usuario', 1),
+(12, 'prueba3', 'prueba3', 'prueba3@prueba.com', '$2a$10$r.ax5HeBeZEYHWf8CaEbWuDz8WK90lkvxrW0x341VDyh39l2DICAy', '', NULL, '', 'usuario', 1),
+(13, 'prueba4', 'prueba4', 'prueba4@prueba.com', '$2a$10$jYXiMeC2aZ9TBlZmtQ22qepxcOk8XNP4usCCqm7Lo/nH9mgivbl4C', '', NULL, '', 'usuario', 1),
+(14, 'prueba5', 'prueba5', 'prueba5@prueba.com', '$2a$10$6ge00DYSCkBDIMPIfNFpFuvyohibTuBH.q9WkDZgVsW2H50emyjHC', '', NULL, '', 'usuario', 1),
+(15, 'prueba6', 'prueba6', 'prueba6@prueba.com', '$2a$10$7LgpipZq4fWp7MU9bDiLYedXGt6ipNtKbcPgSwUlicE7eX81D0wsa', '', NULL, '', 'usuario', 1),
+(16, 'prueba2', 'prueba2', 'prueba2@prueba.com', '$2a$10$UA8KbJH0VuSmlsnXfi1gfu/JFU/88sNnjJzYR9tZWXO6r81oIIjFC', '123456', 'Ciudad Autónoma de B', '987654', 'usuario', 1),
+(28, 'admin2', 'admin2', 'admin2@gmail.com', '$2a$10$NBem6tZeVMCM20mW3AITgeCtAlkWBp9WF1seV8SiBhUTyEnXyRZku', 'hjkkjh', 'Buenos Aires', '456987', 'admin', 1);
 
 --
 -- Índices para tablas volcadas
@@ -398,13 +408,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carritos`
 --
 ALTER TABLE `carritos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `carrito_producto`
 --
 ALTER TABLE `carrito_producto`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -416,19 +426,19 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
