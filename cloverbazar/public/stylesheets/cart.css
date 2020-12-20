@@ -45,6 +45,7 @@ form{
     right: 10px;
     bottom: 5px;
     text-decoration: none;
+    color: #551A8B;
 }
 
 .grid-item{
@@ -63,7 +64,7 @@ form{
     border-style: none;
     border-radius: 5px;
     padding: 10px 20px 10px 20px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .ctas-container{

@@ -13,29 +13,45 @@
         <h2>Agregar productos</h2>
         <form action="/products/create" method="POST" enctype="multipart/form-data" class="forms">
             <div class="contenedor-datos">
-                <label for="nombreProducto">Nombre de Producto:</label>
-                <input type="text" name="nombreProducto" id="nombreProducto" placeholder="Nombre de producto">
-                <label for="precioProducto">Precio de Producto:</label>
-                <input type="text" name="precioProducto" id="precioProducto" placeholder="Precio de producto">
-                <label for="stockProducto">Stock de Producto:</label>
-                <input type="text" name="stockProducto" id="stockProducto" placeholder="Stock de producto">
-                <label for="descuentoProducto">Descuento de Producto:</label>
-                <input type="text" name="descuentoProducto" id="descuentoProducto" placeholder="Descuento de producto">
-                <label for="rubroProducto">Rubro:</label>
-                <select name="rubroProducto">
-                    <option value="">Elegí la categoría</option>
-                    <%for(let i=0 ; i < categorias.length ; i++) { %>
-                        <option value="<%=categorias[i].id%>">
-                            <%=categorias[i].nombre%>
-                        </option>
-                    <% } %>
-                </select>
-                <label for="colorProducto">Color:</label>
-                <input type="text" name="colorProducto" id="colorProducto" placeholder="Color">
-                <label for="medidasProducto">Medidas:</label>
-                <input type="text" name="medidasProducto" id="medidasProducto" placeholder="Medidas">
-                <label for="descripcionProducto">Descripción:</label>
-                <textarea name="descripcionProducto" id="descripcionProducto" cols="45" rows="10" placeholder="Descripción del producto"></textarea>
+                <div>
+                    <label for="nombreProducto">Nombre de Producto:</label>
+                    <input type="text" name="nombreProducto" id="nombreProducto" placeholder="Nombre de producto">
+                </div>
+                <div>
+                    <label for="precioProducto">Precio de Producto:</label>
+                    <input type="text" name="precioProducto" id="precioProducto" placeholder="Precio de producto">
+                </div>
+                <div>
+                    <label for="stockProducto">Stock de Producto:</label>
+                    <input type="text" name="stockProducto" id="stockProducto" placeholder="Stock de producto">
+                </div>
+                <div>
+                    <label for="descuentoProducto">Descuento de Producto:</label>
+                    <input type="text" name="descuentoProducto" id="descuentoProducto" placeholder="Descuento de producto">
+                </div>
+                <div>
+                    <label for="rubroProducto">Rubro:</label>
+                    <select name="rubroProducto">
+                        <option value="">Elegí la categoría</option>
+                        <%for(let i=0 ; i < categorias.length ; i++) { %>
+                            <option value="<%=categorias[i].id%>">
+                                <%=categorias[i].nombre%>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="colorProducto">Color:</label>
+                    <input type="text" name="colorProducto" id="colorProducto" placeholder="Color">
+                </div>
+                <div>
+                    <label for="medidasProducto">Medidas:</label>
+                    <input type="text" name="medidasProducto" id="medidasProducto" placeholder="Medidas">
+                </div>
+                <div>
+                    <label for="descripcionProducto">Descripción:</label>
+                    <textarea name="descripcionProducto" id="descripcionProducto" cols="45" rows="10" placeholder="Descripción del producto"></textarea>
+                </div>
             </div>
             <div class="contenedor-img">
                 <label for="imagen">Imagen de Producto:</label>
