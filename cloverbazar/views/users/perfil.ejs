@@ -40,7 +40,23 @@
         <%if(locals.adminLogueado){%>
         <a href="/users/registerAdmin"> <h3>Registrar administrador</h3> </a>
         <% } %>
-        <a href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> </a>
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn" class="btn">
+        <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> 
+        </button>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Estas seguro que deseas eliminar la cuenta?</p>
+            <div class="links-modal">
+            <a href="/users/destroy/<%=usuario.id%>" style="font-weight: bold;">Aceptar</a>
+            <a href="" class="close">Cancelar</a>
+            </div>
+        </div>
+
     </div>
 </main>
 <%-include('../partials/footer')%>
