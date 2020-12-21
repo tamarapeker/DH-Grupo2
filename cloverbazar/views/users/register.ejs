@@ -1,135 +1,23 @@
 
 <script src="/js/validacionesRegistro.js"></script>
 <script src="/js/apiProvincias.js"></script>
-
+<link rel="stylesheet" href="/stylesheets/auth.css">
 <%-include('../partials/header', {title: 'Registrate'})%>
-<style>
-    main{
-        text-align: center;
-        display: flex;
-        flex-flow: column;
-        margin-top: 100px;
-        margin-bottom: 100px;
-    }
-
-    body{
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        min-height: 100vh;
-    }
-
-    .section-form{
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container{
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container a{
-        color: #2e2e2e;
-    }
-
-    .forms{
-        max-width: 800px;
-    }
-
-    .grid-container{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 12px;
-        width: 350px;
-    }
-
-    .grid-item{
-        width: 100%;
-    }
-    
-    .grid-input{  
-        padding: 15px;
-        border: none;
-        border-bottom: solid 1px #bbb4be;
-        background: none;
-        width: 50%;
-    }
-
-    .grid-input:focus{
-        outline: none;
-    }
-
-    .guardar-cambios{
-        background-color: #2e2e2e;
-        color: white;
-        font-size: 18px;
-        border-style: none;
-        border-radius: 20px;
-        padding: 10px 20px 10px 20px;
-        margin-top: 50px;
-}
-
-    @media(min-width: 786px){
-        main{
-            margin: auto;
-            text-align: center;
-            display: flex;
-            flex-flow: row;
-            justify-content: space-around;
-            max-width: 1100px;
-        }
-
-        .section-form{
-            max-width: 600px;
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            background-color: #faeded;
-            margin: 10px;
-            padding: 60px;
-            border-radius: 20px;
-        }
-
-        .grid-container{
-            margin: auto;
-            max-width: 500px;
-        }
-
-        .grid-item{
-            width: 100%;
-        }
-        
-        .grid-input{  
-            max-width: 200px;
-        }
-    }
-
-</style>
 <main>
     
-    <% if (typeof errors != "undefined"){ %>
-    <ul style="padding: 0;">
-        <% for (var i= 0; i< errors.length ; i++) { %>
-        <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
-        <%}%>
-        </ul>
-    <%}%>
-        <% if(typeof errorAlLoguear != "undefined"){ %>
-        <p style="color:red"><%= errorAlLoguear %></p>
-    <% } %>
+   
     <section class="section-form">
-        <h2>Registro</h2>
+        <h2 class="titulo-form">Registro</h2>
+        <% if (typeof errors != "undefined"){ %>
+            <ul style="padding: 0;">
+                <% for (var i= 0; i< errors.length ; i++) { %>
+                <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+                <%}%>
+            </ul>
+        <%}%>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
+            <p style="color:red"><%= errorAlLoguear %></p>
+        <% } %>
         <form action="/users/register" method="POST" class="forms">
             <div class="grid-container">
                 <div class="grid-item">
@@ -153,12 +41,14 @@
                     <div class="confirmPasswordError"></div>
                 </div>
                 <div class="grid-item">
-                    <input class="grid-input" type="text" name="direccion" id="direccion" placeholder="Direccion">
-                </div>
-                <div class="apiProvincias"></div>
-                <div class="grid-item">
                     <input class="grid-input" type="text" name="telefono" id="telefono" placeholder="Telefono">
                     <div class="telefonoError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="direccion" id="direccion" placeholder="Direccion">
+                </div>
+                <div class="grid-item">
+                    <select name='provincias' class='selectProvincias grid-input'></select>
                 </div>
 
             </div>

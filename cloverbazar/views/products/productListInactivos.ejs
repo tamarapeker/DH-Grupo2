@@ -1,22 +1,42 @@
 <link rel="stylesheet" href="/stylesheets/productList.css">
-
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
-    <h2>Listado de productos inactivos</h2>
-    <section>
+    <section class="section-form">
+        <h2>Listado de productos inactivos</h2>
+        <div class="botones">
+            <a href="/products" class="link-botones">Productos activos</a>
+        </div>
+        <%if(productos.length > 0){%>
         <%for(let i=0 ; i < productos.length ; i++) {%>
-
-        <article>
-            <%if( productos[i].imagenes.length > 0) {%>
-            <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
-            <% } %>
-            <p class="nombre-producto"><%=productos[i].nombre%></p>
-            <p>$<%=productos[i].precio%></p>
-            <p><%=productos[i].descuento%>%</p>
-            <a href="/products/edit/<%=productos[i].id%>" class="links">EDITAR</a>
-            <a href="/products/activar/<%=productos[i].id%>" class="links">ACTIVAR</a>
-        </article>
+        <form action="">
+            <article class="grid-container">
+                <div class="grid-item">
+                    <%if( productos[i].imagenes.length > 0) {%>
+                    <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
+                    <% } %>
+                </div>
+                <div class="grid-item">
+                    <p class="nombre-producto"><%=productos[i].nombre%></p>
+                </div>
+                <div class="grid-item">
+                    <p>$<%=productos[i].precio%></p>
+                </div>
+                <div class="grid-item">
+                    <p><%=productos[i].descuento%>%</p>
+                </div>
+                <div class="grid-item">
+                    <a href="/products/edit/<%=productos[i].id%>" class="confirmar-compra">Editar</a>
+                </div>
+                <div class="grid-item">
+                    <a href="/products/activar/<%=productos[i].id%>" class="confirmar-compra">Activar</a>
+                </div>
+            </article>
+            
+        </form>
         <%  } %>
+        <%} else {%>
+            <h3>No hay productos inactivos</h3>
+        <% } %>
     </section>
 </main>
 <%-include('../partials/footer')%>

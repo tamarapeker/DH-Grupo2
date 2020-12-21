@@ -30,10 +30,24 @@ main section h3{
         font-weight: 400;
         color: rgb(46, 46, 46);
         padding-left: 10px;
+        margin: 5px;
     
     }
 main section a{
     text-decoration: none;
+}
+main section article.tarjeta-producto{
+    position: relative;
+    margin-bottom: 100px;
+}
+main section article.tarjeta-producto div.tarjeta-dto{
+    position: absolute;
+    background-color: #faeded;
+    color: black;
+    top: 10px;
+    right: 20px;
+    padding: 5px;
+
 }
 main section article .precios h3{
     display: inline-block;
@@ -41,6 +55,9 @@ main section article .precios h3{
 main section article h3.precioConDto{
     color: black;
     margin-left: 15px;
+}
+main section article h3.agotado{
+    font-weight: bold;
 }
 main section article h3.tachado{
     text-decoration: line-through;

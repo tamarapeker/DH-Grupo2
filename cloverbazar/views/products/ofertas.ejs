@@ -8,7 +8,7 @@
         <% } else {  %>
     <section>
         <%for(let i = 0 ; i < productos.length ; i++) { %>
-        <article>
+        <article class="tarjeta-producto" >
             <a href="/products/detail/<%=productos[i].id%>">
                 <%if( productos[i].imagenes.length > 0) {%>
                 <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="">
@@ -17,9 +17,12 @@
                 <div class="precios">
                     <%if( productos[i].stock <= 0) {%>
     
-                        <h3>Agotado</h3>
+                        <h3 class="agotado">Agotado</h3>
                         <% } else{ %>   
                     <%if( productos[i].descuento > 0) {%>
+                        <div class="tarjeta-dto">
+                            <%=productos[i].descuento%>% Off
+                        </div>
                     <h3 class= "tachado"> $<%=productos[i].precio%> </h3>
                     <h3 class="precioConDto">$<%=(productos[i].precio * (100-productos[i].descuento))/100%></h3>
                     <% } else{ %>

@@ -48,6 +48,17 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  if (req.session.usuarioLogueado) {
+    if(req.session.usuarioLogueado.rol == 'admin'){
+        res.locals.isAdmin = true;
+        res.locals.adminLogueado = req.session.usuarioLogueado;
+    }
+    res.locals.isAuthenticated = true
+    res.locals.usuarioLogueado = req.session.usuarioLogueado
+} else {
+    res.locals.isAuthenticated = false;
+
+}
   res.render('error');
 });
 

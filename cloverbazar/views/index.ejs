@@ -4,10 +4,13 @@
 <%-include('./partials/header', {title: ''})%>
 <main>
   <section class="carrusel">
-    <a href="">
+
       <img src="/images/portada.png" alt="">
-    </a>
-    <br>
+
+    <div class="carrusel-content">
+      <h1>Clover Bazar</h1>
+      <p>Llevamos el bazar a tu casa</p>
+    </div>
   </section>
   <section class="secciones">
     <article>
@@ -43,18 +46,32 @@
       <a href="/products/detail/<%=productos[i].id%>">
         <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Producto">
         <h3><%=productos[i].nombre%></h3>
+        <div class="precios">
+          <%if( productos[i].stock <= 0) {%>
+
+              <h3 class="agotado">Agotado</h3>
+              <% } else{ %>   
+          <%if( productos[i].descuento > 0) {%>
+              <div class="tarjeta-dto">
+                  <%=productos[i].descuento%>% Off
+              </div>
+          <h3 class= "tachado"> $<%=productos[i].precio%> </h3>
+          <h3 class="precioConDto">$<%=(productos[i].precio * (100-productos[i].descuento))/100%></h3>
+          <% } else{ %>
+              <h3> $<%=productos[i].precio%> </h3>
+          </div>
+          <% } %>
+          <% } %>
       </a>
     </article>
     <% } } %>
   </section>
   <section class="formulario">
-    <form action="">
-      <label for="Asunto">
-        Escribinos!
-      </label>
-      <input type="text" id="Asunto" placeholder="Asunto">
-      <input type="email" placeholder="Email">
-      <textarea name="Mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
+    <form action="/mandarMail" method="POST">
+      <h2 class="titulo-form">¡Escribinos!</h2>
+      <input type="text" name="asunto" id="Asunto" placeholder="Asunto">
+      <input type="email" name="email" placeholder="Email">
+      <textarea name="mensaje" id="Mensaje" cols="30" rows="10" placeholder="Tu mensaje"></textarea>
       <button type="submit">Enviar</button>
     </form>
   </section>

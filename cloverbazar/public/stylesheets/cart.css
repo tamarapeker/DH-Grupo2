@@ -45,6 +45,7 @@ form{
     right: 10px;
     bottom: 5px;
     text-decoration: none;
+    color: #551A8B;
 }
 
 .grid-item{
@@ -61,9 +62,9 @@ form{
     color: white;
     font-size: 18px;
     border-style: none;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 10px 20px 10px 20px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .ctas-container{
@@ -86,12 +87,16 @@ form{
     margin-left: 10px;
 }
 
+.link-container {
+    margin-bottom: 100px;
+}
+
 .link-productos{
     margin-top: 40px;
     width: 150px;
     padding: 15px;
     border: solid 4px #fbdcc4;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: white;
     text-align: center;
     text-decoration: none;

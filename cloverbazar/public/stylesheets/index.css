@@ -7,25 +7,43 @@ body{
 }
 main section.carrusel{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    margin-bottom: 50px;
+    position: relative;
 }
 main section.carrusel img{
-object-fit: fill;
-width: 100%;
-/*le pongo altura para que no quede feo*/
+    object-fit: cover;
+    width: 100%;
+    max-height: 700px;
 }
-main section.carrusel h1{ 
-text-align: center;
-color: rgb(46, 46, 46);
-position: relative;
-bottom: 90px;
-font-weight: lighter;
-}
+
 main section.carrusel a{
     text-decoration: none;
     
 }
+
+.carrusel-content{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrusel-content h1{ 
+    font-size: calc(1.8em + 1vw);;
+    color: rgb(46, 46, 46);
+    margin: 0;
+}
+
+.carrusel-content p {
+    font-size: calc(1.2em + 1vw);
+    margin: 0;
+}
+
 main section{
     display: flex;
     flex-wrap: wrap;
@@ -44,10 +62,10 @@ width: 100%;
 }
 main section.secciones h3{
     position: relative;
+    font-size: 1.7rem;
     font-weight: 400;
     color: rgb(46, 46, 46);
     text-align: left;
-    padding-left: 10px;
     position: relative;
 
 }
@@ -71,6 +89,32 @@ main section.productos  h3{
     padding-left: 10px;
 
 }
+main section article.producto{
+    position: relative;
+    margin: 10px;
+}
+main section article.producto div.tarjeta-dto{
+    position: absolute;
+    background-color: #faeded;
+    color: black;
+    top: 10px;
+    right: 0px;
+    padding: 5px;
+
+}
+main section article .precios h3{
+    display: inline-block;
+}
+main section article h3.precioConDto{
+    color: black;
+}
+main section article h3.agotado{
+    font-weight: bold;
+}
+main section article h3.tachado{
+    text-decoration: line-through;
+    color: rgb(100, 100, 100);    
+}
 
 main section form{
     background-color: #fbdcc4;
@@ -89,10 +133,8 @@ main section form input{
     border: 0;
     border-radius: 5px;
     margin: 5px 0;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Libre Franklin', sans-serif;
-
-
 }
 main section form textarea{
     width: 90%;
@@ -100,23 +142,39 @@ main section form textarea{
     border-radius: 5px;
     margin: 5px 0;
     font-family: 'Libre Franklin', sans-serif;
-    padding: 5px;
+    padding: 10px;
 }
 main section form button{
-    width: 95px;
     border: 0;
     background-color:  rgb(46, 46, 46);
     border-radius: 5px;
-    padding: 15px;
-    color: #fbdcc4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px 10px 30px;
+    color: white;
     background-color: rgb(46, 46, 46);
 }
+
+.titulo-form{
+    text-align: center;
+}
+
 @media (min-width: 768px){
-    main section.carrusel img{
+ /*   main section.carrusel img{
         height: 300px;
-    }
+    }*/
     main section.productos article{
         width: 150px;
+    }
+    main section article h3.precioConDto{
+        margin-left: 15px;
+    }
+    main section article.producto{
+
+        margin-bottom: 100px;
+    }
+    main section article.producto div.tarjeta-dto{
+        right: 20px;
     }
     main  h2{
         text-align: left;
@@ -130,15 +188,15 @@ main section form button{
     }
 }
 @media (min-width: 1024px){
-    main section.carrusel img{
+  /*  main section.carrusel img{
         height: 400px;
-    }
+    }*/
     main section.productos article{
         width: 230px;
     }
 }
 @media (min-width: 1350px){
-    main section.carrusel img{
+   /* main section.carrusel img{
         height: 500px;
-    }
+    }*/
 }

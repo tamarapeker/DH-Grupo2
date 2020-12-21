@@ -1,34 +1,41 @@
 <link rel="stylesheet" href="/stylesheets/cambios.css">
-
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
-    <h2>Modificaciones</h2>
-    <section>
+    
+    <section class="section-form">
+        <h2>Modificaciones</h2>
+        <div class="botones">
+            <a href="/products" class="confirmar-compra">Listado productos</a>
+        </div>
         <form action="/products/cambios" method="POST">
         <%for(let i=0 ; i < productos.length ; i++) {%>
-        <article>
-            <%if( productos[i].imagenes.length > 0) {%>
-            <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
-            <% } %>
-            <p class="nombre-producto"><%=productos[i].nombre%></p>
-            <div>
-                <input type="hidden" name="idProducto" id="idProducto" value='<%=productos[i].id %>'>
+        <article class="grid-container">
+            <div class="grid-item">
+                <%if( productos[i].imagenes.length > 0) {%>
+                <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
+                <% } %>
             </div>
-            <div>
+            <div class="grid-item">
+                <p class="nombre-producto"><%=productos[i].nombre%></p>
+                <div>
+                    <input class="grid-input" type="hidden" name="idProducto" id="idProducto" value='<%=productos[i].id %>'>
+                </div>
+            </div>
+            <div class="grid-item">
                 <label for="precioProducto">Precio:</label>
-                <input type="text" name="precioProducto" id="precioProducto" value= '<%=productos[i].precio %>' >
+                <input class="grid-input" type="text" name="precioProducto" id="precioProducto" value= '<%=productos[i].precio %>' >
             </div>
-            <div>
+            <div class="grid-item">
                 <label for="stockProducto">Stock:</label>
-                <input type="text" name="stockProducto" id="stockProducto" value= '<%=productos[i].stock %>'>
+                <input class="grid-input" type="text" name="stockProducto" id="stockProducto" value= '<%=productos[i].stock %>'>
             </div>
-            <div>
+            <div class="grid-item">
                 <label for="descuentoProducto">Descuento:</label>
-                <input type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=productos[i].descuento %>'>
+                <input class="grid-input" type="text" name="descuentoProducto" id="descuentoProducto" value= '<%=productos[i].descuento %>'>
             </div>
         </article>
         <%  } %>
-        <button type="submit" class="nuevo-producto">MODIFICAR</button>
+        <button type="submit" class="confirmar-compra">Modificar</button>
         </form>
     </section>
 </main>

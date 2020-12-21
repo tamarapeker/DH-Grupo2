@@ -14,4 +14,7 @@ router.get('/faqs', mainController.faqs);
 
 router.get('/search', mainController.search);
 
+router.post('/mandarMail', mainController.mandarMail)
+router.post('/mandarMailMayorista', mainController.mandarMailMayorista)
+
 module.exports = router;

@@ -1,153 +1,42 @@
 
 <script src="/js/validacionesSesion.js"></script>
 <script src="/js/avisoCarrito.js"></script>
-
+<link rel="stylesheet" href="/stylesheets/auth.css">
 <%-include('../partials/header', {title: 'Iniciar sesión'})%>
-<style>
-    main{
-        text-align: center;
-        display: flex;
-        flex-flow: column;
-        margin-top: 100px;
-        margin-bottom: 100px;
-    }
-
-    body{
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        min-height: 100vh;
-    }
-
-    .section-form{
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container{
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container a{
-        color: #2e2e2e;
-    }
-
-    .forms{
-        max-width: 800px;
-    }
-
-    .grid-container{
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 12px;
-        width: 350px;
-    }
-
-    .grid-item{
-        width: 100%;
-    }
-    
-    .grid-input{  
-        padding: 15px;
-        border: none;
-        border-bottom: solid 1px #bbb4be;
-        background: none;
-        width: 50%;
-    }
-
-    .grid-input:focus{
-        outline: none;
-    }
-
-    .guardar-cambios{
-        background-color: #2e2e2e;
-        color: white;
-        font-size: 18px;
-        border-style: none;
-        border-radius: 20px;
-        padding: 10px 20px 10px 20px;
-        margin-top: 50px;
-}
-
-    @media(min-width: 786px){
-        main{
-            margin: auto;
-            text-align: center;
-            display: flex;
-            flex-flow: row;
-            justify-content: space-around;
-            max-width: 1100px;
-        }
-
-        .section-form{
-            max-width: 600px;
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            background-color: #faeded;
-            margin: 10px;
-            padding: 60px;
-            border-radius: 20px;
-        }
-
-        .grid-container{
-            margin: auto;
-            max-width: 500px;
-        }
-
-        .grid-item{
-            width: 100%;
-        }
-        
-        .grid-input{  
-            max-width: 200px;
-        }
-    }
-
-</style>
 <main>
-    <% if (typeof errors != "undefined"){ %>
-        <ul>
-            <% for (var i= 0; i< errors.length ; i++) { %>
-                <li> <%= errors[i].msg %> </li>
-            <%}%>
-        </ul>
-    <%}%>
+
     <section class="section-form">
-    <h2>Iniciar sesión</h2>
+    <h2 class="titulo-form">Iniciar sesión</h2>
+        <% if (typeof errors != "undefined"){ %>
+            <ul>
+                <% for (var i= 0; i< errors.length ; i++) { %>
+                    <li> <%= errors[i].msg %> </li>
+                <%}%>
+            </ul>
+        <%}%>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
+            <p><%= errorAlLoguear %></p>
+        <% } %>
         <form action="/users/login" method="POST" class="forms form-login">
             <div class="grid-container">
                 <div class="grid-item">
                     <input class="grid-input" type="email" name="email" id="email" placeholder="E-mail">
-                    <div class="emailError"></div>
+                    <div class="emailError error-style"></div>
                 </div>
                 <div class="grid-item">
                     <input class="grid-input" type="password" name="password" id="password" placeholder="Contraseña">
-                    <div class="passwordError"></div>
-                </div>
-                <div class="grid-item">
-                    <label for="remember">Recordame</label>
-                    <input class="grid-input" type="checkbox" name="remember" class="remember" id="remember">
+                    <div class="passwordError error-style"></div>
                 </div>
             </div>
-            <a href="/users/register">No tenes cuenta? Registrate</a>
+            <div class="recordame-container">
+                <label for="remember">Recordame</label>
+                <input class="grid-input" type="checkbox" name="remember" class="remember" id="remember">
+            </div>
+            <a href="/users/register" class="link-registro">¿No tenes cuenta? Registrate</a>
             <button class="guardar-cambios" type="submit">Iniciar sesión</button>
         </form>
     </section>
-    <% if(typeof errorAlLoguear != "undefined"){ %>
-        <p><%= errorAlLoguear %></p>
-    <% } %>
+
 
 <!-- The Modal -->
 <div id="myModal-cart" class="modal-cart">

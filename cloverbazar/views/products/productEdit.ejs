@@ -2,6 +2,13 @@
 
 <%-include('../partials/header', {title: 'Editar producto'})%>
 <main>
+    <% if (typeof errors != "undefined"){ %>
+        <ul style="padding: 0;">
+            <% for (var i= 0; i< errors.length ; i++) { %>
+            <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+            <%}%>
+        </ul>
+    <%}%>
     <section>
         <h2>Editar producto: <%= producto.nombre%></h2>
         <form action="/products/edit/<%= producto.id%>" method="POST" class="forms" enctype="multipart/form-data">

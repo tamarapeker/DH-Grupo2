@@ -1,0 +1,141 @@
+main{
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+body{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.titulo-form{
+    font-size: 2.5rem;
+}
+
+.section-form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #faeded;
+    margin: 10px;
+    padding: 60px;
+    border-radius: 20px;
+}
+
+.options-container{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    background-color: #faeded;
+    margin: 10px;
+    padding: 60px;
+    border-radius: 20px;
+}
+
+.options-container a{
+    color: #2e2e2e;
+}
+
+.forms{
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 800px;
+    align-items: center;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 12px;
+}
+
+.grid-item{
+    width: 100%;
+}
+
+.grid-input{  
+    padding: 15px;
+    border: none;
+    border-bottom: solid 1px #bbb4be;
+    background: none;
+}
+
+.grid-input:focus{
+    outline: none;
+}
+
+.guardar-cambios{
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    width: 200px;
+    color: white;
+    background-color: rgb(46, 46, 46);
+    margin-top: 30px;
+}
+
+.error-style{
+    padding: 10px;
+    font-size: .8rem;
+    color: red;
+}
+
+.recordame-container{
+    margin: 20px;
+}
+
+.link-registro:visited{
+  color: #551A8B
+}
+
+.link-registro:focus{
+    color: #551A8B
+}
+
+.selectProvincias{
+    border: none;
+    width: 200px;
+}
+button:hover{
+    cursor: pointer;
+    background-color: rgb(100,100,100);
+}
+
+@media(min-width: 786px){
+    main{
+        text-align: center;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-around;
+    }
+
+    .section-form{
+        max-width: 700px;
+        width: 700px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        background-color: #faeded;
+        margin: 10px;
+        padding: 60px;
+        border-radius: 20px;
+    }
+
+    .grid-container{
+        margin: auto;
+        max-width: 500px;
+    }
+
+    .grid-item{
+        width: 100%;
+    }
+    
+    .grid-input{  
+        max-width: 200px;
+    }
+}

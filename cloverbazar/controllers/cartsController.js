@@ -133,7 +133,8 @@ const cartsController = {
     },
     guardarCambios: function(req,res,next){
         let id_usuarioLogueado = req.session.usuarioLogueado.id
-        if(isArray(req.body.id)){
+        console.log(typeof req.body.id)
+        if(typeof req.body.id == "object"){
             for(let i=0 ; i < req.body.id.length; i++){
                 db.carrito_producto.update({
                     cantidad: req.body.cantidad[i]
@@ -144,6 +145,8 @@ const cartsController = {
                 })
                 .then(function(){})
             }
+        
+        res.redirect("/carts/"+id_usuarioLogueado+"#cambiosOk")
         } else {
             db.carrito_producto.update({
                 cantidad: req.body.cantidad
@@ -153,10 +156,8 @@ const cartsController = {
                 }
             })
             .then(function(){})
+            res.redirect("/carts/"+id_usuarioLogueado+"#cambiosOk")
         }
-        
-        res.redirect("/carts/"+id_usuarioLogueado+"#cambiosOk")
-        
     },
 
     confirmarCompra: function(req,res,next){
@@ -169,30 +170,50 @@ const cartsController = {
             }
         })
         .then(function(){
-            for(let i=0 ; i < req.body.id.length ; i++){
+            if(typeof req.body.id == "object"){
+                for(let i=0 ; i < req.body.id.length ; i++){
+                    db.carrito_producto.update({
+                        precio_congelado: req.body.precio[i]
+                    }, {
+                        where: {
+                            id: req.body.id[i]
+                        }
+                    })
+                    .then(function(){
+                       
+                    })
+                }
+    
+                for(let i=0 ; i < req.body.id.length ; i++){
+                    db.Productos.update({
+                        stock: Number(req.body.stock_producto[i]) - Number(req.body.cantidad[i])
+                    },{
+                        where: {
+                            id: req.body.id_producto[i]
+                        }
+                    })
+                    .then(function(){})
+                }
+                res.redirect('/#compraOk')
+            } else {
                 db.carrito_producto.update({
-                    precio_congelado: req.body.precio[i]
+                    precio_congelado: req.body.precio
                 }, {
                     where: {
-                        id: req.body.id[i]
-                    }
-                })
-                .then(function(){
-                   
-                })
-            }
-
-            for(let i=0 ; i < req.body.id.length ; i++){
-                db.Productos.update({
-                    stock: Number(req.body.stock_producto[i]) - Number(req.body.cantidad[i])
-                },{
-                    where: {
-                        id: req.body.id_producto[i]
+                        id: req.body.id
                     }
                 })
                 .then(function(){})
+                db.Productos.update({
+                    stock: Number(req.body.stock_producto) - Number(req.body.cantidad)
+                },{
+                    where: {
+                        id: req.body.id_producto
+                    }
+                })
+                .then(function(){})
+                res.redirect('/#compraOk')
             }
-            res.redirect('/#compraOk')
         })
     }
 }

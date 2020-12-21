@@ -1,117 +1,5 @@
+<link rel="stylesheet" href="/stylesheets/profile.css">
 <%-include('../partials/header', {title: 'Hola ' + usuario.nombre})%>
-<style>
-    main{
-        text-align: center;
-        display: flex;
-        flex-flow: column;
-        margin-top: 100px;
-        margin-bottom: 100px;
-    }
-
-    body{
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        min-height: 100vh;
-    }
-
-    .section-form{
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container{
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        background-color: #faeded;
-        margin: 10px;
-        padding: 60px;
-        border-radius: 20px;
-    }
-
-    .options-container a{
-        color: #2e2e2e;
-    }
-
-    .forms{
-        max-width: 800px;
-    }
-
-    .grid-container{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 12px;
-        width: 290px;
-    }
-
-    .grid-item{
-        width: 100%;
-    }
-    
-    .grid-input{  
-        padding: 15px;
-        border: none;
-        border-bottom: solid 1px #bbb4be;
-        background: none;
-        width: 50%;
-    }
-
-    .grid-input:focus{
-        outline: none;
-    }
-
-    .guardar-cambios{
-        background-color: #2e2e2e;
-        color: white;
-        font-size: 18px;
-        border-style: none;
-        border-radius: 20px;
-        padding: 10px 20px 10px 20px;
-        margin-top: 50px;
-}
-
-    @media(min-width: 786px){
-        main{
-            margin: auto;
-            text-align: center;
-            display: flex;
-            flex-flow: row;
-            justify-content: space-around;
-            max-width: 1100px;
-        }
-
-        .section-form{
-            max-width: 600px;
-            display: flex;
-            flex-flow: column;
-            align-items: center;
-            background-color: #faeded;
-            margin: 10px;
-            padding: 60px;
-            border-radius: 20px;
-        }
-
-        .grid-container{
-            margin: auto;
-            max-width: 500px;
-        }
-
-        .grid-item{
-            width: 100%;
-        }
-        
-        .grid-input{  
-            max-width: 200px;
-        }
-    }
-
-</style>
 <main>
     <% if (typeof errors != "undefined"){ %>
         <ul style="padding: 0;">
@@ -123,9 +11,8 @@
     <% if(typeof errorAlLoguear != "undefined"){ %>
         <p style="color:red"><%= errorAlLoguear %></p>
     <% } %>
-    <section class="section-form">
+    <section class="datos-form">
         <h2>Mis datos personales</h2>
-        <form action="/users/perfil/<%=usuario.id%>" method="POST" class="forms">
             <div class="grid-container">
                 <div class="grid-item">
                     <p class="grid-input"> Nombre:  <%=usuario.nombre%> </p>
@@ -143,13 +30,33 @@
                     <p class="grid-input"> Telefono: <%=usuario.telefono%> </p>
                 </div>
             </div>
-        </form>
     </section>
     <div class="options-container">
         <a href="/users/editar/<%=usuario.id%>"> <h3>Cambiar datos usuario</h3> </a>
         <a href="/users/password/<%=usuario.id%>"> <h3>Cambiar contraseña</h3> </a>
+        <%if(!locals.adminLogueado){%>
         <a href="/users/historialCompras/<%=usuario.id%>"> <h3>Historial de compras</h3> </a>
-        <a href="/users/destroy/<%=usuario.id%>"> <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> </a>
+        <% } %>
+        <%if(locals.adminLogueado){%>
+        <a href="/users/registerAdmin"> <h3>Registrar administrador</h3> </a>
+        <% } %>
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn" class="btn">
+        <h3 style="color: red; text-decoration-color: red;">ELIMINAR CUENTA</h3> 
+        </button>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Estas seguro que deseas eliminar la cuenta?</p>
+            <div class="links-modal">
+            <a href="/users/destroy/<%=usuario.id%>" style="font-weight: bold;">Aceptar</a>
+            <a href="" class="close">Cancelar</a>
+            </div>
+        </div>
+
     </div>
 </main>
 <%-include('../partials/footer')%>

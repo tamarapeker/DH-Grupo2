@@ -1,29 +1,41 @@
 <link rel="stylesheet" href="/stylesheets/productList.css">
-
 <%-include('../partials/header', {title: 'Listado de productos'})%>
 <main>
     
-    <h2>Listado de productos</h2>
-    <section>
-        <div class="boton">
-            <a href="/products/create" class="botones">Crear producto </a>
-            <a href="/products/cambios" class="botones">Modificar Varios</a>
-            <a href="/products/inactivos" class="botones">Ver productos inactivos</a>
-            </div>
-        <%for(let i=0 ; i < productos.length ; i++) {%>
-
-        <article>
-            <%if( productos[i].imagenes.length > 0) {%>
-            <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
-            <% } %>
-            <p class="nombre-producto"><%=productos[i].nombre%></p>
-            <p>$<%=productos[i].precio%></p>
-            <p><%=productos[i].descuento%>%</p>
-            <a href="/products/edit/<%=productos[i].id%>" class="links">EDITAR</a>
-            <a href="/products/destroy/<%=productos[i].id%>" class="links">ELIMINAR</a>
-        </article>
-        <%  } %>
-
+    
+    <section class="section-form">
+        <h2>Listado de productos</h2>
+        <div class="botones">
+            <a href="/products/create" class="link-botones">Crear producto </a>
+            <a href="/products/cambios" class="link-botones">Modificar Varios</a>
+            <a href="/products/inactivos" class="link-botones">Productos inactivos</a>
+        </div>
+        <form action="">
+            <%for(let i=0 ; i < productos.length ; i++) {%>
+            <article class="grid-container">
+                <div class="grid-item">
+                    <%if( productos[i].imagenes.length > 0) {%>
+                    <img src="/images/products/<%=productos[i].imagenes[0].ruta%>" alt="Imagen de producto">
+                    <% } %>
+                </div>
+                <div class="grid-item">
+                    <p class="nombre-producto"><%=productos[i].nombre%></p>
+                </div>
+                <div class="grid-item">
+                    <p>$<%=productos[i].precio%></p>
+                </div>
+                <div class="grid-item">
+                    <p><%=productos[i].descuento%>%</p>
+                </div>
+                <div class="grid-item">
+                    <a href="/products/edit/<%=productos[i].id%>" class="confirmar-compra">Editar</a>
+                </div>
+                <div class="grid-item">
+                    <a href="/products/destroy/<%=productos[i].id%>" class="confirmar-compra">Eliminar</a>
+                </div>
+            </article>
+            <%  } %>
+        </form>
     </section>
 </main>
 <%-include('../partials/footer')%>

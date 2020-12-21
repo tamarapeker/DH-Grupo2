@@ -7,6 +7,10 @@ body{
     box-sizing:border-box;
 }
 
+#toggle{
+    display: none;
+}
+
 /*HEADER*/
     /*Barra superior HEADER*/
 header div.barra1 {
@@ -16,7 +20,10 @@ header div.barra1 {
     align-items: center;
     justify-content: flex-end;
 }
-header div.barra1 div{
+.loginbutton{
+    padding: 10px;
+}
+.cart{
     padding: 10px;
 }
 
@@ -62,33 +69,23 @@ header div.barra2 nav ul a{
 header i{
     color: rgb(46, 46, 46);
 }
-/*cambio 1 -aca arranco los cambios del header 2-12-2020*/
-header i.fa-bars{
-font-size: 30px;
-}
 
-
-header div.loginButton button{
+header div.loginButton button.btnHeader{
     border: 0;
     background-color:  rgb(46, 46, 46);
     border-radius: 5px;
     padding: 15px;
-    color: #fbdcc4;
+    color: white;
     background-color: rgb(46, 46, 46);
 
 }
 
 header form.search-form {
     display: flex;
-    /*cambio 3 flex-wrap: wrap;*/
     justify-content: center;
 }
 
 header form.search-form input.search-form-input {
-    
-    /* cambio 2*/
-    /*width: 40px;
-    height: 20px;*/
     width: 80px;
     height: 30px;
 
@@ -103,37 +100,44 @@ header form.search-form button.search-form-button {
     border: 0;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    /*cambio 4height: 20px;*/
     height: 30px;
     
 }
 
 
-header div.menu nav.menu-hamburguesa ul {
+.menu-hamburguesa{
     display: none;
 }
 
-header div.menu nav.menu-hamburguesa ul li {
-    list-style: none;
-    border: 1px solid rgb(46, 46, 46);
-    background-color: #faeded;
-    border-radius: 5px;
-    width: 120px;
+header div.menu nav.menu-hamburguesa{
+    width: 50%;
     text-align: center;
-    padding: 5px;
+    background-color: #faeded;
 }
 
-header div.menu nav.menu-hamburguesa ul a {
+header div.menu nav.menu-hamburguesa a {
+    display: block;
+    padding: 20px;
     text-decoration: none;
     color: rgb(46, 46, 46);
 }
 
-header div.menu:hover nav.menu-hamburguesa ul {
-    display: block;
+#toggle:checked + .menu-hamburguesa{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-content: center;
     position: absolute;
-    right: 10px;
-    top: 100px;
+    right: 0;
+    top: 150px;
+    transition: all .2 ease-out;
+    z-index: 1;
 }
+
+.label-toggle{
+    font-size: 24px;
+}
+
 header i.fa-shopping-cart{
     font-size: 25px;
 }
@@ -205,6 +209,10 @@ footer nav ul li {
 
 @media(min-width:768px) {
     /*Cambios HEADER*/
+    .label-toggle{
+        display: none;
+    }
+
     header div.barra2 div.logo {
         width: 90px;
     }
@@ -228,6 +236,10 @@ footer nav ul li {
         cursor: pointer;
         color:  rgb(100, 100, 100);
         }
+    header div.barra1 button:hover{
+            cursor: pointer;
+            background-color:  rgb(100, 100, 100);
+            }
     header .loginbutton button:hover{
         cursor: pointer;
         background-color:  rgb(100, 100, 100);
@@ -288,6 +300,14 @@ footer nav ul li {
 }
 
 @media(min-width:1024px) {
+    .label-toggle{
+        display: none;
+    }
+
+    .menu{
+        display: none;
+    }
+
     header form.search-form {
         width: 150px;
     }

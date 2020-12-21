@@ -1,34 +1,203 @@
-<link rel="stylesheet" href="/stylesheets/forms.css">
+<style>
+    main{
+    text-align: center;
+}
 
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+img{
+    display: block;
+    max-width: 100px;
+}
+
+.historial-container {
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.section-form{
+    max-width: 1100px;
+    display: flex;
+    flex-flow: column;
+    margin: 3rem auto;
+    padding: 20px;
+    position: relative;;
+}
+
+.section-form h2{
+    font-size: 2.5rem;
+}
+
+.grid-container{
+    border-bottom: solid 2px #fbdcc4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 280px;
+    position: relative;
+}
+
+
+.grid-item{
+    padding: 1rem;
+    align-self: center;
+}
+
+.confirmar-compra{
+    background-color: #2e2e2e;
+    color: white;
+    font-size: 18px;
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px 20px 10px 20px;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+.ctas-container{
+    margin-top: 50px;
+}
+
+.seguir-comprando{
+    font-size: 14px;
+    color: black;
+    margin-left: 10px;
+}
+
+.total-compra{
+    margin: 40px;
+    font-size: 22px;
+}
+
+.total-precio{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.link-container {
+    margin-bottom: 100px;
+}
+
+.link-productos{
+    margin-top: 40px;
+    width: 150px;
+    padding: 15px;
+    border: solid 4px #fbdcc4;
+    border-radius: 30px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    color: #2e2e2e;
+    box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.75);
+}
+
+.link-productos:hover{
+    background-color: #fbdcc4;
+    transition-duration: 200ms;
+}
+select{
+    padding: 10px;
+    background-color: rgb(46, 46, 46);
+    color: #fbdcc4;
+    border-radius: 5px;
+
+}
+select:hover{
+    cursor:pointer;
+    background-color: rgb(100,100,100);
+}
+
+.botones{
+    margin-bottom: 20px;
+}
+
+.botones a {
+    margin: 15px;
+}
+.ctas{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    width: 100%;
+    align-self: center;
+    }
+.ctas a{
+    width: 150px;
+    padding: 15px;
+    border: solid 4px #fbdcc4;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    color: #2e2e2e;
+    box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.75);
+    margin-bottom: 40px;
+    justify-self: center;
+}
+
+.ctas a:hover{
+    background-color: #fbdcc4;
+    transition-duration: 200ms;
+}
+
+@media (min-width: 768px){
+    .grid-container{
+    border-bottom: solid 2px #fbdcc4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    position: relative;
+}
+    .ctas{
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 400px;
+        }
+}
+</style>
 <%-include('../partials/header', {title: 'Historial compras ' })%>
 
 <main>
+    <section class="section-form">
     <h2>Historial de compras</h2>
-    
+    <%if(carritos.length > 0){%>
     <%for(let i=0 ; i < carritos.length ; i++){%>
-        <div class="compras">
     <%let total = 0%>
-
-        <h3><%=carritos[i].fecha_compra%></h3>
-        <div class="descripcion">
+    <div class="historial-container">
+        <h3>Fecha de compra: <%=carritos[i].fecha_compra%></h3>
         <%for(let j=0 ; j < carritos[i].producto_carrito.length ; j++){%>
-        <ul class="historial">
-            <li>Producto: <%=carritos[i].productos[j].nombre%></li>
-            <li>Color: <%=carritos[i].productos[j].color%></li>
-            <li>Cantidad: <%=carritos[i].producto_carrito[j].cantidad%></li>
-            <li>Precio: $<%=carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
-            </li>
-        </ul>
+        <article class="grid-container">
+            <div class="grid-item">
+                  <p>Producto: <%=carritos[i].productos[j].nombre%></p>
+            </div>
+            <div class="grid-item">
+                <p> Color: <%=carritos[i].productos[j].color%></p>
+            </div>
+            <div class="grid-item">
+                <p>  Cantidad: <%=carritos[i].producto_carrito[j].cantidad%></p>
+            </div>
+            <div class="grid-item">
+                <p>  Precio: $<%=carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%></p>
+            </div>
+        </article>
+        <%total = total + carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
+    
+        <% } %>
+        <h4>Total: $<%=total%></h4>
+        
     </div>
-
-
-
-    <%total = total + carritos[i].producto_carrito[j].precio_congelado*carritos[i].producto_carrito[j].cantidad%>
-
     <% } %>
-    <h4>Total: $<%=total%></h4>
+    <%} else {%>
+        <h3>No hay compras para mostrar</h3>
     <% } %>
-</div>
 
+    <div class="ctas">
+        <a href="/users/perfil/<%=usuario.id%>">Perfil</a>
+        <a href="/products/rubro">Productos</a>
+    </div>
+</section>
 </main>
 <%-include('../partials/footer')%>

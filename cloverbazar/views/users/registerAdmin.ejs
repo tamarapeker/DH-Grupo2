@@ -1,0 +1,56 @@
+
+<script src="/js/validacionesRegistro.js"></script>
+<script src="/js/apiProvincias.js"></script>
+<link rel="stylesheet" href="/stylesheets/auth.css">
+<%-include('../partials/header', {title: 'Registrate'})%>
+<main>
+    <section class="section-form">
+        <h2 class="titulo-form">Registro administrador</h2>
+        <% if (typeof errors != "undefined"){ %>
+            <ul style="padding: 0;">
+                <% for (var i= 0; i< errors.length ; i++) { %>
+                <li style="list-style: none; color:red"> <%= errors[i].msg %> </li>
+                <%}%>
+            </ul>
+        <%}%>
+        <% if(typeof errorAlLoguear != "undefined"){ %>
+            <p style="color:red"><%= errorAlLoguear %></p>
+        <% } %>
+        <form action="/users/registerAdmin" method="POST" class="forms">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                    <div class="nombreError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="apellido" id="apellido" placeholder="Apellido">
+                    <div class="apellidoError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="email" name="email" id="email" placeholder="E-mail">
+                    <div class="emailError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="password" name="password" id="password" placeholder="Contraseña">
+                    <div class="passwordError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmar contraseña">
+                    <div class="confirmPasswordError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="telefono" id="telefono" placeholder="Telefono">
+                    <div class="telefonoError"></div>
+                </div>
+                <div class="grid-item">
+                    <input class="grid-input" type="text" name="direccion" id="direccion" placeholder="Direccion">
+                </div>
+                <div class="grid-item">
+                    <select name='provincias' class='selectProvincias grid-input'></select>
+                </div>
+            </div>
+            <button class="guardar-cambios" type="submit">Registrar</button>
+        </form>
+    </section>
+</main>
+<%-include('../partials/footer')%>

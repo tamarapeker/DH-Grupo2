@@ -130,17 +130,19 @@ const apiController = {
     },
 
     ultimoProducto: function(req,res,next){
-        db.Productos.findAll({
+        db.Productos.findOne({
+            order: [
+                ["id", "DESC"]
+            ],
             include: [{association: "imagenes"}]
         })
-        .then(function(productos){
-            let ultimoProducto = productos[productos.length - 1]
+        .then(function(producto){
             let respuesta = {
                 meta: {
                     status: 200,
                     url: "/api/productos/ultimoProducto"
                 },
-                data: ultimoProducto
+                data: producto
             }
             res.json(respuesta)
         })
