@@ -96,7 +96,7 @@ main section article.producto{
 main section article.producto div.tarjeta-dto{
     position: absolute;
     background-color: #faeded;
-    color: black;
+    color: rgb(46, 46, 46);
     top: 10px;
     right: 0px;
     padding: 5px;
@@ -106,7 +106,7 @@ main section article .precios h3{
     display: inline-block;
 }
 main section article h3.precioConDto{
-    color: black;
+    color: rgb(46, 46, 46);
 }
 main section article h3.agotado{
     font-weight: bold;
