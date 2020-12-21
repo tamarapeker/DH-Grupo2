@@ -52,6 +52,7 @@ header div.barra2 div.menuysearch {
     width: 70%;
     margin-right: 11px;
     height: 20px;
+    align-content: center;
 }
 
 header div.barra2 div.menuysearch form.search-form {
@@ -83,6 +84,7 @@ header div.loginButton button.btnHeader{
 header form.search-form {
     display: flex;
     justify-content: center;
+    margin-bottom: 0;
 }
 
 header form.search-form input.search-form-input {
@@ -130,7 +132,6 @@ header div.menu nav.menu-hamburguesa a {
     position: absolute;
     right: 0;
     top: 150px;
-    transition: all .2 ease-out;
     z-index: 1;
 }
 

@@ -16,6 +16,7 @@ main section.rubros{
 main  h2{
     color: rgb(46, 46, 46);
     font-weight: 400;
+    font-size: 1.7rem;
     display: block;
     text-align: left;
     margin-left: 30px;
