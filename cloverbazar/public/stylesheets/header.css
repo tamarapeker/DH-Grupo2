@@ -225,7 +225,7 @@ footer nav ul li {
         display: flex;
         flex-flow: row wrap;
         list-style: none;
-        width: 600px;
+        width: 560px;
         justify-content: space-around;/**/
         padding-left: 0;
     }
@@ -311,7 +311,9 @@ footer nav ul li {
     header form.search-form {
         width: 150px;
     }
-
+    header div.barra2 nav ul {
+        width: 600px;
+    }
     header div.barra2 div.menuysearch {
         width: 150px;
     }
