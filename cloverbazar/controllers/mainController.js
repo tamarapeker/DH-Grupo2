@@ -37,6 +37,7 @@ const mainController = {
             where: {
                 nombre: { [db.Sequelize.Op.like]: '%' + req.query.keywords + '%' }
             },
+            order: db.Sequelize.literal('rand()'),
             include: [{ association: "imagenes" }]
         })
             .then(function (productsResult) {
